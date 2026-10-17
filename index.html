@@ -7,18 +7,28 @@
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
     :root {
-      --background: #0b092b;
+      --background: #0d0b33;
       --foreground: #f8fafc;
-      --card: #15124a;
-      --border: rgba(255, 255, 255, 0.14);
-      --muted-foreground: #cbd5e1;
+      --card: #18145c;
+      --border: rgba(244, 182, 41, 0.25);
+      --muted-foreground: #c7d2fe;
     }
     .brand-gradient {
-      background: linear-gradient(135deg, #120f4d 0%, #1c186b 55%, #26208a 100%);
+      background: linear-gradient(135deg, #110e47 0%, #1e1975 50%, #2e279e 100%);
+    }
+    .indigo-card {
+      background: linear-gradient(160deg, #191561 0%, #120f4a 100%);
+      border: 1px solid rgba(244, 182, 41, 0.22);
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .indigo-card:hover {
+      border-color: rgba(244, 182, 41, 0.65);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px -8px rgba(10, 8, 45, 0.7);
     }
     .gold-badge {
-      background-color: #f4b629;
-      color: #120f4d;
+      background: linear-gradient(135deg, #f4b629 0%, #fbbf24 100%);
+      color: #110e47;
     }
     .gold-border {
       border-color: #f4b629;
@@ -26,43 +36,28 @@
     .gold-text {
       color: #f4b629;
     }
-    @keyframes pulse-ring {
-      0% { transform: scale(0.95); opacity: 0.8; }
-      50% { transform: scale(1.08); opacity: 0.4; }
-      100% { transform: scale(0.95); opacity: 0.8; }
+    @keyframes float-slow {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-4px); }
     }
-    .animate-pulse-slow {
-      animation: pulse-ring 2.4s infinite ease-in-out;
-    }
-    @media print {
-      body * {
-        visibility: hidden;
-      }
-      #printable-area, #printable-area * {
-        visibility: visible;
-      }
-      #printable-area {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-      }
+    .animate-float {
+      animation: float-slow 3.5s ease-in-out infinite;
     }
   </style>
 </head>
-<body class="bg-[var(--background)] text-[var(--foreground)] antialiased min-h-screen selection:bg-amber-400 selection:text-slate-950">
+<body class="bg-[#0d0b33] text-white antialiased min-h-screen selection:bg-[#f4b629] selection:text-[#110e47]">
 
-  <!-- ================= LOGIN OVERLAY (MULTI-USUARIO) ================= -->
+  <!-- ================= LOGIN OVERLAY (ESTUDIANTES) ================= -->
   <div id="login-screen" class="fixed inset-0 z-50 flex items-center justify-center p-4 brand-gradient text-white overflow-y-auto">
     <div class="pointer-events-none fixed -top-24 -right-24 w-96 h-96 rounded-full border-2 border-[#f4b629]/70"></div>
-    <div class="pointer-events-none fixed -bottom-28 -right-16 w-80 h-80 rounded-full bg-[#1e1b6e]/70"></div>
+    <div class="pointer-events-none fixed -bottom-28 -right-16 w-80 h-80 rounded-full bg-indigo-800/40"></div>
 
-    <div class="relative z-10 w-full max-w-4xl grid grid-cols-1 lg:grid-cols-12 rounded-2xl overflow-hidden shadow-2xl border border-white/15 bg-[#161352]/90 backdrop-blur-md">
+    <div class="relative z-10 w-full max-w-4xl grid grid-cols-1 lg:grid-cols-12 rounded-2xl overflow-hidden shadow-2xl border border-[#f4b629]/30 bg-[#151152]/95 backdrop-blur-md">
       
       <!-- Left Column: Brand & PDF Cover Messaging -->
-      <div class="lg:col-span-7 p-8 md:p-10 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-white/10">
+      <div class="lg:col-span-7 p-8 md:p-10 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-indigo-400/20">
         <div>
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-[#f4b629]/40 text-xs tracking-widest uppercase font-semibold text-[#f4b629] mb-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/80 border border-[#f4b629]/50 text-xs tracking-widest uppercase font-semibold text-[#f4b629] mb-6">
             <span>BOOTCAMP DE EMPLEABILIDAD CON IA</span>
           </div>
           <h1 class="text-3xl md:text-5xl font-serif font-bold leading-tight tracking-tight text-white mb-2">
@@ -71,47 +66,47 @@
           <h2 class="text-3xl md:text-5xl font-serif font-bold leading-tight tracking-tight text-[#f4b629] mb-6">
             Empieza a conseguir.
           </h2>
-          <p class="text-sm md:text-base text-indigo-100/90 mb-8">
-            6 módulos en orden · 1 sistema completo · de la idea a la oferta
+          <p class="text-sm md:text-base text-indigo-100 mb-8">
+            6 módulos · 1 sistema completo · de la idea a la oferta
           </p>
 
           <!-- Mini preview of the 6 modules in strict order -->
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs">
-            <div class="p-2.5 rounded-lg bg-white/5 border border-white/10">
+            <div class="p-2.5 rounded-lg bg-indigo-900/50 border border-indigo-400/25">
               <span class="font-bold text-[#f4b629] block">01</span>
               <span class="text-indigo-100">Descubre tu valor</span>
             </div>
-            <div class="p-2.5 rounded-lg bg-white/5 border border-white/10">
+            <div class="p-2.5 rounded-lg bg-indigo-900/50 border border-indigo-400/25">
               <span class="font-bold text-[#f4b629] block">02</span>
               <span class="text-indigo-100">CV + LinkedIn</span>
             </div>
-            <div class="p-2.5 rounded-lg bg-white/5 border border-white/10">
+            <div class="p-2.5 rounded-lg bg-indigo-900/50 border border-indigo-400/25">
               <span class="font-bold text-[#f4b629] block">03</span>
               <span class="text-indigo-100">IA como copiloto</span>
             </div>
-            <div class="p-2.5 rounded-lg bg-white/5 border border-white/10">
+            <div class="p-2.5 rounded-lg bg-indigo-900/50 border border-indigo-400/25">
               <span class="font-bold text-[#f4b629] block">04</span>
               <span class="text-indigo-100">Portafolio</span>
             </div>
-            <div class="p-2.5 rounded-lg bg-white/5 border border-white/10">
+            <div class="p-2.5 rounded-lg bg-indigo-900/50 border border-indigo-400/25">
               <span class="font-bold text-[#f4b629] block">05</span>
               <span class="text-indigo-100">Entrevistas</span>
             </div>
-            <div class="p-2.5 rounded-lg bg-[#f4b629] text-[#120f4d] font-medium">
-              <span class="font-bold block">06</span>
+            <div class="p-2.5 rounded-lg gold-badge font-semibold">
+              <span class="font-extrabold block">06</span>
               <span>Postulación estratégica</span>
             </div>
           </div>
         </div>
 
-        <div class="mt-8 pt-4 border-t border-white/10 flex items-center justify-between text-xs tracking-widest uppercase text-indigo-200/80">
+        <div class="mt-8 pt-4 border-t border-indigo-400/20 flex items-center justify-between text-xs tracking-widest uppercase text-indigo-200">
           <span>P O L Y G L O T M A P</span>
-          <span>Edición 2026</span>
+          <span class="text-[#f4b629] font-semibold">Edición 2026</span>
         </div>
       </div>
 
-      <!-- Right Column: Student Login Form -->
-      <div class="lg:col-span-5 p-8 md:p-10 flex flex-col justify-center bg-[#0f0c3d]/80">
+      <!-- Right Column: Clean Student Login Form -->
+      <div class="lg:col-span-5 p-8 md:p-10 flex flex-col justify-center bg-[#0f0c3d]/95">
         <div class="flex items-center gap-3 mb-6">
           <div class="w-12 h-12 rounded-full gold-badge flex items-center justify-center font-bold text-lg shadow-md">
             P
@@ -129,8 +124,8 @@
               id="username-input"
               type="text"
               autocomplete="off"
-              placeholder="Ingresa tu usuario o nombre..."
-              class="w-full px-3.5 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder-indigo-300/50 text-sm focus:outline-none focus:border-[#f4b629]"
+              placeholder="Ingresa tu nombre o usuario..."
+              class="w-full px-3.5 py-2.5 rounded-lg bg-indigo-950/80 border border-indigo-400/30 text-white placeholder-indigo-300/50 text-sm focus:outline-none focus:border-[#f4b629]"
               required
             />
           </div>
@@ -146,13 +141,13 @@
               id="password-input"
               type="password"
               placeholder="Ingresa tu contraseña asignada..."
-              class="w-full px-3.5 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder-indigo-300/50 text-sm focus:outline-none focus:border-[#f4b629]"
+              class="w-full px-3.5 py-2.5 rounded-lg bg-indigo-950/80 border border-indigo-400/30 text-white placeholder-indigo-300/50 text-sm focus:outline-none focus:border-[#f4b629]"
               required
             />
           </div>
 
-          <div id="login-error" class="hidden p-2.5 rounded-lg bg-rose-500/20 border border-rose-400/40 text-rose-200 text-xs">
-            Usuario o contraseña incorrectos. Por favor verifica tus credenciales de estudiante.
+          <div id="login-error" class="hidden p-2.5 rounded-lg bg-amber-500/20 border border-[#f4b629] text-[#f4b629] text-xs font-medium">
+            Usuario o contraseña incorrectos. Verifica tus datos de acceso.
           </div>
 
           <button
@@ -173,7 +168,7 @@
   <div id="app-container" class="hidden min-h-screen flex flex-col">
     
     <!-- Top Brand Header -->
-    <header class="brand-gradient text-white border-b border-white/10 sticky top-0 z-30 shadow-md">
+    <header class="brand-gradient text-white border-b border-[#f4b629]/25 sticky top-0 z-30 shadow-lg">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-4">
         
         <!-- Brand Title -->
@@ -184,7 +179,7 @@
           <div>
             <div class="flex items-center gap-2">
               <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold">POLYGLOTMAP</span>
-              <span class="text-xs px-2 py-0.5 rounded-full bg-white/10 text-indigo-100">Sistema IA</span>
+              <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-900/80 border border-[#f4b629]/40 text-[#f4b629]">Sistema IA</span>
             </div>
             <h1 class="text-base sm:text-lg font-bold tracking-tight text-white">
               Bootcamp de Empleabilidad con IA
@@ -194,10 +189,9 @@
 
         <!-- Quick Actions & Student Badge -->
         <div class="flex items-center gap-2.5 flex-wrap">
-          <!-- Ver Materiales & PDF Quick Button -->
           <button
             onclick="switchTab('materiales')"
-            class="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 border border-[#f4b629]/50 text-[#f4b629] font-bold text-xs flex items-center gap-1.5 transition cursor-pointer"
+            class="px-3 py-2 rounded-xl bg-indigo-900/70 hover:bg-indigo-800 border border-[#f4b629]/50 text-[#f4b629] font-bold text-xs flex items-center gap-1.5 transition cursor-pointer"
           >
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
@@ -205,39 +199,37 @@
             <span>Ver Materiales (PDF)</span>
           </button>
 
-          <!-- Subir Entregables Quick Button -->
           <button
             onclick="switchTab('entregables')"
-            class="px-3 py-2 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/40 text-emerald-300 font-bold text-xs flex items-center gap-1.5 transition cursor-pointer"
+            class="px-3 py-2 rounded-xl bg-indigo-900/70 hover:bg-indigo-800 border border-indigo-400/40 text-indigo-100 font-bold text-xs flex items-center gap-1.5 transition cursor-pointer"
           >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 text-[#f4b629]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
             </svg>
             <span>Subir Entregables</span>
           </button>
 
-          <!-- Primary CTA: Mis Clases / Iniciar Videoconferencia -->
           <button
             onclick="switchTab('videoconferencia')"
             class="px-3.5 py-2 rounded-xl gold-badge font-bold text-xs flex items-center gap-2 shadow hover:opacity-95 transition cursor-pointer"
           >
-            <span class="w-2 h-2 rounded-full bg-rose-600 animate-ping"></span>
+            <span class="w-2 h-2 rounded-full bg-[#110e47] animate-ping"></span>
             <span>Mis Clases (Dom 4-6pm)</span>
           </button>
 
           <!-- Student Profile Pill -->
-          <div class="flex items-center gap-2.5 bg-white/10 border border-white/15 rounded-xl px-3 py-1.5">
-            <div id="header-user-initials" class="w-8 h-8 rounded-full bg-[#f4b629] text-[#120f4d] font-bold text-xs flex items-center justify-center">
+          <div class="flex items-center gap-2.5 bg-indigo-950/80 border border-[#f4b629]/40 rounded-xl px-3 py-1.5">
+            <div id="header-user-initials" class="w-8 h-8 rounded-full gold-badge font-bold text-xs flex items-center justify-center">
               JA
             </div>
             <div class="text-left">
               <span id="header-user-name" class="student-name-display block text-xs font-bold text-white leading-tight">Javier Alfaro</span>
-              <span class="block text-xs text-emerald-300 leading-tight">Modo Alumno</span>
+              <span class="block text-xs text-[#f4b629] leading-tight">Modo Alumno</span>
             </div>
             <button
               onclick="lockSession()"
-              title="Cambiar de usuario / Cerrar sesión"
-              class="ml-1 p-1.5 rounded-lg hover:bg-white/10 text-indigo-200 hover:text-white transition cursor-pointer"
+              title="Cerrar sesión"
+              class="ml-1 p-1.5 rounded-lg hover:bg-indigo-800/60 text-indigo-200 hover:text-white transition cursor-pointer"
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
@@ -247,24 +239,24 @@
         </div>
       </div>
 
-      <!-- Navigation Sub-bar (5 Tabs in logical order) -->
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center gap-1 overflow-x-auto border-t border-white/10 pt-1">
+      <!-- Navigation Sub-bar (5 Dynamic Tabs) -->
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center gap-1 overflow-x-auto border-t border-indigo-400/20 pt-1">
         <button onclick="switchTab('ruta')" id="tab-btn-ruta" class="tab-btn px-3.5 py-2.5 text-xs sm:text-sm font-semibold border-b-2 border-[#f4b629] text-[#f4b629] whitespace-nowrap cursor-pointer">
           1. Ruta de 6 Módulos
         </button>
         <button onclick="switchTab('materiales')" id="tab-btn-materiales" class="tab-btn px-3.5 py-2.5 text-xs sm:text-sm font-medium border-b-2 border-transparent text-indigo-200 hover:text-white whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
           <span>2. Ver Materiales (01 → 06) & PDF</span>
-          <span class="px-1.5 py-0.5 text-xs rounded bg-amber-500/20 text-[#f4b629] border border-[#f4b629]/30">Descargable</span>
+          <span class="px-1.5 py-0.5 text-xs rounded bg-[#f4b629]/20 text-[#f4b629] border border-[#f4b629]/40">Interactivo</span>
         </button>
         <button onclick="switchTab('entregables')" id="tab-btn-entregables" class="tab-btn px-3.5 py-2.5 text-xs sm:text-sm font-medium border-b-2 border-transparent text-indigo-200 hover:text-white whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
           <span>3. Subir Entregables (Drive)</span>
-          <span class="px-1.5 py-0.5 text-xs rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">Carpeta Oficial</span>
         </button>
         <button onclick="switchTab('videoconferencia')" id="tab-btn-videoconferencia" class="tab-btn px-3.5 py-2.5 text-xs sm:text-sm font-medium border-b-2 border-transparent text-indigo-200 hover:text-white whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
           <span>4. Mis Clases (Domingos 4-6pm)</span>
         </button>
-        <button onclick="switchTab('postulacion')" id="tab-btn-postulacion" class="tab-btn px-3.5 py-2.5 text-xs sm:text-sm font-medium border-b-2 border-transparent text-indigo-200 hover:text-white whitespace-nowrap cursor-pointer">
-          5. Tablero 30 Días & Embudo
+        <button onclick="switchTab('coach')" id="tab-btn-coach" class="tab-btn px-3.5 py-2.5 text-xs sm:text-sm font-medium border-b-2 border-transparent text-indigo-200 hover:text-white whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+          <span>5. Modo Coach IA (Ideas y Mejora)</span>
+          <span class="px-1.5 py-0.5 text-xs rounded gold-badge font-bold">Coach</span>
         </button>
       </div>
     </header>
@@ -273,44 +265,44 @@
     <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 space-y-6">
 
       <!-- Student Hero Banner & Global KPIs -->
-      <section class="rounded-2xl brand-gradient text-white p-5 sm:p-6 shadow-lg border border-white/10">
+      <section class="rounded-2xl brand-gradient text-white p-5 sm:p-6 shadow-xl border border-[#f4b629]/30">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           <div class="lg:col-span-7 space-y-2">
             <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#f4b629] font-semibold">
-              <span>Panel de Control del Alumno</span>
+              <span>Espacio de Aprendizaje</span>
               <span>•</span>
               <span class="student-name-display">Javier Alfaro</span>
             </div>
             <h2 class="text-2xl sm:text-3xl font-serif font-bold">
               "Deja de postular. <span class="text-[#f4b629]">Empieza a conseguir.</span>"
             </h2>
-            <p class="text-xs sm:text-sm text-indigo-100/90 max-w-2xl">
-              Bienvenido/a, <strong class="student-name-display">Javier Alfaro</strong>. Revisa el material interactivo en orden del Módulo 01 al 06, descárgalo en PDF y sube tus entregables a la carpeta oficial de Google Drive.
+            <p class="text-xs sm:text-sm text-indigo-100 max-w-2xl">
+              Hola, <strong class="student-name-display text-[#f4b629]">Javier Alfaro</strong>. Avanza paso a paso por tus 6 módulos, descarga tus guías en PDF, sube tus entregables a Google Drive y apóyate en el <strong>Modo Coach</strong> para potenciar tu empleabilidad.
             </p>
           </div>
 
-          <!-- KPI Cards -->
+          <!-- KPI Cards (Indigo & Yellow Theme, starting clean for the student) -->
           <div class="lg:col-span-5 grid grid-cols-3 gap-3">
-            <div class="p-3.5 rounded-xl bg-white/10 border border-white/15">
-              <span class="text-xs text-indigo-200 block">Avance Global</span>
-              <span id="global-progress-text" class="text-xl sm:text-2xl font-bold text-[#f4b629]">58%</span>
-              <div class="w-full h-1.5 bg-white/15 rounded-full mt-2 overflow-hidden">
-                <div id="global-progress-bar" class="h-full bg-[#f4b629] transition-all duration-300" style="width: 58%"></div>
+            <div class="p-3.5 rounded-xl bg-indigo-950/70 border border-[#f4b629]/30">
+              <span class="text-xs text-indigo-200 block">Tu Avance</span>
+              <span id="global-progress-text" class="text-xl sm:text-2xl font-bold text-[#f4b629]">0%</span>
+              <div class="w-full h-1.5 bg-indigo-900 rounded-full mt-2 overflow-hidden">
+                <div id="global-progress-bar" class="h-full bg-[#f4b629] transition-all duration-300" style="width: 0%"></div>
               </div>
             </div>
-            <div class="p-3.5 rounded-xl bg-white/10 border border-white/15">
-              <span class="text-xs text-indigo-200 block">Entregables</span>
-              <span id="deliverables-count" class="text-xl sm:text-2xl font-bold text-white">3 / 6</span>
-              <button onclick="switchTab('entregables')" class="text-xs text-emerald-300 hover:underline block mt-1 cursor-pointer">
-                Subir en Drive →
+            <div class="p-3.5 rounded-xl bg-indigo-950/70 border border-[#f4b629]/30">
+              <span class="text-xs text-indigo-200 block">Mis Entregables</span>
+              <span id="deliverables-count" class="text-xl sm:text-2xl font-bold text-white">0 / 6</span>
+              <button onclick="switchTab('entregables')" class="text-xs text-[#f4b629] hover:underline block mt-1 font-semibold cursor-pointer">
+                Ir a Drive →
               </button>
             </div>
-            <div class="p-3.5 rounded-xl bg-white/10 border border-[#f4b629]/50">
-              <span class="text-xs text-[#f4b629] font-semibold block">Mis Clases</span>
-              <span class="text-sm sm:text-base font-bold text-white block mt-0.5">Domingos 4-6pm</span>
-              <a href="https://meet.google.com/ttr-rhow-zou" target="_blank" rel="noopener noreferrer" class="text-xs text-emerald-300 hover:underline mt-1 block truncate">
-                meet.google.com/ttr-rhow-zou →
-              </a>
+            <div class="p-3.5 rounded-xl bg-indigo-950/70 border border-[#f4b629]">
+              <span class="text-xs text-[#f4b629] font-bold block">Mis Clases</span>
+              <span class="text-sm sm:text-base font-bold text-white block mt-0.5">Dom 4-6pm</span>
+              <button onclick="switchTab('videoconferencia')" class="text-xs text-indigo-200 hover:text-[#f4b629] hover:underline mt-1 block truncate cursor-pointer">
+                2 módulos por domingo →
+              </button>
             </div>
           </div>
         </div>
@@ -318,17 +310,17 @@
 
       <!-- ================= TAB 1: RUTA DE 6 MÓDULOS ================= -->
       <div id="tab-content-ruta" class="space-y-6">
-        <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 sm:p-6 shadow-sm">
+        <div class="indigo-card rounded-2xl p-5 sm:p-6 shadow-lg">
           <div class="flex flex-wrap items-center justify-between gap-2 mb-5">
             <div>
-              <span class="text-xs font-bold uppercase tracking-wider text-amber-500">Mapa del Sistema Completo (En Orden 01 → 06)</span>
-              <h3 class="text-lg sm:text-xl font-bold text-[var(--foreground)]">
+              <span class="text-xs font-bold uppercase tracking-wider text-[#f4b629]">Mapa del Sistema Completo (Orden 01 → 06)</span>
+              <h3 class="text-lg sm:text-xl font-bold text-white">
                 6 módulos. Un solo camino hacia arriba.
               </h3>
             </div>
             <div class="flex items-center gap-2">
-              <button onclick="openModuleMaterial(selectedModuleId)" class="px-3 py-1.5 rounded-lg gold-badge text-xs font-bold cursor-pointer">
-                Ver Material de Clase del Módulo →
+              <button onclick="openModuleMaterial(selectedModuleId)" class="px-3.5 py-2 rounded-xl gold-badge text-xs font-bold shadow cursor-pointer">
+                📖 Abrir Material de Clase del Módulo →
               </button>
             </div>
           </div>
@@ -338,22 +330,21 @@
         </div>
 
         <!-- Selected Module Detail View -->
-        <div id="module-detail-card" class="rounded-2xl brand-gradient text-white p-6 sm:p-8 shadow-xl border border-white/15 relative overflow-hidden"></div>
+        <div id="module-detail-card" class="rounded-2xl brand-gradient text-white p-6 sm:p-8 shadow-xl border border-[#f4b629]/40 relative overflow-hidden"></div>
       </div>
 
       <!-- ================= TAB 2: VER MATERIALES DE CLASE (01 AL 06 EN ORDEN) & DESCARGAR PDF ================= -->
       <div id="tab-content-materiales" class="hidden space-y-6">
         
-        <!-- Top Control Bar: Ordered Selector 01 -> 06 + PDF Download Buttons -->
-        <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-4">
+        <div class="indigo-card rounded-2xl p-5 shadow-lg space-y-4">
           <div class="flex flex-wrap items-center justify-between gap-4">
             <div>
-              <span class="text-xs font-bold uppercase tracking-wider text-amber-400">Biblioteca Interactiva Oficial · PolyglotMap</span>
-              <h3 class="text-lg sm:text-xl font-bold text-[var(--foreground)]">
+              <span class="text-xs font-bold uppercase tracking-wider text-[#f4b629]">Biblioteca Interactiva · PolyglotMap</span>
+              <h3 class="text-lg sm:text-xl font-bold text-white">
                 Material de Clase — Módulos 01 al 06 en Orden
               </h3>
-              <p class="text-xs text-[var(--muted-foreground)]">
-                Explora cada módulo paso a paso (Diagnóstico, Cuello de Botella, Transformación, Lecciones 1 y 2, Manos a la Obra y Cierre) o descárgalo en PDF.
+              <p class="text-xs text-indigo-200">
+                Haz clic en cada módulo en orden para estudiar las lecciones interactivas o descárgalo en formato PDF.
               </p>
             </div>
 
@@ -371,9 +362,9 @@
 
               <button
                 onclick="downloadAllModulesPDF()"
-                class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-xs sm:text-sm flex items-center gap-2 transition cursor-pointer"
+                class="px-4 py-2.5 rounded-xl bg-indigo-900/80 hover:bg-indigo-800 border border-[#f4b629]/50 text-[#f4b629] font-bold text-xs sm:text-sm flex items-center gap-2 transition cursor-pointer"
               >
-                <svg class="w-4 h-4 text-[#f4b629]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                 </svg>
                 <span>Descargar los 6 Módulos Completos (PDF)</span>
@@ -382,38 +373,33 @@
           </div>
 
           <!-- Ordered Module Stepper Bar (01 -> 02 -> 03 -> 04 -> 05 -> 06) -->
-          <div id="materials-stepper" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 pt-2">
-            <!-- Populated via JS in strict 01..06 order -->
-          </div>
+          <div id="materials-stepper" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 pt-2"></div>
         </div>
 
         <!-- Interactive Class Material Viewer for Selected Module -->
-        <div id="material-interactive-viewer" class="space-y-5">
-          <!-- Populated via JS -->
-        </div>
+        <div id="material-interactive-viewer" class="space-y-5"></div>
 
       </div>
 
       <!-- ================= TAB 3: SUBIR ENTREGABLES (GOOGLE DRIVE OFICIAL) ================= -->
       <div id="tab-content-entregables" class="hidden space-y-6">
         
-        <!-- Hero Banner for Google Drive Folder Upload -->
         <div class="rounded-2xl brand-gradient text-white p-6 sm:p-8 shadow-xl border-2 border-[#f4b629]">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
             <div class="lg:col-span-7 space-y-3">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-xs font-bold text-emerald-300 uppercase tracking-wider">
-                <span>Repositorio Oficial de Entregables</span>
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f4b629]/20 border border-[#f4b629] text-xs font-bold text-[#f4b629] uppercase tracking-wider">
+                <span>Carpeta Oficial de Entregables</span>
               </div>
               <h3 class="text-2xl sm:text-4xl font-serif font-bold">
                 Modo Subir Entregables — <span class="student-name-display text-[#f4b629]">Javier Alfaro</span>
               </h3>
-              <p class="text-xs sm:text-sm text-indigo-100/90">
-                Sube los 6 entregables en orden (del Módulo 01 al Módulo 06) directamente a la carpeta compartida de Google Drive del Bootcamp y marca tu registro aquí.
+              <p class="text-xs sm:text-sm text-indigo-100">
+                A medida que avances en cada módulo (01 al 06), sube aquí tus entregables directamente a la carpeta compartida de Google Drive.
               </p>
 
-              <div class="p-3.5 rounded-xl bg-black/30 border border-white/15 flex flex-wrap items-center justify-between gap-2">
+              <div class="p-3.5 rounded-xl bg-indigo-950/90 border border-[#f4b629]/40 flex flex-wrap items-center justify-between gap-2">
                 <div class="min-w-0">
-                  <span class="text-xs text-indigo-200 block">Enlace Oficial de Carpeta Google Drive:</span>
+                  <span class="text-xs text-indigo-200 block">Enlace Oficial de Google Drive:</span>
                   <code class="text-xs sm:text-sm font-mono text-[#f4b629] font-bold break-all">
                     https://drive.google.com/drive/folders/1kHAd1GjkPwyR-rDWkkQA8odvXH818v_o?usp=sharing
                   </code>
@@ -422,7 +408,7 @@
                   type="button"
                   onclick="copyDriveLink()"
                   id="btn-copy-drive"
-                  class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-semibold shrink-0 cursor-pointer"
+                  class="px-3 py-1.5 rounded-lg gold-badge text-xs font-bold shrink-0 cursor-pointer"
                 >
                   Copiar enlace Drive
                 </button>
@@ -430,7 +416,7 @@
             </div>
 
             <!-- Right Drive Launch Card -->
-            <div class="lg:col-span-5 bg-[#0f0c3d]/90 border border-white/15 rounded-2xl p-6 flex flex-col justify-between space-y-4 shadow-xl">
+            <div class="lg:col-span-5 bg-[#0f0c3d]/95 border border-[#f4b629]/40 rounded-2xl p-6 flex flex-col justify-between space-y-4 shadow-xl">
               <div class="flex items-center gap-3">
                 <div class="w-12 h-12 rounded-xl gold-badge flex items-center justify-center shrink-0 shadow">
                   <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -439,12 +425,12 @@
                 </div>
                 <div>
                   <span class="text-xs uppercase tracking-wider text-[#f4b629] font-bold block">Google Drive · PolyglotMap</span>
-                  <h4 class="text-base font-bold text-white">Carpeta de Entregas Activa</h4>
+                  <h4 class="text-base font-bold text-white">Subida de Archivos del Alumno</h4>
                 </div>
               </div>
 
               <p class="text-xs text-indigo-200">
-                Haz clic en el botón inferior para abrir la carpeta de Google Drive y arrastrar tus archivos PDF, enlaces de portafolio o documentos ATS.
+                Haz clic abajo para abrir la carpeta de Google Drive en una pestaña nueva y subir tus documentos de los módulos 01 al 06.
               </p>
 
               <a
@@ -456,28 +442,26 @@
                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
                 </svg>
-                <span>Abrir Carpeta Google Drive para Subir Archivos</span>
+                <span>Abrir Carpeta Google Drive para Subir</span>
               </a>
             </div>
           </div>
         </div>
 
         <!-- Ordered 01 to 06 Deliverables Upload Cards -->
-        <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 sm:p-6 shadow-sm">
+        <div class="indigo-card rounded-2xl p-5 sm:p-6 shadow-lg">
           <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
             <div>
-              <h4 class="text-base sm:text-lg font-bold text-[var(--foreground)]">
-                Control de Entregables por Módulo (Orden 01 → 06)
+              <h4 class="text-base sm:text-lg font-bold text-white">
+                Tus 6 Entregables del Bootcamp (Orden 01 → 06)
               </h4>
-              <p class="text-xs text-[var(--muted-foreground)]">
-                Selecciona tu archivo local o registra tu entrega y súbelo directamente a Google Drive.
+              <p class="text-xs text-indigo-200">
+                Adjunta tu archivo para llevar tu control personal y súbelo a la carpeta de Google Drive.
               </p>
             </div>
           </div>
 
-          <div id="deliverables-upload-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <!-- Populated via JS in 01..06 order -->
-          </div>
+          <div id="deliverables-upload-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
         </div>
 
       </div>
@@ -492,56 +476,56 @@
             <!-- Left Info -->
             <div class="lg:col-span-7 space-y-3">
               <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f4b629]/20 border border-[#f4b629] text-xs font-bold text-[#f4b629] uppercase tracking-wider">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                <span class="w-2 h-2 rounded-full bg-[#f4b629] animate-ping"></span>
                 <span>Apartado: Mis Clases en Vivo</span>
               </div>
               <h3 class="text-2xl sm:text-4xl font-serif font-bold text-white">
                 Bootcamp de Empleabilidad con IA
               </h3>
-              <p class="text-sm text-indigo-100/90">
-                Sesiones en vivo de seguimiento, revisión de entregables y práctica de entrevistas para <strong class="student-name-display">Javier Alfaro</strong>.
+              <p class="text-sm text-indigo-100">
+                Cada domingo vemos <strong>2 módulos en vivo de 4:00 pm a 6:00 pm</strong>. Ingresa puntualmente con tu enlace oficial de Google Meet.
               </p>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                <div class="p-3.5 rounded-xl bg-white/10 border border-white/15 flex items-center gap-3">
+                <div class="p-3.5 rounded-xl bg-indigo-950/80 border border-[#f4b629]/40 flex items-center gap-3">
                   <div class="w-10 h-10 rounded-lg gold-badge flex items-center justify-center shrink-0">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
                     </svg>
                   </div>
                   <div>
-                    <span class="text-xs text-indigo-200 block">Horario de Clases</span>
-                    <span class="text-sm sm:text-base font-bold text-white">Domingos · 4:00 pm – 6:00 pm</span>
+                    <span class="text-xs text-indigo-200 block">Horario Oficial</span>
+                    <span class="text-sm sm:text-base font-bold text-[#f4b629]">Domingos · 4:00 pm – 6:00 pm</span>
                   </div>
                 </div>
 
-                <div class="p-3.5 rounded-xl bg-white/10 border border-white/15 flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-lg bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 flex items-center justify-center shrink-0">
+                <div class="p-3.5 rounded-xl bg-indigo-950/80 border border-[#f4b629]/40 flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-lg bg-[#f4b629]/20 border border-[#f4b629] text-[#f4b629] flex items-center justify-center shrink-0">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
                     </svg>
                   </div>
                   <div class="min-w-0">
-                    <span class="text-xs text-indigo-200 block">Link Oficial Google Meet</span>
-                    <span class="text-sm font-mono font-bold text-[#f4b629] truncate block">meet.google.com/ttr-rhow-zou</span>
+                    <span class="text-xs text-indigo-200 block">Sala Google Meet</span>
+                    <span class="text-sm font-mono font-bold text-white truncate block">meet.google.com/ttr-rhow-zou</span>
                   </div>
                 </div>
               </div>
             </div>
 
             <!-- Right CTA Box -->
-            <div class="lg:col-span-5 bg-[#0f0c3d]/90 border border-white/15 rounded-2xl p-5 flex flex-col justify-between space-y-4 shadow-xl">
-              <div class="flex items-center justify-between border-b border-white/10 pb-3">
+            <div class="lg:col-span-5 bg-[#0f0c3d]/95 border border-[#f4b629]/40 rounded-2xl p-5 flex flex-col justify-between space-y-4 shadow-xl">
+              <div class="flex items-center justify-between border-b border-indigo-400/20 pb-3">
                 <div>
-                  <span class="text-xs uppercase tracking-wider text-[#f4b629] font-bold block">Sala Oficial de Google Meet</span>
+                  <span class="text-xs uppercase tracking-wider text-[#f4b629] font-bold block">Acceso Directo a Clase</span>
                   <span class="text-sm font-bold text-white">Alumno: <span class="student-name-display">Javier Alfaro</span></span>
                 </div>
-                <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs font-semibold">
-                  Lista para conectar
+                <span class="px-2.5 py-1 rounded-full gold-badge text-xs font-extrabold">
+                  2 Módulos / Dom
                 </span>
               </div>
 
-              <div class="p-3 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between gap-2">
+              <div class="p-3 rounded-xl bg-indigo-950 border border-indigo-400/30 flex items-center justify-between gap-2">
                 <code class="text-xs sm:text-sm font-mono text-[#f4b629] font-bold truncate">
                   meet.google.com/ttr-rhow-zou
                 </code>
@@ -549,7 +533,7 @@
                   type="button"
                   onclick="copyMeetLink()"
                   id="btn-copy-meet"
-                  class="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-semibold shrink-0 cursor-pointer transition"
+                  class="px-2.5 py-1 rounded-lg bg-indigo-800 hover:bg-indigo-700 text-white text-xs font-semibold shrink-0 cursor-pointer transition"
                 >
                   Copiar link
                 </button>
@@ -572,106 +556,150 @@
         </div>
 
         <!-- Cronograma de Mis Clases (3 Domingos · 2 Módulos por Domingo de 4-6pm) -->
-        <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 sm:p-6 shadow-sm">
+        <div class="indigo-card rounded-2xl p-5 sm:p-6 shadow-lg">
           <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
             <div>
-              <h4 class="text-base sm:text-lg font-bold text-[var(--foreground)]">Programación de Mis Clases — 2 Módulos cada Domingo (4:00 pm a 6:00 pm)</h4>
-              <p class="text-xs text-[var(--muted-foreground)]">6 módulos en 3 domingos (2 módulos por sesión) en <strong class="text-amber-400">meet.google.com/ttr-rhow-zou</strong></p>
+              <h4 class="text-base sm:text-lg font-bold text-white">Calendario de Clases — 2 Módulos cada Domingo (4:00 pm a 6:00 pm)</h4>
+              <p class="text-xs text-indigo-200">Todas las clases se imparten en vivo por <strong class="text-[#f4b629]">meet.google.com/ttr-rhow-zou</strong></p>
             </div>
-            <span class="px-3 py-1 rounded-full bg-amber-500/15 text-amber-400 text-xs font-bold">
-              3 Domingos · 2 Módulos por Domingo (4-6pm)
+            <span class="px-3 py-1 rounded-full gold-badge text-xs font-extrabold">
+              3 Domingos · 4:00 pm – 6:00 pm
             </span>
           </div>
 
-          <div id="classes-schedule-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            <!-- Populated in 3 Sunday pairs (01+02, 03+04, 05+06) via JS -->
-          </div>
+          <div id="classes-schedule-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-4"></div>
         </div>
 
       </div>
 
-      <!-- ================= TAB 5: POSTULACIÓN ESTRATÉGICA & EMBUDO ================= -->
-      <div id="tab-content-postulacion" class="hidden space-y-6">
+      <!-- ================= TAB 5: MODO COACH IA DE EMPLEABILIDAD (IDEAS DE SEGUIMIENTO Y MEJORA) ================= -->
+      <div id="tab-content-coach" class="hidden space-y-6">
         
-        <div class="rounded-2xl brand-gradient text-white p-6 shadow-lg border border-white/10">
-          <div class="flex flex-wrap items-center justify-between gap-2 mb-6">
-            <div>
-              <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold">MÓDULO 06 · SISTEMA DE 30 DÍAS</span>
-              <h3 class="text-xl sm:text-2xl font-serif font-bold mt-1">
-                Postular a 50 empleos no es estrategia. Esto sí:
+        <!-- Coach Hero Header -->
+        <div class="rounded-2xl brand-gradient text-white p-6 sm:p-8 shadow-xl border-2 border-[#f4b629]">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div class="lg:col-span-8 space-y-2">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full gold-badge text-xs font-extrabold uppercase tracking-wider">
+                <span>Modo Coach de Empleabilidad · Copiloto Activo</span>
+              </div>
+              <h3 class="text-2xl sm:text-4xl font-serif font-bold">
+                Ideas de Seguimiento y Mejora Continua para <span class="student-name-display text-[#f4b629]">Javier Alfaro</span>
               </h3>
+              <p class="text-xs sm:text-sm text-indigo-100">
+                "Postular a 50 empleos no es estrategia. Esto sí: <strong>Encuentra → Analiza → Adapta → Postula → Seguimiento → Mejora ↺</strong>". Selecciona tu objetivo actual y recibe ideas accionables, guiones de seguimiento y tácticas para multiplicar tus entrevistas.
+              </p>
             </div>
-            <span class="text-xs text-indigo-200 italic">↺ y vuelve a empezar, cada vez mejor</span>
-          </div>
 
-          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 items-center">
-            <div class="flex flex-col items-center text-center">
-              <div class="w-24 h-24 rounded-full gold-badge flex items-center justify-center font-bold text-sm shadow-lg">1. Encuentra</div>
-              <span class="text-xs text-indigo-200 mt-2">5 ofertas con ajuste real</span>
-            </div>
-            <div class="flex flex-col items-center text-center">
-              <div class="w-24 h-24 rounded-full gold-badge flex items-center justify-center font-bold text-sm shadow-lg">2. Analiza</div>
-              <span class="text-xs text-indigo-200 mt-2">Requisitos clave con IA</span>
-            </div>
-            <div class="flex flex-col items-center text-center">
-              <div class="w-24 h-24 rounded-full gold-badge flex items-center justify-center font-bold text-sm shadow-lg">3. Adapta</div>
-              <span class="text-xs text-indigo-200 mt-2">CV ATS + Mensaje a medida</span>
-            </div>
-            <div class="flex flex-col items-center text-center">
-              <div class="w-24 h-24 rounded-full gold-badge flex items-center justify-center font-bold text-sm shadow-lg">4. Postula</div>
-              <span class="text-xs text-indigo-200 mt-2">Escribe a alguien dentro</span>
-            </div>
-            <div class="flex flex-col items-center text-center">
-              <div class="w-24 h-24 rounded-full gold-badge flex items-center justify-center font-bold text-sm shadow-lg">5. Seguimiento</div>
-              <span class="text-xs text-indigo-200 mt-2">Revisa a los 7 días</span>
-            </div>
-            <div class="flex flex-col items-center text-center">
-              <div class="w-24 h-24 rounded-full gold-badge flex items-center justify-center font-bold text-sm shadow-lg">6. Mejora</div>
-              <span class="text-xs text-indigo-200 mt-2">Tablero semanal</span>
+            <!-- 6-Step Cycle Mini Pill -->
+            <div class="lg:col-span-4 bg-[#0f0c3d]/90 border border-[#f4b629]/40 rounded-2xl p-4 text-center space-y-2">
+              <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold block">El Ciclo Ganador</span>
+              <div class="flex flex-wrap items-center justify-center gap-1.5 text-xs font-bold">
+                <span class="px-2.5 py-1 rounded-full gold-badge">Encuentra</span>
+                <span class="text-[#f4b629]">→</span>
+                <span class="px-2.5 py-1 rounded-full gold-badge">Analiza</span>
+                <span class="text-[#f4b629]">→</span>
+                <span class="px-2.5 py-1 rounded-full gold-badge">Adapta</span>
+                <span class="text-[#f4b629]">→</span>
+                <span class="px-2.5 py-1 rounded-full gold-badge">Postula</span>
+                <span class="text-[#f4b629]">→</span>
+                <span class="px-2.5 py-1 rounded-full gold-badge">Seguimiento</span>
+                <span class="text-[#f4b629]">→</span>
+                <span class="px-2.5 py-1 rounded-full gold-badge">Mejora ↺</span>
+              </div>
             </div>
           </div>
         </div>
 
+        <!-- Interactive Coach Selector: ¿Qué área de tu empleabilidad quieres impulsar hoy? -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          <div class="lg:col-span-7 bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm">
-            <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-              <div>
-                <h4 class="text-base font-bold text-[var(--foreground)]">Tu Tablero de Seguimiento Semanal</h4>
-                <p class="text-xs text-[var(--muted-foreground)]">Empresa · Rol · Fecha · Estado · Siguiente paso</p>
-              </div>
-              <button onclick="addNewOpportunity()" class="px-3 py-1.5 rounded-xl gold-badge font-bold text-xs cursor-pointer">
-                + Registrar Postulación
-              </button>
+          
+          <!-- Left 5 Cols: Escenarios de Coaching -->
+          <div class="lg:col-span-5 indigo-card rounded-2xl p-5 space-y-3">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-[#f4b629] block">
+              1. Elige tu Reto Actual
+            </span>
+            <h4 class="text-base sm:text-lg font-bold text-white">
+              ¿En qué etapa necesitas ideas del Coach hoy?
+            </h4>
+            <div id="coach-topics-list" class="space-y-2.5 pt-1">
+              <!-- Populated via JS -->
             </div>
-            <div id="opportunities-list" class="space-y-2.5"></div>
           </div>
 
-          <div class="lg:col-span-5 rounded-2xl brand-gradient text-white p-6 shadow-lg border border-white/10 flex flex-col justify-between">
+          <!-- Right 7 Cols: Plan de Acción del Coach + Plantilla Lista para Copiar -->
+          <div id="coach-advice-panel" class="lg:col-span-7 indigo-card rounded-2xl p-6 flex flex-col justify-between space-y-5 border-2 border-[#f4b629]">
+            <!-- Populated dynamically via JS -->
+          </div>
+
+        </div>
+
+        <!-- Interactive Personal Coach Generator & Funnel -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          
+          <!-- Interactive Coach Simulator -->
+          <div class="lg:col-span-7 indigo-card rounded-2xl p-6 space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-xs font-extrabold uppercase tracking-wider text-[#f4b629] block">
+                  Consultor Interactivo 24/7
+                </span>
+                <h4 class="text-base sm:text-lg font-bold text-white">
+                  Pregúntale a tu Coach de Empleabilidad
+                </h4>
+              </div>
+              <span class="px-2.5 py-1 rounded-lg gold-badge text-xs font-extrabold">Modo Coach IA</span>
+            </div>
+
+            <div id="coach-chat-box" class="space-y-3 max-h-64 overflow-y-auto pr-1 text-xs">
+              <div class="p-4 rounded-xl bg-indigo-950/90 border border-[#f4b629]/40">
+                <span class="font-bold text-[#f4b629] block mb-1">Coach PolyglotMap · IA</span>
+                <p class="text-indigo-100 leading-relaxed">
+                  ¡Hola <strong class="student-name-display">Javier Alfaro</strong>! Escribe abajo el cargo al que aspiras o una duda sobre tu CV, LinkedIn, portafolio o seguimiento, y te daré 3 ideas concretas para destacar esta semana.
+                </p>
+              </div>
+            </div>
+
+            <form onsubmit="handleCoachQuestion(event)" class="flex gap-2">
+              <input
+                id="coach-user-input"
+                type="text"
+                placeholder="Ej. ¿Cómo doy seguimiento a una empresa después de 7 días sin sonar insistente?"
+                class="flex-1 px-3.5 py-2.5 rounded-xl bg-indigo-950 border border-indigo-400/40 text-xs text-white placeholder-indigo-300/60 focus:outline-none focus:border-[#f4b629]"
+              />
+              <button type="submit" class="px-4 py-2.5 rounded-xl gold-badge font-bold text-xs cursor-pointer shrink-0">
+                Pedir Ideas al Coach →
+              </button>
+            </form>
+          </div>
+
+          <!-- El Embudo que sí te lleva a la oferta -->
+          <div class="lg:col-span-5 rounded-2xl brand-gradient text-white p-6 shadow-xl border border-[#f4b629]/40 flex flex-col justify-between">
             <div>
               <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold">Ú L T I M A   P A R A D A</span>
               <h4 class="text-xl font-serif font-bold mt-1">El embudo que sí te lleva a la oferta</h4>
-              <p class="text-xs text-[#f4b629] italic mb-6">Tú decides en qué parte te quedas.</p>
+              <p class="text-xs text-[#f4b629] italic mb-5">Tú decides en qué parte te quedas.</p>
 
-              <div class="space-y-3 flex flex-col items-center">
-                <div class="w-full p-3.5 rounded-xl bg-white/10 border border-white/15 text-center">
-                  <span class="text-xs tracking-widest uppercase text-indigo-200 block">A T E N C I Ó N</span>
+              <div class="space-y-2.5 flex flex-col items-center">
+                <div class="w-full p-3 rounded-xl bg-indigo-950/80 border border-indigo-400/30 text-center">
+                  <span class="text-xs tracking-widest uppercase text-indigo-300 block">A T E N C I Ó N</span>
                   <p class="text-xs sm:text-sm font-bold text-white mt-0.5">Cientos de postulaciones. Cero respuestas.</p>
                 </div>
-                <div class="w-11/12 p-3.5 rounded-xl bg-indigo-800/60 border border-white/15 text-center">
+                <div class="w-11/12 p-3 rounded-xl bg-indigo-900/80 border border-indigo-400/40 text-center">
                   <span class="text-xs tracking-widest uppercase text-indigo-200 block">I N T E R É S</span>
                   <p class="text-xs sm:text-sm font-bold text-white mt-0.5">6 módulos. 1 sistema. La IA de tu lado.</p>
                 </div>
-                <div class="w-10/12 p-3.5 rounded-xl bg-indigo-600/70 border border-white/20 text-center">
-                  <span class="text-xs tracking-widest uppercase text-indigo-100 block">D E S E O</span>
+                <div class="w-10/12 p-3 rounded-xl bg-indigo-800/90 border border-[#f4b629]/50 text-center">
+                  <span class="text-xs tracking-widest uppercase text-[#f4b629] block">D E S E O</span>
                   <p class="text-xs sm:text-sm font-bold text-white mt-0.5">CV, LinkedIn, portafolio y entrevistas listos.</p>
                 </div>
-                <div class="w-9/12 p-4 rounded-xl gold-badge text-center shadow-lg">
+                <div class="w-9/12 p-3.5 rounded-xl gold-badge text-center shadow-lg">
                   <span class="text-xs tracking-widest uppercase font-extrabold block">A C C I Ó N</span>
-                  <p class="text-xs sm:text-sm font-serif font-bold mt-0.5">Alumno Activo · polyglotmap.com</p>
+                  <p class="text-xs sm:text-sm font-serif font-bold mt-0.5">Construye tu oferta · polyglotmap.com</p>
                 </div>
               </div>
             </div>
           </div>
+
         </div>
 
       </div>
@@ -683,7 +711,7 @@
     const DRIVE_FOLDER_URL = "https://drive.google.com/drive/folders/1kHAd1GjkPwyR-rDWkkQA8odvXH818v_o?usp=sharing";
     const MEET_URL = "https://meet.google.com/ttr-rhow-zou";
 
-    // ================= LOS 6 MÓDULOS EN ORDEN ESTRICTO (01 AL 06) CON TODO EL MATERIAL DE CLASE =================
+    // ================= LOS 6 MÓDULOS EN ORDEN (01 AL 06) — INICIAN LIMPIOS PARA EL ALUMNO =================
     const modulesData = [
       {
         id: 1,
@@ -723,22 +751,22 @@
         ],
         handsOnTitle: "Tu declaración de valor",
         handsOnDesc: "Completa esta estructura en una sola frase y úsala como base para todo el bootcamp:",
-        handsOnBox: 'Ayudo a [tipo de empresa/equipo] a resolver [problema clave] mediante [tus fortalezas/IA], logrando [resultado medible].',
+        handsOnBox: "Ayudo a [tipo de empresa/equipo] a resolver [problema clave] mediante [tus fortalezas/IA], logrando [resultado medible].",
         closingChecks: [
-          "Diagnóstico de empleabilidad completado",
+          "Diagnóstico de empleabilidad listo",
           "Objetivo profesional claro definido",
           "Propuesta de valor en una frase lista",
           "Mapa con 10 oportunidades objetivo (roles, sectores y países)"
         ],
         deliverable: "Declaración de valor + mapa con 10 oportunidades objetivo",
         nextStepText: "Siguiente: lleva tu propuesta de valor a tu CV y LinkedIn.",
-        deliverableDone: true,
+        deliverableDone: false,
         tasks: [
-          { text: "Diagnóstico de empleabilidad", done: true },
-          { text: "Objetivo profesional claro", done: true },
-          { text: "Tus fortalezas, identificadas", done: true },
-          { text: "Propuesta de valor en una frase", done: true },
-          { text: "Mapa de oportunidades: roles, sectores y países", done: true }
+          { text: "Diagnóstico de empleabilidad", done: false },
+          { text: "Objetivo profesional claro", done: false },
+          { text: "Tus fortalezas, identificadas", done: false },
+          { text: "Propuesta de valor en una frase", done: false },
+          { text: "Mapa de oportunidades: roles, sectores y países", done: false }
         ]
       },
       {
@@ -788,12 +816,12 @@
         ],
         deliverable: "CV en formato ATS + perfil de LinkedIn optimizado",
         nextStepText: "Siguiente: usa la IA para multiplicar tus postulaciones.",
-        deliverableDone: true,
+        deliverableDone: false,
         tasks: [
-          { text: "CV compatible con ATS (1 columna, sin tablas)", done: true },
-          { text: "CV de logros: acción + resultado + impacto medible", done: true },
-          { text: "Titular profesional: rol + valor + palabras clave", done: true },
-          { text: "Acerca de mí con gancho, historia, logros y llamado", done: true },
+          { text: "CV compatible con ATS (1 columna, sin tablas)", done: false },
+          { text: "CV de logros: acción + resultado + impacto medible", done: false },
+          { text: "Titular profesional: rol + valor + palabras clave", done: false },
+          { text: "Acerca de mí con gancho, historia, logros y llamado", done: false },
           { text: "Palabras clave por sector en todo el perfil", done: false }
         ]
       },
@@ -844,11 +872,11 @@
         ],
         deliverable: "Kit de postulación: prompts y plantillas reutilizables",
         nextStepText: "Siguiente: demuestra lo que sabes con un portafolio.",
-        deliverableDone: true,
+        deliverableDone: false,
         tasks: [
-          { text: "Buscar empleos con IA", done: true },
-          { text: "Analizar ofertas en minutos", done: true },
-          { text: "Adaptar tu CV a cada oferta", done: true },
+          { text: "Buscar empleos con IA", done: false },
+          { text: "Analizar ofertas en minutos", done: false },
+          { text: "Adaptar tu CV a cada oferta", done: false },
           { text: "Cartas y mensajes de postulación", done: false },
           { text: "Automatizar sin perder tu voz", done: false }
         ]
@@ -902,8 +930,8 @@
         nextStepText: "Siguiente: practica hasta que contar tu historia sea natural.",
         deliverableDone: false,
         tasks: [
-          { text: "Qué mostrar con poca experiencia", done: true },
-          { text: "Proyectos demostrables (Problema → Proceso → Resultado → Aprendizaje)", done: true },
+          { text: "Qué mostrar con poca experiencia", done: false },
+          { text: "Proyectos demostrables (Problema → Proceso → Resultado → Aprendizaje)", done: false },
           { text: "Evidencias de tus habilidades", done: false },
           { text: "Portafolio digital publicado", done: false },
           { text: "Cómo presentar proyectos hechos con IA con transparencia", done: false }
@@ -958,8 +986,8 @@
         nextStepText: "Siguiente: convierte todo en un sistema de postulación.",
         deliverableDone: false,
         tasks: [
-          { text: '"Háblame de ti" en 60 segundos', done: true },
-          { text: "Fortalezas + ejemplo real", done: true },
+          { text: '"Háblame de ti" en 60 segundos', done: false },
+          { text: "Fortalezas + ejemplo real", done: false },
           { text: "Preguntas difíciles con honestidad + aprendizaje", done: false },
           { text: "3 historias con Método STAR (Situación, Tarea, Acción, Resultado)", done: false },
           { text: "Entrevista en otro idioma y feedback con Mia Interviewer", done: false }
@@ -1001,176 +1029,137 @@
           { bad: "Enviar y olvidar", good: "Dar seguimiento a los 7 días" },
           { bad: "No registrar resultados", good: "Mejorar con un tablero semanal" }
         ],
-        handsOnTitle: "Tu tablero de seguimiento",
-        handsOnDesc: "Crea un tablero y registra cada postulación desde hoy.",
+        handsOnTitle: "Tu sistema de seguimiento",
+        handsOnDesc: "Aplica este flujo en cada postulación estratégica de tu plan de 30 días.",
         handsOnBox: "Empresa  ·  Rol  ·  Fecha  ·  Estado  ·  Siguiente paso  ·  Aprendizaje\nRevísalo cada semana y ajusta tu estrategia.",
         closingChecks: [
-          "Tablero de seguimiento activo",
+          "Sistema de seguimiento definido",
           "5 postulaciones personalizadas",
-          "Seguimiento programado",
-          "Plan de 30 días definido"
+          "Seguimiento programado a los 7 días",
+          "Plan de 30 días listo para ejecutar"
         ],
         deliverable: "Sistema de seguimiento y plan de postulación de 30 días",
         nextStepText: "Ya tienes el sistema. Ahora ejecútalo.",
         deliverableDone: false,
         tasks: [
-          { text: "Tablero de seguimiento activo", done: true },
-          { text: "5 postulaciones personalizadas con ajuste real", done: false },
-          { text: "Escribir a una persona de la empresa", done: false },
-          { text: "Seguimiento programado a los 7 días", done: false },
+          { text: "Elegir 5 ofertas semanales con ajuste real", done: false },
+          { text: "Analizar y adaptar CV y mensaje a cada una", done: false },
+          { text: "Postular y escribir a una persona de la empresa", done: false },
+          { text: "Dar seguimiento a los 7 días", done: false },
           { text: "Plan de postulación de 30 días definido", done: false }
         ]
       }
     ];
 
+    // ================= MODO COACH IA: ESCENARIOS E IDEAS DE SEGUIMIENTO =================
+    const coachScenarios = [
+      {
+        id: "seguimiento-7dias",
+        badge: "Módulo 06 · Seguimiento",
+        title: "Cómo dar seguimiento a los 7 días sin sonar insistente",
+        summary: "El 80% de los candidatos postula y olvida. Un mensaje breve a los 7 días multiplica por 3 tu tasa de respuesta.",
+        tips: [
+          "Escribe entre 5 y 7 días hábiles después de haber postulado.",
+          "Aporta valor en una línea: menciona un proyecto de tu portafolio relacionado con el reto del puesto.",
+          "Dirige el mensaje al reclutador o líder del área en LinkedIn o correo directo."
+        ],
+        templateTitle: "Plantilla de Seguimiento a los 7 Días (Lista para copiar)",
+        templateText: "Hola [Nombre], ¿cómo estás? Hace una semana postulé a la posición de [Nombre del Rol] en [Empresa]. Como parte de mi portafolio desarrollé un caso práctico sobre [tema clave de la vacante] que creo que puede aportar mucho al equipo. Te dejo el enlace aquí: [Link]. ¡Quedo atento/a a tus comentarios!"
+      },
+      {
+        id: "contacto-empresa",
+        badge: "Módulo 03 y 06 · Contacto Directo",
+        title: "Qué escribirle a una persona dentro de la empresa al postular",
+        summary: "No esperes solo al filtro automático: acompaña cada postulación estratégica con un mensaje directo.",
+        tips: [
+          "Busca en LinkedIn al Talent Acquisition o al Hiring Manager del equipo.",
+          "No pidas el puesto directamente en el primer renglón; conecta con una prioridad actual de la empresa.",
+          "Mantén el mensaje en menos de 75 palabras."
+        ],
+        templateTitle: "Guion de Primer Contacto al Postular",
+        templateText: "Hola [Nombre], vi que en [Empresa] están buscando un/a [Rol]. Acabo de enviar mi postulación con mi CV adaptado, pero quería saludarte por aquí porque vengo trabajando con [Habilidad/Herramienta clave + IA] logrando [Resultado medible]. Me encantaría conversar 10 minutos esta semana."
+      },
+      {
+        id: "optimizar-ats",
+        badge: "Módulo 02 · CV + LinkedIn",
+        title: "Ideas para superar el filtro ATS y atraer reclutadores",
+        summary: "Si tu CV tiene tareas genéricas ('Encargado de...'), el software ATS lo descarta antes de que un humano lo vea.",
+        tips: [
+          "Extrae las 5 palabras clave exactas del anuncio laboral e inclúyelas en tu Titular y Experiencia.",
+          "Reescribe cada viñeta con la fórmula: Verbo de Acción + Qué hiciste + Impacto numérico (% / tiempo / ahorro).",
+          "Usa una sola columna, sin gráficos ni tablas que bloqueen la lectura del ATS."
+        ],
+        templateTitle: "Prompt Coach para transformar tareas en logros ATS",
+        templateText: "Actúa como Coach de Empleabilidad y experto en ATS. Transforma estas 3 funciones de mi experiencia en logros de alto impacto con el formato [Acción + Herramienta + Resultado medible] alineados a la vacante de [Tu Rol Objetivo]: [Pega tus funciones]."
+      },
+      {
+        id: "evidencia-portafolio",
+        badge: "Módulo 04 · Portafolio",
+        title: "Cómo demostrar valor cuando te piden años de experiencia",
+        summary: "Un caso práctico documentado en 1 página vence a un CV lleno de cargos sin pruebas.",
+        tips: [
+          "Elige un problema real de una empresa a la que quieras entrar y resuélvelo como proyecto demostrativo.",
+          "Estructura tu caso en 4 bloques: 1) Problema, 2) Proceso, 3) Resultado y 4) Aprendizaje.",
+          "Muestra con transparencia cómo usaste IA para acelerar el análisis y qué validaste tú con criterio humano."
+        ],
+        templateTitle: "Estructura Coach para publicar tu Proyecto en LinkedIn",
+        templateText: "🚀 ¿Cómo resolvería [Problema del sector] en menos tiempo usando IA y estrategia?\n1️⃣ El Problema: ...\n2️⃣ Mi Proceso: ...\n3️⃣ El Resultado: ...\n4️⃣ Lo que aprendí: ...\n👉 Puedes ver el caso completo en mi portafolio: [Link]"
+      },
+      {
+        id: "entrevista-star",
+        badge: "Módulo 05 · Entrevistas",
+        title: "Ideas de preparación pre-entrevista y seguimiento post-entrevista",
+        summary: "Lo que haces 24 horas antes y 24 horas después de la entrevista define si pasas a la oferta final.",
+        tips: [
+          "Antes: Prepara tu historia de 60 segundos ('Háblame de ti') y 3 casos bajo el método STAR.",
+          "Durante: Anota una prioridad o reto que el entrevistador mencione en la llamada.",
+          "Después (en menos de 24h): Envía un mensaje de agradecimiento conectando ese reto con tu portafolio."
+        ],
+        templateTitle: "Mensaje de Seguimiento Post-Entrevista (24h después)",
+        templateText: "Hola [Nombre del Entrevistador], muchas gracias por la conversación de hoy. Me gustó mucho conocer el reto que tienen con [Reto mencionado en la entrevista]. Te comparto un breve esquema de cómo abordé algo similar en mi portafolio. ¡Mucho éxito esta semana y quedo atento/a a los siguientes pasos!"
+      }
+    ];
+
     let selectedModuleId = 1;
     let activeMaterialModuleId = 1;
+    let activeCoachScenarioId = coachScenarios[0].id;
 
     const defaultModulesString = JSON.stringify(modulesData);
 
-    // ================= MULTI-USER SYSTEM & RANDOM PASSWORDS =================
+    // ================= MULTI-USER SYSTEM (PRIVADO EN CÓDIGO) =================
     const defaultUsers = [
       { id: "javier-alfaro", name: "Javier Alfaro", username: "javier.alfaro", password: "JA-84kP9m", initials: "JA" },
       { id: "lucia-mendez", name: "Lucía Méndez", username: "lucia.mendez", password: "LM-53vR2x", initials: "LM" },
       { id: "carlos-rojas", name: "Carlos Rojas", username: "carlos.rojas", password: "CR-91tB6n", initials: "CR" }
     ];
 
-    let registeredUsers = JSON.parse(localStorage.getItem("polyglot_bootcamp_users") || "null") || defaultUsers;
+    let registeredUsers = defaultUsers;
     let currentUser = registeredUsers[0];
 
-    function saveUsersToStorage() {
-      localStorage.setItem("polyglot_bootcamp_users", JSON.stringify(registeredUsers));
-      populateStudentsDatalist();
-      renderUsersModalList();
-    }
-
-    function getInitials(fullName) {
-      return fullName
-        .split(" ")
-        .filter(Boolean)
-        .slice(0, 2)
-        .map(w => w[0].toUpperCase())
-        .join("");
-    }
-
-    function generateRandomPassword(prefix = "AL") {
-      const chars = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789";
-      let code = "";
-      for (let i = 0; i < 6; i++) {
-        code += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-      return `${prefix}-${code}`;
-    }
-
-    function generateRandomPasswordField() {
-      const nameVal = (document.getElementById("new-student-name")?.value || "").trim();
-      const prefix = nameVal ? getInitials(nameVal) : "BP";
-      const passEl = document.getElementById("new-student-pass");
-      if (passEl) passEl.value = generateRandomPassword(prefix || "BP");
-    }
-
-    function populateStudentsDatalist() {
-      const dl = document.getElementById("registered-students-list");
-      if (!dl) return;
-      dl.innerHTML = registeredUsers
-        .map(u => `<option value="${u.name}">${u.username}</option>`)
-        .join("");
-    }
-
-    function openUsersModal() {
-      generateRandomPasswordField();
-      renderUsersModalList();
-      document.getElementById("users-modal").classList.remove("hidden");
-    }
-
-    function closeUsersModal() {
-      document.getElementById("users-modal").classList.add("hidden");
-    }
-
-    function renderUsersModalList() {
-      const listEl = document.getElementById("modal-users-list");
-      if (!listEl) return;
-      listEl.innerHTML = registeredUsers
-        .map(
-          (u, idx) => `
-          <div class="p-3 rounded-xl bg-white/10 border border-white/15 flex flex-wrap items-center justify-between gap-2">
-            <div class="flex items-center gap-2.5">
-              <div class="w-8 h-8 rounded-full gold-badge font-bold text-xs flex items-center justify-center">
-                ${u.initials}
-              </div>
-              <div>
-                <span class="text-xs font-bold text-white block">${u.name}</span>
-                <span class="text-xs text-indigo-200">Usuario: <code class="font-mono">${u.name}</code> · Clave: <code class="font-mono text-[#f4b629] font-bold">${u.password}</code></span>
-              </div>
-            </div>
-            <button
-              type="button"
-              onclick="quickSelectUser(${idx})"
-              class="px-2.5 py-1 rounded-lg gold-badge font-bold text-xs cursor-pointer"
-            >
-              Usar Alumno
-            </button>
-          </div>
-        `
-        )
-        .join("");
-    }
-
-    function quickSelectUser(idx) {
-      const u = registeredUsers[idx];
-      if (!u) return;
-      document.getElementById("username-input").value = u.name;
-      document.getElementById("password-input").value = u.password;
-      closeUsersModal();
-    }
-
-    function createNewStudent(e) {
-      e.preventDefault();
-      const nameInput = document.getElementById("new-student-name");
-      const passInput = document.getElementById("new-student-pass");
-      const fullName = nameInput.value.trim();
-      if (!fullName) return;
-      const initials = getInitials(fullName);
-      const password = passInput.value.trim() || generateRandomPassword(initials);
-      const id = fullName.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-      const username = fullName.toLowerCase().replace(/\s+/g, ".");
-
-      const newUser = { id, name: fullName, username, password, initials };
-      registeredUsers.push(newUser);
-      saveUsersToStorage();
-      nameInput.value = "";
-      generateRandomPasswordField();
-    }
-
     function loadUserProgress(user) {
-      const saved = localStorage.getItem("polyglot_progress_" + user.id);
+      const saved = localStorage.getItem("polyglot_clean_progress_" + user.id);
       if (saved) {
         const parsed = JSON.parse(saved);
         parsed.forEach((savedMod, idx) => {
           if (modulesData[idx]) {
             modulesData[idx].deliverableDone = savedMod.deliverableDone;
             modulesData[idx].tasks = savedMod.tasks;
-            if (savedMod.uploadedFileName) {
-              modulesData[idx].uploadedFileName = savedMod.uploadedFileName;
-            }
+            modulesData[idx].uploadedFileName = savedMod.uploadedFileName || "";
           }
         });
       } else {
         const fresh = JSON.parse(defaultModulesString);
         fresh.forEach((m, idx) => {
-          modulesData[idx].deliverableDone = user.id === "javier-alfaro" ? m.deliverableDone : false;
+          modulesData[idx].deliverableDone = false;
           modulesData[idx].uploadedFileName = "";
-          modulesData[idx].tasks = m.tasks.map(t => ({
-            text: t.text,
-            done: user.id === "javier-alfaro" ? t.done : false
-          }));
+          modulesData[idx].tasks = m.tasks.map(t => ({ text: t.text, done: false }));
         });
       }
     }
 
     function saveUserProgress() {
       if (!currentUser) return;
-      localStorage.setItem("polyglot_progress_" + currentUser.id, JSON.stringify(modulesData));
+      localStorage.setItem("polyglot_clean_progress_" + currentUser.id, JSON.stringify(modulesData));
     }
 
     function updateStudentNameInDOM() {
@@ -1180,13 +1169,6 @@
       const badgeEl = document.getElementById("header-user-initials");
       if (badgeEl) badgeEl.textContent = currentUser.initials;
     }
-
-    let opportunities = [
-      { company: "PolyglotTech Global", role: "Product & AI Specialist", country: "Remoto / EE. UU.", stage: "Seguimiento a 7 días", match: "94%" },
-      { company: "NovaData Latam", role: "Project Coordinator IA", country: "México / Remoto", stage: "CV ATS Adaptado", match: "89%" },
-      { company: "CloudScale Europe", role: "Operations Analyst", country: "España (Híbrido)", stage: "Contacto en empresa", match: "86%" },
-      { company: "Fintech Andina", role: "Growth & Strategy Associate", country: "Chile / Perú", stage: "1. Encuentra y analiza", match: "82%" }
-    ];
 
     // ================= AUTH / LOGIN LOGIC =================
     function togglePasswordVisibility() {
@@ -1229,7 +1211,7 @@
 
     // ================= NAVIGATION TABS =================
     function switchTab(tabName) {
-      const tabs = ["ruta", "materiales", "entregables", "videoconferencia", "postulacion"];
+      const tabs = ["ruta", "materiales", "entregables", "videoconferencia", "coach"];
       tabs.forEach(t => {
         const content = document.getElementById("tab-content-" + t);
         const btn = document.getElementById("tab-btn-" + t);
@@ -1255,14 +1237,13 @@
 
     // ================= RENDER DASHBOARD =================
     function renderAll() {
-      populateStudentsDatalist();
       updateStudentNameInDOM();
       renderStaircase();
       renderModuleDetail();
       renderMaterialsTab();
       renderDeliverablesUploadGrid();
       renderClassesSchedule();
-      renderOpportunities();
+      renderCoachSection();
       updateGlobalKPIs();
     }
 
@@ -1313,27 +1294,26 @@
         const isSelected = m.id === selectedModuleId;
         const doneCount = m.tasks.filter(t => t.done).length;
         const pct = Math.round((doneCount / m.tasks.length) * 100);
-        const isGoldStep = m.id === 6 || isSelected;
         return `
           <button
             onclick="selectModule(${m.id})"
             class="${heights[idx]} w-full rounded-2xl p-4 text-left flex flex-col justify-between transition-all cursor-pointer border ${
-              isGoldStep
-                ? "gold-badge border-[#f4b629] shadow-lg scale-[1.02]"
-                : "brand-gradient text-white border-white/15 hover:border-[#f4b629]/60"
+              isSelected
+                ? "gold-badge border-[#f4b629] shadow-xl scale-[1.03]"
+                : "brand-gradient text-white border-[#f4b629]/30 hover:border-[#f4b629]"
             }"
           >
             <div>
               <div class="flex items-center justify-between">
-                <span class="text-2xl font-serif font-extrabold ${isGoldStep ? "text-[#120f4d]" : "text-[#f4b629]"}">${m.num}</span>
+                <span class="text-2xl font-serif font-extrabold ${isSelected ? "text-[#110e47]" : "text-[#f4b629]"}">${m.num}</span>
                 <span class="text-xs font-bold px-2 py-0.5 rounded-full ${
-                  isGoldStep ? "bg-[#120f4d]/15 text-[#120f4d]" : "bg-white/10 text-indigo-100"
-                }">${pct}%</span>
+                  isSelected ? "bg-[#110e47]/15 text-[#110e47]" : "bg-indigo-950/80 text-[#f4b629]"
+                }">Mód ${m.num}</span>
               </div>
               <p class="text-xs sm:text-sm font-bold mt-2 leading-snug">${m.shortTitle}</p>
             </div>
-            <div class="w-full h-1.5 rounded-full overflow-hidden ${isGoldStep ? "bg-[#120f4d]/20" : "bg-white/15"} mt-3">
-              <div class="h-full ${isGoldStep ? "bg-[#120f4d]" : "bg-[#f4b629]"}" style="width: ${pct}%"></div>
+            <div class="w-full h-1.5 rounded-full overflow-hidden ${isSelected ? "bg-[#110e47]/20" : "bg-indigo-950"} mt-3">
+              <div class="h-full ${isSelected ? "bg-[#110e47]" : "bg-[#f4b629]"}" style="width: ${pct}%"></div>
             </div>
           </button>
         `;
@@ -1376,7 +1356,7 @@
           <div class="flex flex-wrap items-start justify-between gap-4">
             <div>
               <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold block mb-1">
-                M Ó D U L O   ${m.num}   ·   E N   O R D E N   (01 → 06)
+                M Ó D U L O   ${m.num}   ·   P A S O   A   P A S O
               </span>
               <h3 class="text-2xl sm:text-4xl font-serif font-bold text-white">
                 ${m.title}
@@ -1390,11 +1370,15 @@
               <button onclick="openModuleMaterial(${m.id})" class="px-4 py-2.5 rounded-xl gold-badge font-bold text-xs sm:text-sm shadow-lg cursor-pointer">
                 📖 Ver Material de Clase y Descargar PDF
               </button>
-              <button onclick="switchTab('entregables')" class="px-3.5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-xs sm:text-sm cursor-pointer">
+              <button onclick="switchTab('entregables')" class="px-3.5 py-2.5 rounded-xl bg-indigo-950/80 hover:bg-indigo-900 border border-[#f4b629]/50 text-[#f4b629] font-bold text-xs sm:text-sm cursor-pointer">
                 📤 Subir Entregable en Drive
               </button>
             </div>
           </div>
+
+          <p class="text-xs text-indigo-200">
+            Marca cada actividad a medida que la vayas realizando durante el módulo:
+          </p>
 
           <!-- Module Pill Checklist -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -1407,13 +1391,13 @@
                   idx === m.tasks.length - 1 && m.tasks.length % 2 !== 0 ? "md:col-span-2" : ""
                 } flex items-center justify-between px-4 py-3.5 rounded-xl border text-left transition cursor-pointer ${
                   task.done
-                    ? "bg-white/15 border-[#f4b629] text-white"
-                    : "bg-white/5 border-white/20 text-indigo-100 hover:border-[#f4b629]/60"
+                    ? "bg-[#f4b629]/20 border-[#f4b629] text-white"
+                    : "bg-indigo-950/60 border-indigo-400/30 text-indigo-100 hover:border-[#f4b629]"
                 }"
               >
                 <span class="text-xs sm:text-sm font-semibold">${task.text}</span>
                 <span class="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold ${
-                  task.done ? "gold-badge" : "border border-white/40 text-transparent"
+                  task.done ? "gold-badge" : "border border-indigo-300/50 text-transparent"
                 }">✓</span>
               </button>
             `
@@ -1425,7 +1409,7 @@
           <div class="p-4 sm:p-5 rounded-xl gold-badge flex flex-wrap items-center justify-between gap-4 shadow-lg">
             <div>
               <span class="text-xs uppercase tracking-widest font-extrabold block">
-                E N T R E G A B L E   —   ${currentUser.name.toUpperCase()}   (${doneCount}/${m.tasks.length} pasos)
+                M E T A   E N T R E G A B L E   —   ${currentUser.name.toUpperCase()}   (${doneCount}/${m.tasks.length} actividades)
               </span>
               <p class="text-sm sm:text-lg font-serif font-bold mt-0.5">
                 ${m.deliverable}
@@ -1434,19 +1418,9 @@
             <div class="flex items-center gap-2">
               <button
                 onclick="switchTab('entregables')"
-                class="px-3.5 py-2 rounded-lg bg-[#120f4d] text-[#f4b629] text-xs font-bold cursor-pointer"
+                class="px-4 py-2 rounded-lg bg-[#110e47] text-[#f4b629] text-xs font-bold cursor-pointer shadow"
               >
-                Subir a Drive →
-              </button>
-              <button
-                onclick="toggleDeliverable(${m.id})"
-                class="px-3.5 py-2 rounded-lg text-xs font-bold border transition cursor-pointer ${
-                  m.deliverableDone
-                    ? "bg-emerald-900 text-emerald-200 border-emerald-900"
-                    : "bg-white/40 text-[#120f4d] border-[#120f4d]/30 hover:bg-white/60"
-                }"
-              >
-                ${m.deliverableDone ? "✓ Entregado" : "Marcar Listo"}
+                Subir en Google Drive →
               </button>
             </div>
           </div>
@@ -1468,7 +1442,6 @@
       const btnLabel = document.getElementById("btn-download-single-label");
       if (btnLabel) btnLabel.textContent = `Descargar Módulo ${m.num} en PDF`;
 
-      // Render Ordered Stepper 01 -> 06
       stepper.innerHTML = modulesData
         .map(mod => {
           const isCurrent = mod.id === m.id;
@@ -1478,12 +1451,12 @@
               class="p-3 rounded-xl border text-left transition cursor-pointer flex flex-col justify-between ${
                 isCurrent
                   ? "gold-badge border-[#f4b629] shadow-md font-bold"
-                  : "bg-[var(--background)] border-[var(--border)] text-[var(--foreground)] hover:border-amber-400"
+                  : "bg-indigo-950/70 border-indigo-400/30 text-white hover:border-[#f4b629]"
               }"
             >
               <div class="flex items-center justify-between">
-                <span class="text-xs font-extrabold ${isCurrent ? "text-[#120f4d]" : "text-amber-400"}">MÓDULO ${mod.num}</span>
-                <span class="text-xs">${isCurrent ? "● Activo" : "Ver →"}</span>
+                <span class="text-xs font-extrabold ${isCurrent ? "text-[#110e47]" : "text-[#f4b629]"}">MÓDULO ${mod.num}</span>
+                <span class="text-xs">${isCurrent ? "● Viendo" : "Abrir →"}</span>
               </div>
               <span class="text-xs sm:text-sm font-bold mt-1 truncate block">${mod.shortTitle}</span>
             </button>
@@ -1494,10 +1467,9 @@
       const prevId = m.id > 1 ? m.id - 1 : null;
       const nextId = m.id < 6 ? m.id + 1 : null;
 
-      // Render Full Interactive Class Material for Module m
       viewer.innerHTML = `
         <!-- Slide 1: Cover & ¿Te suena familiar? + El Cuello de Botella -->
-        <div class="rounded-2xl brand-gradient text-white p-6 sm:p-8 shadow-xl border border-white/15 relative overflow-hidden">
+        <div class="rounded-2xl brand-gradient text-white p-6 sm:p-8 shadow-xl border border-[#f4b629]/40 relative overflow-hidden">
           <div class="pointer-events-none select-none absolute -top-6 right-6 text-7xl sm:text-9xl font-serif font-extrabold text-white/10">
             ${m.num}
           </div>
@@ -1512,43 +1484,40 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-              <!-- ¿TE SUENA FAMILIAR? -->
-              <div class="p-5 rounded-xl bg-white/10 border border-white/15 flex flex-col justify-between">
+              <div class="p-5 rounded-xl bg-indigo-950/80 border border-indigo-400/30 flex flex-col justify-between">
                 <div>
                   <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold block mb-2">¿TE SUENA FAMILIAR?</span>
                   <h4 class="text-base font-bold text-white mb-2">${m.familiarTitle}</h4>
-                  <p class="text-xs sm:text-sm text-indigo-100/90">${m.familiarDesc}</p>
+                  <p class="text-xs sm:text-sm text-indigo-100">${m.familiarDesc}</p>
                 </div>
               </div>
 
-              <!-- EL CUELLO DE BOTELLA -->
-              <div class="p-5 rounded-xl bg-white/10 border border-[#f4b629]/40 flex flex-col justify-between">
+              <div class="p-5 rounded-xl bg-indigo-950/80 border border-[#f4b629]/60 flex flex-col justify-between">
                 <div>
                   <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold block mb-2">EL CUELLO DE BOTELLA · Lo que realmente te frena</span>
                   <h4 class="text-base font-bold text-white mb-1">${m.bottleneckTitle}</h4>
-                  <p class="text-xs sm:text-sm text-indigo-100/90 mb-4">${m.bottleneckDesc}</p>
+                  <p class="text-xs sm:text-sm text-indigo-100 mb-4">${m.bottleneckDesc}</p>
                 </div>
-                <div class="flex items-center justify-between text-xs font-bold bg-black/30 rounded-lg p-2.5 border border-white/10">
-                  <span class="text-emerald-300">Tu talento</span>
-                  <span class="px-2 py-0.5 rounded bg-rose-500/30 text-rose-200 border border-rose-400/40">EL CUELLO</span>
+                <div class="flex items-center justify-between text-xs font-bold bg-[#0d0b33] rounded-lg p-2.5 border border-[#f4b629]/40">
+                  <span class="text-indigo-200">Tu talento</span>
+                  <span class="px-2 py-0.5 rounded gold-badge font-extrabold">EL CUELLO</span>
                   <span class="text-[#f4b629]">Tus resultados</span>
                 </div>
               </div>
 
-              <!-- EL COSTO DE NO RESOLVERLO -->
-              <div class="p-5 rounded-xl bg-rose-950/40 border border-rose-400/30">
-                <span class="text-xs uppercase tracking-widest text-rose-300 font-bold block mb-2">EL COSTO DE NO RESOLVERLO · Si no lo cambias…</span>
-                <ul class="space-y-2 text-xs sm:text-sm text-rose-100">
-                  ${m.costs.map(c => `<li class="flex items-start gap-2"><span class="text-rose-400 font-bold">✕</span><span>${c}</span></li>`).join("")}
+              <div class="p-5 rounded-xl bg-indigo-950/90 border border-amber-400/40">
+                <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold block mb-2">EL COSTO DE NO RESOLVERLO · Si no lo cambias…</span>
+                <ul class="space-y-2 text-xs sm:text-sm text-indigo-100">
+                  ${m.costs.map(c => `<li class="flex items-start gap-2"><span class="text-[#f4b629] font-bold">✕</span><span>${c}</span></li>`).join("")}
                 </ul>
               </div>
             </div>
 
             <!-- LA TRANSFORMACIÓN: ANTES -> DESPUÉS -->
-            <div class="p-5 rounded-xl bg-black/30 border border-white/15">
+            <div class="p-5 rounded-xl bg-[#0d0b33]/90 border border-[#f4b629]/40">
               <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold block mb-3">LA TRANSFORMACIÓN · De aquí… hasta aquí</span>
               <div class="grid grid-cols-1 md:grid-cols-11 gap-3 items-center">
-                <div class="md:col-span-5 p-3.5 rounded-xl bg-white/5 border border-white/10">
+                <div class="md:col-span-5 p-3.5 rounded-xl bg-indigo-950 border border-indigo-400/30">
                   <span class="text-xs uppercase tracking-wider text-indigo-300 font-bold block">ANTES</span>
                   <p class="text-sm font-semibold text-white mt-1">${m.beforeText}</p>
                 </div>
@@ -1564,22 +1533,21 @@
 
         <!-- Slide 2: LECCIÓN 1 & LECCIÓN 2 -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
-          <!-- LECCIÓN 1 -->
-          <div class="lg:col-span-7 bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm space-y-4">
+          <div class="lg:col-span-7 indigo-card rounded-2xl p-6 shadow-lg space-y-4">
             <div>
-              <span class="text-xs uppercase tracking-widest text-amber-400 font-bold">LECCIÓN 1</span>
-              <h3 class="text-lg sm:text-xl font-bold text-[var(--foreground)] mt-0.5">${m.lesson1Title}</h3>
-              <p class="text-xs text-[var(--muted-foreground)]">${m.lesson1Subtitle}</p>
+              <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold">LECCIÓN 1</span>
+              <h3 class="text-lg sm:text-xl font-bold text-white mt-0.5">${m.lesson1Title}</h3>
+              <p class="text-xs text-indigo-200">${m.lesson1Subtitle}</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
               ${m.lesson1Items
                 .map(
                   item => `
-                <div class="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)] flex flex-col justify-between">
+                <div class="p-4 rounded-xl bg-indigo-950/80 border border-indigo-400/30 flex flex-col justify-between">
                   <div>
-                    <span class="text-2xl font-serif font-extrabold text-amber-400 block">${item.num}</span>
-                    <h4 class="text-sm font-bold text-[var(--foreground)] mt-1">${item.title}</h4>
-                    <p class="text-xs text-[var(--muted-foreground)] mt-1.5">${item.desc}</p>
+                    <span class="text-2xl font-serif font-extrabold text-[#f4b629] block">${item.num}</span>
+                    <h4 class="text-sm font-bold text-white mt-1">${item.title}</h4>
+                    <p class="text-xs text-indigo-200 mt-1.5">${item.desc}</p>
                   </div>
                 </div>
               `
@@ -1588,19 +1556,18 @@
             </div>
           </div>
 
-          <!-- LECCIÓN 2 -->
-          <div class="lg:col-span-5 bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm space-y-4">
+          <div class="lg:col-span-5 indigo-card rounded-2xl p-6 shadow-lg space-y-4">
             <div>
-              <span class="text-xs uppercase tracking-widest text-amber-400 font-bold">LECCIÓN 2</span>
-              <h3 class="text-lg sm:text-xl font-bold text-[var(--foreground)] mt-0.5">${m.lesson2Title}</h3>
+              <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold">LECCIÓN 2</span>
+              <h3 class="text-lg sm:text-xl font-bold text-white mt-0.5">${m.lesson2Title}</h3>
             </div>
             <div class="space-y-2.5">
               ${m.lesson2Steps
                 .map(
                   (step, i) => `
-                <div class="p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] flex items-center gap-3">
+                <div class="p-3 rounded-xl bg-indigo-950/80 border border-indigo-400/30 flex items-center gap-3">
                   <span class="w-7 h-7 rounded-lg gold-badge font-bold text-xs flex items-center justify-center shrink-0">${i + 1}</span>
-                  <span class="text-xs sm:text-sm font-medium text-[var(--foreground)]">${step}</span>
+                  <span class="text-xs sm:text-sm font-medium text-white">${step}</span>
                 </div>
               `
                 )
@@ -1611,24 +1578,23 @@
 
         <!-- Slide 3: ERROR COMÚN VS. CAMBIO & MANOS A LA OBRA -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
-          <!-- ERROR COMÚN VS. CAMBIO -->
-          <div class="lg:col-span-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm space-y-4">
+          <div class="lg:col-span-6 indigo-card rounded-2xl p-6 shadow-lg space-y-4">
             <div>
-              <span class="text-xs uppercase tracking-widest text-amber-400 font-bold">ERROR COMÚN VS. CAMBIO</span>
-              <h3 class="text-lg font-bold text-[var(--foreground)] mt-0.5">Deja esto. Haz esto.</h3>
+              <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold">ERROR COMÚN VS. CAMBIO</span>
+              <h3 class="text-lg font-bold text-white mt-0.5">Deja esto. Haz esto.</h3>
             </div>
             <div class="space-y-3">
               ${m.mistakes
                 .map(
                   pair => `
-                <div class="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)] grid grid-cols-1 sm:grid-cols-11 gap-2 items-center text-xs">
-                  <div class="sm:col-span-5 text-rose-300 flex items-center gap-1.5">
-                    <span class="font-bold text-rose-400">✕</span>
+                <div class="p-3.5 rounded-xl bg-indigo-950/80 border border-indigo-400/30 grid grid-cols-1 sm:grid-cols-11 gap-2 items-center text-xs">
+                  <div class="sm:col-span-5 text-indigo-200 flex items-center gap-1.5">
+                    <span class="font-bold text-amber-400">✕</span>
                     <span>${pair.bad}</span>
                   </div>
-                  <div class="sm:col-span-1 text-center font-bold text-amber-400">→</div>
-                  <div class="sm:col-span-5 text-emerald-300 font-semibold flex items-center gap-1.5">
-                    <span class="font-bold text-emerald-400">✓</span>
+                  <div class="sm:col-span-1 text-center font-bold text-[#f4b629]">→</div>
+                  <div class="sm:col-span-5 text-[#f4b629] font-bold flex items-center gap-1.5">
+                    <span>✓</span>
                     <span>${pair.good}</span>
                   </div>
                 </div>
@@ -1638,23 +1604,22 @@
             </div>
           </div>
 
-          <!-- MANOS A LA OBRA + CIERRE DEL MÓDULO -->
-          <div class="lg:col-span-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm flex flex-col justify-between space-y-4">
+          <div class="lg:col-span-6 indigo-card rounded-2xl p-6 shadow-lg flex flex-col justify-between space-y-4">
             <div class="space-y-3">
-              <span class="text-xs uppercase tracking-widest text-amber-400 font-bold">MANOS A LA OBRA</span>
-              <h3 class="text-lg font-bold text-[var(--foreground)]">${m.handsOnTitle}</h3>
-              <p class="text-xs text-[var(--muted-foreground)]">${m.handsOnDesc}</p>
-              <pre class="p-4 rounded-xl bg-black/40 border border-amber-400/40 text-xs text-amber-300 font-mono whitespace-pre-wrap leading-relaxed">${m.handsOnBox}</pre>
+              <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold">MANOS A LA OBRA</span>
+              <h3 class="text-lg font-bold text-white">${m.handsOnTitle}</h3>
+              <p class="text-xs text-indigo-200">${m.handsOnDesc}</p>
+              <pre class="p-4 rounded-xl bg-[#0d0b33] border border-[#f4b629]/50 text-xs text-[#f4b629] font-mono whitespace-pre-wrap leading-relaxed">${m.handsOnBox}</pre>
             </div>
 
-            <div class="pt-3 border-t border-[var(--border)]">
-              <span class="text-xs uppercase tracking-widest text-emerald-400 font-bold block mb-2">CIERRE DEL MÓDULO · Listo cuando…</span>
+            <div class="pt-3 border-t border-indigo-400/20">
+              <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold block mb-2">CIERRE DEL MÓDULO · Listo cuando…</span>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 ${m.closingChecks
                   .map(
                     chk => `
-                  <div class="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/25 text-xs text-emerald-200 flex items-center gap-2">
-                    <span class="font-bold text-emerald-400">✓</span>
+                  <div class="p-2.5 rounded-lg bg-indigo-950/90 border border-[#f4b629]/30 text-xs text-indigo-100 flex items-center gap-2">
+                    <span class="font-bold text-[#f4b629]">✓</span>
                     <span>${chk}</span>
                   </div>
                 `
@@ -1665,7 +1630,7 @@
           </div>
         </div>
 
-        <!-- Bottom Deliverable Banner + Ordered Navigation (Anterior / Siguiente Módulo) -->
+        <!-- Bottom Deliverable Banner + Ordered Navigation -->
         <div class="rounded-2xl gold-badge p-5 sm:p-6 shadow-lg flex flex-wrap items-center justify-between gap-4">
           <div>
             <span class="text-xs uppercase tracking-widest font-extrabold block">ENTREGABLE DEL MÓDULO ${m.num}</span>
@@ -1675,17 +1640,17 @@
           <div class="flex flex-wrap items-center gap-2">
             ${
               prevId
-                ? `<button onclick="selectMaterialModule(${prevId})" class="px-3.5 py-2 rounded-xl bg-white/40 hover:bg-white/60 text-[#120f4d] font-bold text-xs cursor-pointer">
+                ? `<button onclick="selectMaterialModule(${prevId})" class="px-3.5 py-2 rounded-xl bg-white/40 hover:bg-white/60 text-[#110e47] font-bold text-xs cursor-pointer">
                      ← Módulo 0${prevId}
                    </button>`
                 : ""
             }
-            <button onclick="switchTab('entregables')" class="px-4 py-2 rounded-xl bg-[#120f4d] text-[#f4b629] font-bold text-xs cursor-pointer">
+            <button onclick="switchTab('entregables')" class="px-4 py-2 rounded-xl bg-[#110e47] text-[#f4b629] font-bold text-xs cursor-pointer">
               📤 Subir Entregable en Drive
             </button>
             ${
               nextId
-                ? `<button onclick="selectMaterialModule(${nextId})" class="px-3.5 py-2 rounded-xl bg-white/40 hover:bg-white/60 text-[#120f4d] font-bold text-xs cursor-pointer">
+                ? `<button onclick="selectMaterialModule(${nextId})" class="px-3.5 py-2 rounded-xl bg-white/40 hover:bg-white/60 text-[#110e47] font-bold text-xs cursor-pointer">
                      Siguiente: Módulo 0${nextId} →
                    </button>`
                 : ""
@@ -1695,7 +1660,7 @@
       `;
     }
 
-    // ================= GENERADOR Y DESCARGA DE PDF (1 MÓDULO O LOS 6 EN ORDEN) =================
+    // ================= GENERADOR Y DESCARGA DE PDF =================
     function buildPrintableHTML(modulesToPrint) {
       const slidesHTML = modulesToPrint
         .map(
@@ -1827,61 +1792,50 @@
       container.innerHTML = modulesData
         .map(
           m => `
-        <div class="p-4 rounded-xl bg-[var(--background)] border ${
-          m.deliverableDone ? "border-emerald-500/40" : "border-[var(--border)]"
+        <div class="p-4 rounded-xl bg-indigo-950/80 border ${
+          m.deliverableDone ? "border-[#f4b629]" : "border-indigo-400/30"
         } flex flex-col justify-between gap-4">
           <div>
             <div class="flex items-center justify-between gap-2 mb-1.5">
-              <span class="text-xs font-extrabold uppercase tracking-wider text-amber-400">
+              <span class="text-xs font-extrabold uppercase tracking-wider text-[#f4b629]">
                 Módulo ${m.num} · ${m.shortTitle}
               </span>
-              <span class="px-2 py-0.5 rounded-full text-xs font-bold ${
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold ${
                 m.deliverableDone
-                  ? "bg-emerald-500/20 text-emerald-300 border border-emerald-400/30"
-                  : "bg-amber-500/15 text-amber-300"
+                  ? "gold-badge"
+                  : "bg-indigo-900 text-indigo-200 border border-indigo-400/30"
               }">
-                ${m.deliverableDone ? "✓ Entregable Listo" : "Pendiente de subir"}
+                ${m.deliverableDone ? "✓ Subido por el alumno" : "Por entregar"}
               </span>
             </div>
-            <h5 class="text-sm font-bold text-[var(--foreground)]">${m.deliverable}</h5>
+            <h5 class="text-sm font-bold text-white">${m.deliverable}</h5>
             ${
               m.uploadedFileName
-                ? `<p class="text-xs text-emerald-400 mt-1">📎 Archivo registrado: <strong>${m.uploadedFileName}</strong></p>`
-                : `<p class="text-xs text-[var(--muted-foreground)] mt-1">Selecciona tu archivo PDF/Doc y súbelo a la carpeta Drive del Bootcamp.</p>`
+                ? `<p class="text-xs text-[#f4b629] mt-1">📎 Archivo seleccionado: <strong>${m.uploadedFileName}</strong></p>`
+                : `<p class="text-xs text-indigo-200 mt-1">Adjunta tu documento y súbelo al enlace de Google Drive.</p>`
             }
           </div>
 
-          <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-[var(--border)]">
-            <label class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/15 border border-white/15 text-xs font-medium text-[var(--foreground)] cursor-pointer transition">
-              <span>📎 Seleccionar archivo</span>
+          <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-indigo-400/20">
+            <label class="px-3 py-1.5 rounded-lg bg-indigo-900/80 hover:bg-indigo-800 border border-indigo-400/30 text-xs font-medium text-white cursor-pointer transition">
+              <span>📎 Adjuntar mi archivo</span>
               <input type="file" class="hidden" onchange="handleFileSelection(${m.id}, this)" />
             </label>
 
-            <div class="flex items-center gap-2">
-              <a
-                href="${DRIVE_FOLDER_URL}"
-                target="_blank"
-                rel="noopener noreferrer"
-                onclick="markModuleUploaded(${m.id})"
-                class="px-3.5 py-1.5 rounded-lg gold-badge font-bold text-xs flex items-center gap-1.5 shadow"
-              >
-                <span>Subir a Google Drive</span>
-                <span>↗</span>
-              </a>
-            </div>
+            <a
+              href="${DRIVE_FOLDER_URL}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-3.5 py-1.5 rounded-lg gold-badge font-bold text-xs flex items-center gap-1.5 shadow"
+            >
+              <span>Subir a Google Drive</span>
+              <span>↗</span>
+            </a>
           </div>
         </div>
       `
         )
         .join("");
-    }
-
-    function markModuleUploaded(moduleId) {
-      const mod = modulesData.find(m => m.id === moduleId);
-      if (!mod) return;
-      mod.deliverableDone = true;
-      saveUserProgress();
-      renderAll();
     }
 
     // ================= TAB 4: MIS CLASES SCHEDULE (3 DOMINGOS · 2 MÓDULOS POR DOMINGO 4-6PM) =================
@@ -1911,29 +1865,19 @@
       ];
 
       grid.innerHTML = sundaySessions
-        .map((session, idx) => {
-          const allDone = session.mods.every(m => m.deliverableDone);
-          const isCurrentSunday = idx === 1;
+        .map(session => {
           return `
-            <div class="p-5 rounded-2xl bg-[var(--background)] border ${
-              isCurrentSunday ? "border-2 border-[#f4b629] shadow-lg" : "border-[var(--border)]"
-            } flex flex-col justify-between gap-4">
+            <div class="p-5 rounded-2xl bg-indigo-950/80 border border-[#f4b629]/40 hover:border-[#f4b629] transition flex flex-col justify-between gap-4 shadow-lg">
               <div class="space-y-3">
-                <div class="flex items-center justify-between gap-2 border-b border-[var(--border)] pb-2.5">
+                <div class="flex items-center justify-between gap-2 border-b border-indigo-400/20 pb-2.5">
                   <div>
-                    <span class="text-xs font-extrabold uppercase tracking-wider text-amber-400 block">
-                      Sesión ${session.sundayNum} · Módulos ${session.mods[0].num} y ${session.mods[1].num}
+                    <span class="text-xs font-extrabold uppercase tracking-wider text-[#f4b629] block">
+                      Sesión Dominical ${session.sundayNum} · Módulos ${session.mods[0].num} y ${session.mods[1].num}
                     </span>
-                    <h5 class="text-sm sm:text-base font-bold text-[var(--foreground)] mt-0.5">${session.label}</h5>
+                    <h5 class="text-sm sm:text-base font-bold text-white mt-0.5">${session.label}</h5>
                   </div>
-                  <span class="px-2.5 py-0.5 rounded-full text-xs font-bold ${
-                    allDone
-                      ? "bg-emerald-500/20 text-emerald-300 border border-emerald-400/30"
-                      : isCurrentSunday
-                      ? "gold-badge"
-                      : "bg-white/10 text-indigo-200"
-                  }">
-                    ${allDone ? "Completado" : isCurrentSunday ? "En Curso" : "Programado"}
+                  <span class="px-2.5 py-0.5 rounded-full gold-badge text-xs font-extrabold">
+                    En Vivo
                   </span>
                 </div>
 
@@ -1942,15 +1886,15 @@
                   ${session.mods
                     .map(
                       (m, mIdx) => `
-                    <div class="p-3 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-1.5">
+                    <div class="p-3 rounded-xl bg-[#0d0b33]/90 border border-indigo-400/25 flex flex-col gap-1.5">
                       <div class="flex items-center justify-between text-xs">
-                        <span class="font-bold text-amber-400">Módulo ${m.num} · ${session.timeSlots[mIdx]}</span>
-                        <button onclick="openModuleMaterial(${m.id})" class="text-indigo-300 hover:text-white hover:underline font-semibold cursor-pointer">
+                        <span class="font-bold text-[#f4b629]">Módulo ${m.num} · ${session.timeSlots[mIdx]}</span>
+                        <button onclick="openModuleMaterial(${m.id})" class="text-indigo-200 hover:text-[#f4b629] hover:underline font-semibold cursor-pointer">
                           Material PDF →
                         </button>
                       </div>
-                      <p class="text-xs sm:text-sm font-bold text-[var(--foreground)]">${m.title}</p>
-                      <p class="text-xs text-[var(--muted-foreground)]">${m.subtitle}</p>
+                      <p class="text-xs sm:text-sm font-bold text-white">${m.title}</p>
+                      <p class="text-xs text-indigo-200">${m.subtitle}</p>
                     </div>
                   `
                     )
@@ -1962,11 +1906,9 @@
                 href="${MEET_URL}"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="w-full py-2.5 px-3 rounded-xl ${
-                  isCurrentSunday ? "gold-badge" : "bg-white/10 hover:bg-white/15 text-white border border-white/15"
-                } font-bold text-xs flex items-center justify-center gap-1.5 transition"
+                class="w-full py-2.5 px-3 rounded-xl gold-badge font-bold text-xs flex items-center justify-center gap-1.5 shadow hover:opacity-95 transition"
               >
-                <span>Entrar a Meet (Dom 4-6pm · ttr-rhow-zou)</span>
+                <span>Unirse a Clase (meet.google.com/ttr-rhow-zou)</span>
                 <span>↗</span>
               </a>
             </div>
@@ -1975,36 +1917,139 @@
         .join("");
     }
 
-    // ================= TAB 5: OPPORTUNITIES TRACKER =================
-    function renderOpportunities() {
-      const container = document.getElementById("opportunities-list");
-      if (!container) return;
-      container.innerHTML = opportunities
-        .map(
-          opp => `
-        <div class="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)] flex flex-wrap items-center justify-between gap-3">
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="text-xs font-bold text-[var(--foreground)]">${opp.role}</span>
-              <span class="text-xs px-2 py-0.5 rounded-full bg-amber-500/15 text-amber-500 font-semibold">Match IA ${opp.match}</span>
-            </div>
-            <p class="text-xs text-[var(--muted-foreground)] mt-0.5">${opp.company} · ${opp.country}</p>
-          </div>
-          <span class="text-xs px-2.5 py-1 rounded-lg bg-indigo-500/15 text-indigo-400 font-medium">${opp.stage}</span>
-        </div>
-      `
-        )
-        .join("");
+    // ================= TAB 5: MODO COACH DE EMPLEABILIDAD =================
+    function selectCoachScenario(id) {
+      activeCoachScenarioId = id;
+      renderCoachSection();
     }
 
-    function addNewOpportunity() {
-      const roles = [
-        { company: "GlobalAI Partners", role: "AI Operations Specialist", country: "Remoto", stage: "1. Encuentra y analiza", match: "91%" },
-        { company: "TechBridge Solutions", role: "Digital Product Analyst", country: "España / Remoto", stage: "2. Adapta y postula", match: "88%" }
-      ];
-      const pick = roles[opportunities.length % roles.length];
-      opportunities.unshift(pick);
-      renderOpportunities();
+    function renderCoachSection() {
+      const listEl = document.getElementById("coach-topics-list");
+      const panelEl = document.getElementById("coach-advice-panel");
+      if (!listEl || !panelEl) return;
+
+      const currentScenario = coachScenarios.find(s => s.id === activeCoachScenarioId) || coachScenarios[0];
+
+      listEl.innerHTML = coachScenarios
+        .map(s => {
+          const isSelected = s.id === currentScenario.id;
+          return `
+            <button
+              onclick="selectCoachScenario('${s.id}')"
+              class="w-full p-3.5 rounded-xl border text-left transition cursor-pointer flex items-center justify-between gap-3 ${
+                isSelected
+                  ? "gold-badge border-[#f4b629] font-bold shadow-md"
+                  : "bg-indigo-950/80 border-indigo-400/30 text-white hover:border-[#f4b629]"
+              }"
+            >
+              <div>
+                <span class="text-xs font-extrabold uppercase tracking-wider block ${
+                  isSelected ? "text-[#110e47]" : "text-[#f4b629]"
+                }">${s.badge}</span>
+                <span class="text-xs sm:text-sm font-bold mt-0.5 block">${s.title}</span>
+              </div>
+              <span class="text-sm font-bold">→</span>
+            </button>
+          `;
+        })
+        .join("");
+
+      panelEl.innerHTML = `
+        <div class="space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-indigo-400/25 pb-3">
+            <span class="px-3 py-1 rounded-full gold-badge text-xs font-extrabold uppercase tracking-wider">
+              ${currentScenario.badge}
+            </span>
+            <span class="text-xs text-[#f4b629] font-semibold">Recomendación del Coach para ${currentUser.name}</span>
+          </div>
+
+          <h4 class="text-xl sm:text-2xl font-serif font-bold text-white">
+            ${currentScenario.title}
+          </h4>
+          <p class="text-xs sm:text-sm text-indigo-100 leading-relaxed">
+            ${currentScenario.summary}
+          </p>
+
+          <div class="space-y-2.5 pt-1">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-[#f4b629] block">
+              3 Ideas Clave de Acción e Impacto:
+            </span>
+            ${currentScenario.tips
+              .map(
+                (tip, i) => `
+              <div class="p-3 rounded-xl bg-indigo-950/90 border border-indigo-400/30 flex items-start gap-3">
+                <span class="w-6 h-6 rounded-full gold-badge font-extrabold text-xs flex items-center justify-center shrink-0 mt-0.5">${
+                  i + 1
+                }</span>
+                <span class="text-xs sm:text-sm text-indigo-100">${tip}</span>
+              </div>
+            `
+              )
+              .join("")}
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-[#0d0b33] border border-[#f4b629]/50 space-y-2 mt-4">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-[#f4b629]">
+              ${currentScenario.templateTitle}
+            </span>
+            <button
+              onclick="copyCoachTemplate()"
+              id="btn-copy-coach"
+              class="px-3 py-1 rounded-lg gold-badge text-xs font-bold cursor-pointer"
+            >
+              Copiar Plantilla
+            </button>
+          </div>
+          <p id="coach-template-text" class="text-xs text-indigo-100 font-mono leading-relaxed whitespace-pre-wrap">${currentScenario.templateText}</p>
+        </div>
+      `;
+    }
+
+    function copyCoachTemplate() {
+      const text = document.getElementById("coach-template-text")?.textContent || "";
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).catch(() => {});
+      }
+      const btn = document.getElementById("btn-copy-coach");
+      if (btn) {
+        btn.textContent = "✓ Copiada";
+        setTimeout(() => (btn.textContent = "Copiar Plantilla"), 2000);
+      }
+    }
+
+    function handleCoachQuestion(e) {
+      e.preventDefault();
+      const input = document.getElementById("coach-user-input");
+      const question = input.value.trim();
+      if (!question) return;
+
+      const box = document.getElementById("coach-chat-box");
+      const userDiv = document.createElement("div");
+      userDiv.className = "p-3.5 rounded-xl bg-[#f4b629]/20 border border-[#f4b629] ml-6";
+      userDiv.innerHTML = `
+        <span class="font-bold text-[#f4b629] block mb-1">${currentUser.name}</span>
+        <p class="text-white">${question}</p>
+      `;
+      box.appendChild(userDiv);
+      input.value = "";
+
+      setTimeout(() => {
+        const coachDiv = document.createElement("div");
+        coachDiv.className = "p-4 rounded-xl bg-indigo-950/90 border border-indigo-400/40 mr-6";
+        coachDiv.innerHTML = `
+          <span class="font-bold text-[#f4b629] block mb-1">Coach PolyglotMap · Plan de Acción</span>
+          <p class="text-indigo-100 leading-relaxed">
+            Excelente iniciativa, <strong>${currentUser.name}</strong>. Para impulsar ese objetivo esta semana aplica estas 3 acciones:<br/>
+            <strong>1. Ajusta tu evidencia:</strong> Conecta tu propuesta de valor (Módulo 01) con un caso real de tu portafolio (Módulo 04).<br/>
+            <strong>2. Contacto humano:</strong> No solo postules por el portal; envía un mensaje breve a quien lidera el equipo en LinkedIn.<br/>
+            <strong>3. Agenda seguimiento a 7 días:</strong> Si no recibes respuesta en una semana, comparte un avance o recurso breve demostrando interés real.
+          </p>
+        `;
+        box.appendChild(coachDiv);
+        box.scrollTop = box.scrollHeight;
+      }, 450);
     }
 
     // Initialize state
