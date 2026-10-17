@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,154 +7,166 @@
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
     :root {
-      --background: #0d0b33;
+      --background: #0a0826;
       --foreground: #f8fafc;
-      --card: #18145c;
-      --border: rgba(244, 182, 41, 0.25);
+      --card: #15114d;
+      --border: rgba(244, 182, 41, 0.24);
       --muted-foreground: #c7d2fe;
     }
+    .hero-bg {
+      background:
+        radial-gradient(circle at 88% 18%, rgba(244, 182, 41, 0.22) 0%, transparent 38%),
+        radial-gradient(circle at 12% 85%, rgba(79, 70, 229, 0.35) 0%, transparent 45%),
+        linear-gradient(135deg, #0d0a38 0%, #191464 52%, #241d85 100%);
+    }
     .brand-gradient {
-      background: linear-gradient(135deg, #110e47 0%, #1e1975 50%, #2e279e 100%);
+      background: linear-gradient(135deg, #110e47 0%, #1d1870 55%, #2c2499 100%);
     }
-    .indigo-card {
-      background: linear-gradient(160deg, #191561 0%, #120f4a 100%);
+    .indigo-surface {
+      background: linear-gradient(165deg, rgba(28, 23, 102, 0.85) 0%, rgba(17, 14, 71, 0.95) 100%);
       border: 1px solid rgba(244, 182, 41, 0.22);
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    .indigo-card:hover {
+    .indigo-surface:hover {
       border-color: rgba(244, 182, 41, 0.65);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px -8px rgba(10, 8, 45, 0.7);
+      transform: translateY(-3px);
+      box-shadow: 0 18px 36px -12px rgba(7, 5, 32, 0.8);
     }
-    .gold-badge {
+    .gold-btn {
       background: linear-gradient(135deg, #f4b629 0%, #fbbf24 100%);
-      color: #110e47;
+      color: #0f0c3d;
+      transition: all 0.2s ease;
     }
-    .gold-border {
-      border-color: #f4b629;
+    .gold-btn:hover {
+      filter: brightness(1.06);
+      transform: translateY(-1px);
+      box-shadow: 0 10px 25px -5px rgba(244, 182, 41, 0.5);
     }
-    .gold-text {
-      color: #f4b629;
-    }
-    @keyframes float-slow {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-4px); }
-    }
-    .animate-float {
-      animation: float-slow 3.5s ease-in-out infinite;
+    .gold-outline-ring {
+      border: 2px solid rgba(244, 182, 41, 0.55);
     }
   </style>
 </head>
-<body class="bg-[#0d0b33] text-white antialiased min-h-screen selection:bg-[#f4b629] selection:text-[#110e47]">
+<body class="bg-[#0a0826] text-white antialiased min-h-screen selection:bg-[#f4b629] selection:text-[#0f0c3d]">
 
-  <!-- ================= LOGIN OVERLAY (ESTUDIANTES) ================= -->
-  <div id="login-screen" class="fixed inset-0 z-50 flex items-center justify-center p-4 brand-gradient text-white overflow-y-auto">
-    <div class="pointer-events-none fixed -top-24 -right-24 w-96 h-96 rounded-full border-2 border-[#f4b629]/70"></div>
-    <div class="pointer-events-none fixed -bottom-28 -right-16 w-80 h-80 rounded-full bg-indigo-800/40"></div>
+  <!-- ================= PORTADA / LOGIN MODO LANDING HERO ================= -->
+  <div id="login-screen" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 hero-bg text-white overflow-y-auto">
+    <!-- Decorative Orbital Rings inspired by PolyglotMap Cover -->
+    <div class="pointer-events-none fixed -top-28 -right-28 w-[420px] h-[420px] rounded-full border-2 border-[#f4b629]/60"></div>
+    <div class="pointer-events-none fixed -bottom-32 -right-16 w-[360px] h-[360px] rounded-full bg-indigo-900/50 border border-indigo-400/20"></div>
 
-    <div class="relative z-10 w-full max-w-4xl grid grid-cols-1 lg:grid-cols-12 rounded-2xl overflow-hidden shadow-2xl border border-[#f4b629]/30 bg-[#151152]/95 backdrop-blur-md">
+    <div class="relative z-10 w-full max-w-5xl grid grid-cols-1 lg:grid-cols-12 rounded-3xl overflow-hidden shadow-2xl border border-[#f4b629]/35 bg-[#120e4a]/90 backdrop-blur-xl">
       
-      <!-- Left Column: Brand & PDF Cover Messaging -->
-      <div class="lg:col-span-7 p-8 md:p-10 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-indigo-400/20">
-        <div>
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-950/80 border border-[#f4b629]/50 text-xs tracking-widest uppercase font-semibold text-[#f4b629] mb-6">
+      <!-- Left 7 Cols: Impactful Landing Hero Cover -->
+      <div class="lg:col-span-7 p-8 sm:p-12 flex flex-col justify-between border-b lg:border-b-0 lg:border-r border-indigo-400/20">
+        <div class="space-y-5">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-950/90 border border-[#f4b629]/60 text-xs tracking-widest uppercase font-bold text-[#f4b629]">
+            <span class="w-2 h-2 rounded-full bg-[#f4b629]"></span>
             <span>BOOTCAMP DE EMPLEABILIDAD CON IA</span>
           </div>
-          <h1 class="text-3xl md:text-5xl font-serif font-bold leading-tight tracking-tight text-white mb-2">
-            Deja de postular.
-          </h1>
-          <h2 class="text-3xl md:text-5xl font-serif font-bold leading-tight tracking-tight text-[#f4b629] mb-6">
-            Empieza a conseguir.
-          </h2>
-          <p class="text-sm md:text-base text-indigo-100 mb-8">
-            6 módulos · 1 sistema completo · de la idea a la oferta
+
+          <div class="space-y-1">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl font-serif font-bold leading-tight tracking-tight text-white">
+              Deja de postular.
+            </h1>
+            <h2 class="text-4xl sm:text-5xl md:text-6xl font-serif font-bold leading-tight tracking-tight text-[#f4b629]">
+              Empieza a conseguir.
+            </h2>
+          </div>
+
+          <p class="text-sm sm:text-base text-indigo-100/95 max-w-xl leading-relaxed">
+            6 módulos paso a paso · 1 sistema completo · De la idea a la oferta laboral con Inteligencia Artificial como tu copiloto.
           </p>
 
-          <!-- Mini preview of the 6 modules in strict order -->
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs">
-            <div class="p-2.5 rounded-lg bg-indigo-900/50 border border-indigo-400/25">
-              <span class="font-bold text-[#f4b629] block">01</span>
-              <span class="text-indigo-100">Descubre tu valor</span>
+          <!-- 6 Ordered Steps Pill Preview -->
+          <div class="pt-2 grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs">
+            <div class="p-3 rounded-xl bg-indigo-950/70 border border-indigo-400/25">
+              <span class="font-extrabold text-[#f4b629] block text-sm">01</span>
+              <span class="text-indigo-100 font-medium">Descubre tu valor</span>
             </div>
-            <div class="p-2.5 rounded-lg bg-indigo-900/50 border border-indigo-400/25">
-              <span class="font-bold text-[#f4b629] block">02</span>
-              <span class="text-indigo-100">CV + LinkedIn</span>
+            <div class="p-3 rounded-xl bg-indigo-950/70 border border-indigo-400/25">
+              <span class="font-extrabold text-[#f4b629] block text-sm">02</span>
+              <span class="text-indigo-100 font-medium">CV + LinkedIn</span>
             </div>
-            <div class="p-2.5 rounded-lg bg-indigo-900/50 border border-indigo-400/25">
-              <span class="font-bold text-[#f4b629] block">03</span>
-              <span class="text-indigo-100">IA como copiloto</span>
+            <div class="p-3 rounded-xl bg-indigo-950/70 border border-indigo-400/25">
+              <span class="font-extrabold text-[#f4b629] block text-sm">03</span>
+              <span class="text-indigo-100 font-medium">IA como copiloto</span>
             </div>
-            <div class="p-2.5 rounded-lg bg-indigo-900/50 border border-indigo-400/25">
-              <span class="font-bold text-[#f4b629] block">04</span>
-              <span class="text-indigo-100">Portafolio</span>
+            <div class="p-3 rounded-xl bg-indigo-950/70 border border-indigo-400/25">
+              <span class="font-extrabold text-[#f4b629] block text-sm">04</span>
+              <span class="text-indigo-100 font-medium">Portafolio</span>
             </div>
-            <div class="p-2.5 rounded-lg bg-indigo-900/50 border border-indigo-400/25">
-              <span class="font-bold text-[#f4b629] block">05</span>
-              <span class="text-indigo-100">Entrevistas</span>
+            <div class="p-3 rounded-xl bg-indigo-950/70 border border-indigo-400/25">
+              <span class="font-extrabold text-[#f4b629] block text-sm">05</span>
+              <span class="text-indigo-100 font-medium">Entrevistas</span>
             </div>
-            <div class="p-2.5 rounded-lg gold-badge font-semibold">
-              <span class="font-extrabold block">06</span>
+            <div class="p-3 rounded-xl gold-btn font-bold">
+              <span class="font-extrabold block text-sm">06</span>
               <span>Postulación estratégica</span>
             </div>
           </div>
         </div>
 
         <div class="mt-8 pt-4 border-t border-indigo-400/20 flex items-center justify-between text-xs tracking-widest uppercase text-indigo-200">
-          <span>P O L Y G L O T M A P</span>
-          <span class="text-[#f4b629] font-semibold">Edición 2026</span>
+          <span class="font-bold">P O L Y G L O T M A P</span>
+          <span class="text-[#f4b629] font-semibold">Domingos 4:00 – 6:00 PM</span>
         </div>
       </div>
 
-      <!-- Right Column: Clean Student Login Form -->
-      <div class="lg:col-span-5 p-8 md:p-10 flex flex-col justify-center bg-[#0f0c3d]/95">
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-12 h-12 rounded-full gold-badge flex items-center justify-center font-bold text-lg shadow-md">
+      <!-- Right 5 Cols: Friendly Student Login Card -->
+      <div class="lg:col-span-5 p-8 sm:p-10 flex flex-col justify-center bg-[#0c0936]/95">
+        <div class="flex items-center gap-3.5 mb-6">
+          <div class="w-12 h-12 rounded-2xl gold-btn flex items-center justify-center font-serif font-extrabold text-xl shadow-lg">
             P
           </div>
           <div>
-            <span class="text-xs uppercase tracking-wider text-[#f4b629] font-semibold block">Portal Exclusivo</span>
-            <h3 class="text-lg font-bold text-white">Ingreso de Estudiantes</h3>
+            <span class="text-xs uppercase tracking-wider text-[#f4b629] font-bold block">Acceso Exclusivo</span>
+            <h3 class="text-xl font-bold text-white">Portal del Estudiante</h3>
           </div>
         </div>
 
+        <p class="text-xs text-indigo-200 mb-6 leading-relaxed">
+          Ingresa con tu usuario y contraseña asignados para acceder a tus módulos, descargar tus guías en PDF y unirte a tus clases en vivo.
+        </p>
+
         <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4">
           <div>
-            <label for="username-input" class="block text-xs font-medium text-indigo-200 mb-1">Usuario / Alumno</label>
+            <label for="username-input" class="block text-xs font-semibold text-indigo-100 mb-1.5">Usuario / Alumno</label>
             <input
               id="username-input"
               type="text"
               autocomplete="off"
-              placeholder="Ingresa tu nombre o usuario..."
-              class="w-full px-3.5 py-2.5 rounded-lg bg-indigo-950/80 border border-indigo-400/30 text-white placeholder-indigo-300/50 text-sm focus:outline-none focus:border-[#f4b629]"
+              placeholder="Escribe tu nombre o usuario..."
+              class="w-full px-4 py-3 rounded-xl bg-indigo-950/90 border border-indigo-400/35 text-white placeholder-indigo-300/45 text-sm focus:outline-none focus:border-[#f4b629] transition"
               required
             />
           </div>
 
           <div>
-            <div class="flex items-center justify-between mb-1">
-              <label for="password-input" class="block text-xs font-medium text-indigo-200">Contraseña de Ingreso</label>
-              <button type="button" onclick="togglePasswordVisibility()" class="text-xs text-[#f4b629] hover:underline cursor-pointer">
+            <div class="flex items-center justify-between mb-1.5">
+              <label for="password-input" class="block text-xs font-semibold text-indigo-100">Contraseña de Ingreso</label>
+              <button type="button" onclick="togglePasswordVisibility()" class="text-xs text-[#f4b629] hover:underline font-medium cursor-pointer">
                 Mostrar/Ocultar
               </button>
             </div>
             <input
               id="password-input"
               type="password"
-              placeholder="Ingresa tu contraseña asignada..."
-              class="w-full px-3.5 py-2.5 rounded-lg bg-indigo-950/80 border border-indigo-400/30 text-white placeholder-indigo-300/50 text-sm focus:outline-none focus:border-[#f4b629]"
+              placeholder="Ingresa tu contraseña..."
+              class="w-full px-4 py-3 rounded-xl bg-indigo-950/90 border border-indigo-400/35 text-white placeholder-indigo-300/45 text-sm focus:outline-none focus:border-[#f4b629] transition"
               required
             />
           </div>
 
-          <div id="login-error" class="hidden p-2.5 rounded-lg bg-amber-500/20 border border-[#f4b629] text-[#f4b629] text-xs font-medium">
-            Usuario o contraseña incorrectos. Verifica tus datos de acceso.
+          <div id="login-error" class="hidden p-3 rounded-xl bg-amber-500/20 border border-[#f4b629] text-[#f4b629] text-xs font-medium">
+            Usuario o contraseña incorrectos. Verifica tus datos de estudiante.
           </div>
 
           <button
             type="submit"
-            class="w-full py-3 px-4 rounded-xl gold-badge font-bold text-sm hover:opacity-95 transition flex items-center justify-center gap-2 shadow-lg cursor-pointer"
+            class="w-full py-3.5 px-5 rounded-xl gold-btn font-bold text-sm flex items-center justify-center gap-2 shadow-xl cursor-pointer mt-2"
           >
-            <span>Ingresar al Bootcamp</span>
+            <span>Entrar a mi Bootcamp</span>
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
             </svg>
@@ -164,72 +176,58 @@
     </div>
   </div>
 
-  <!-- ================= MAIN DASHBOARD APPLICATION ================= -->
+  <!-- ================= LANDING PAGE DASHBOARD (VISIBLE TRAS LOGIN) ================= -->
   <div id="app-container" class="hidden min-h-screen flex flex-col">
     
-    <!-- Top Brand Header -->
-    <header class="brand-gradient text-white border-b border-[#f4b629]/25 sticky top-0 z-30 shadow-lg">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex flex-wrap items-center justify-between gap-4">
+    <!-- Sticky Landing Navigation Bar -->
+    <header class="bg-[#0d0a38]/90 backdrop-blur-md text-white border-b border-[#f4b629]/25 sticky top-0 z-40 shadow-lg">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-4">
         
-        <!-- Brand Title -->
-        <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl gold-badge flex items-center justify-center font-serif font-extrabold text-lg shadow">
+        <!-- Brand Logo -->
+        <a href="#inicio-hero" class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl gold-btn flex items-center justify-center font-serif font-extrabold text-lg shadow">
             P
           </div>
           <div>
-            <div class="flex items-center gap-2">
-              <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold">POLYGLOTMAP</span>
-              <span class="text-xs px-2 py-0.5 rounded-full bg-indigo-900/80 border border-[#f4b629]/40 text-[#f4b629]">Sistema IA</span>
-            </div>
-            <h1 class="text-base sm:text-lg font-bold tracking-tight text-white">
-              Bootcamp de Empleabilidad con IA
-            </h1>
+            <span class="text-xs uppercase tracking-widest text-[#f4b629] font-extrabold block leading-none">POLYGLOTMAP</span>
+            <span class="text-sm sm:text-base font-bold text-white tracking-tight">Bootcamp de Empleabilidad</span>
           </div>
-        </div>
+        </a>
 
-        <!-- Quick Actions & Student Badge -->
-        <div class="flex items-center gap-2.5 flex-wrap">
-          <button
-            onclick="switchTab('materiales')"
-            class="px-3 py-2 rounded-xl bg-indigo-900/70 hover:bg-indigo-800 border border-[#f4b629]/50 text-[#f4b629] font-bold text-xs flex items-center gap-1.5 transition cursor-pointer"
+        <!-- Ordered Section Anchor Links (Landing Page Style) -->
+        <nav class="hidden xl:flex items-center gap-6 text-xs font-semibold text-indigo-100">
+          <a href="#inicio-hero" class="hover:text-[#f4b629] transition">Inicio</a>
+          <a href="#seccion-ruta" class="hover:text-[#f4b629] transition">1. Ruta 6 Módulos</a>
+          <a href="#seccion-materiales" class="hover:text-[#f4b629] transition">2. Materiales & PDF</a>
+          <a href="#seccion-clases" class="hover:text-[#f4b629] transition">3. Mis Clases (Dom 4-6pm)</a>
+          <a href="#seccion-entregables" class="hover:text-[#f4b629] transition">4. Subir Entregables</a>
+          <a href="#seccion-coach" class="hover:text-[#f4b629] transition">5. Modo Coach IA</a>
+        </nav>
+
+        <!-- Right Quick CTA & Student Pill -->
+        <div class="flex items-center gap-2.5">
+          <a
+            href="https://meet.google.com/ttr-rhow-zou"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-3.5 py-2 rounded-xl gold-btn font-bold text-xs flex items-center gap-2 shadow cursor-pointer"
           >
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-            </svg>
-            <span>Ver Materiales (PDF)</span>
-          </button>
+            <span class="w-2 h-2 rounded-full bg-[#0f0c3d] animate-ping"></span>
+            <span>Clase en Vivo (Meet)</span>
+          </a>
 
-          <button
-            onclick="switchTab('entregables')"
-            class="px-3 py-2 rounded-xl bg-indigo-900/70 hover:bg-indigo-800 border border-indigo-400/40 text-indigo-100 font-bold text-xs flex items-center gap-1.5 transition cursor-pointer"
-          >
-            <svg class="w-4 h-4 text-[#f4b629]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
-            </svg>
-            <span>Subir Entregables</span>
-          </button>
-
-          <button
-            onclick="switchTab('videoconferencia')"
-            class="px-3.5 py-2 rounded-xl gold-badge font-bold text-xs flex items-center gap-2 shadow hover:opacity-95 transition cursor-pointer"
-          >
-            <span class="w-2 h-2 rounded-full bg-[#110e47] animate-ping"></span>
-            <span>Mis Clases (Dom 4-6pm)</span>
-          </button>
-
-          <!-- Student Profile Pill -->
-          <div class="flex items-center gap-2.5 bg-indigo-950/80 border border-[#f4b629]/40 rounded-xl px-3 py-1.5">
-            <div id="header-user-initials" class="w-8 h-8 rounded-full gold-badge font-bold text-xs flex items-center justify-center">
+          <div class="flex items-center gap-2 bg-indigo-950/90 border border-[#f4b629]/40 rounded-xl px-3 py-1.5">
+            <div id="header-user-initials" class="w-7 h-7 rounded-full gold-btn font-bold text-xs flex items-center justify-center">
               JA
             </div>
-            <div class="text-left">
+            <div class="text-left hidden sm:block">
               <span id="header-user-name" class="student-name-display block text-xs font-bold text-white leading-tight">Javier Alfaro</span>
               <span class="block text-xs text-[#f4b629] leading-tight">Modo Alumno</span>
             </div>
             <button
               onclick="lockSession()"
               title="Cerrar sesión"
-              class="ml-1 p-1.5 rounded-lg hover:bg-indigo-800/60 text-indigo-200 hover:text-white transition cursor-pointer"
+              class="p-1 rounded-lg hover:bg-indigo-800/60 text-indigo-200 hover:text-white transition cursor-pointer"
             >
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"/>
@@ -239,422 +237,345 @@
         </div>
       </div>
 
-      <!-- Navigation Sub-bar (5 Dynamic Tabs) -->
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center gap-1 overflow-x-auto border-t border-indigo-400/20 pt-1">
-        <button onclick="switchTab('ruta')" id="tab-btn-ruta" class="tab-btn px-3.5 py-2.5 text-xs sm:text-sm font-semibold border-b-2 border-[#f4b629] text-[#f4b629] whitespace-nowrap cursor-pointer">
-          1. Ruta de 6 Módulos
-        </button>
-        <button onclick="switchTab('materiales')" id="tab-btn-materiales" class="tab-btn px-3.5 py-2.5 text-xs sm:text-sm font-medium border-b-2 border-transparent text-indigo-200 hover:text-white whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
-          <span>2. Ver Materiales (01 → 06) & PDF</span>
-          <span class="px-1.5 py-0.5 text-xs rounded bg-[#f4b629]/20 text-[#f4b629] border border-[#f4b629]/40">Interactivo</span>
-        </button>
-        <button onclick="switchTab('entregables')" id="tab-btn-entregables" class="tab-btn px-3.5 py-2.5 text-xs sm:text-sm font-medium border-b-2 border-transparent text-indigo-200 hover:text-white whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
-          <span>3. Subir Entregables (Drive)</span>
-        </button>
-        <button onclick="switchTab('videoconferencia')" id="tab-btn-videoconferencia" class="tab-btn px-3.5 py-2.5 text-xs sm:text-sm font-medium border-b-2 border-transparent text-indigo-200 hover:text-white whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
-          <span>4. Mis Clases (Domingos 4-6pm)</span>
-        </button>
-        <button onclick="switchTab('coach')" id="tab-btn-coach" class="tab-btn px-3.5 py-2.5 text-xs sm:text-sm font-medium border-b-2 border-transparent text-indigo-200 hover:text-white whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
-          <span>5. Modo Coach IA (Ideas y Mejora)</span>
-          <span class="px-1.5 py-0.5 text-xs rounded gold-badge font-bold">Coach</span>
-        </button>
+      <!-- Mobile/Tablet Quick Jump Bar -->
+      <div class="xl:hidden max-w-7xl mx-auto px-4 py-2 flex items-center gap-2 overflow-x-auto border-t border-indigo-400/20 text-xs font-semibold">
+        <a href="#seccion-ruta" class="px-3 py-1 rounded-lg bg-indigo-950 text-[#f4b629] whitespace-nowrap">1. Los 6 Módulos</a>
+        <a href="#seccion-materiales" class="px-3 py-1 rounded-lg bg-indigo-950 text-indigo-100 whitespace-nowrap">2. Materiales PDF</a>
+        <a href="#seccion-clases" class="px-3 py-1 rounded-lg bg-indigo-950 text-indigo-100 whitespace-nowrap">3. Mis Clases (Dom 4-6pm)</a>
+        <a href="#seccion-entregables" class="px-3 py-1 rounded-lg bg-indigo-950 text-indigo-100 whitespace-nowrap">4. Subir Entregables</a>
+        <a href="#seccion-coach" class="px-3 py-1 rounded-lg bg-indigo-950 text-indigo-100 whitespace-nowrap">5. Modo Coach IA</a>
       </div>
     </header>
 
-    <!-- Main Content Area -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 space-y-6">
+    <!-- ================= HERO IMPACTANTE MODO LANDING PAGE ================= -->
+    <section id="inicio-hero" class="relative hero-bg overflow-hidden border-b border-[#f4b629]/30 py-12 sm:py-16">
+      <!-- Decorative Gold Arc from PolyglotMap Cover -->
+      <div class="pointer-events-none absolute -top-32 -right-32 w-[480px] h-[480px] rounded-full border-2 border-[#f4b629]/50"></div>
+      <div class="pointer-events-none absolute -bottom-36 right-12 w-80 h-80 rounded-full bg-indigo-900/40"></div>
 
-      <!-- Student Hero Banner & Global KPIs -->
-      <section class="rounded-2xl brand-gradient text-white p-5 sm:p-6 shadow-xl border border-[#f4b629]/30">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-          <div class="lg:col-span-7 space-y-2">
-            <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#f4b629] font-semibold">
-              <span>Espacio de Aprendizaje</span>
-              <span>•</span>
-              <span class="student-name-display">Javier Alfaro</span>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+          
+          <!-- Left 7 Cols: Headline, Value Proposition & Primary Landing CTAs -->
+          <div class="lg:col-span-7 space-y-6">
+            <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-indigo-950/90 border border-[#f4b629]/60 text-xs font-bold tracking-widest uppercase text-[#f4b629] shadow">
+              <span>BOOTCAMP DE EMPLEABILIDAD CON IA · MODO ALUMNO</span>
             </div>
-            <h2 class="text-2xl sm:text-3xl font-serif font-bold">
-              "Deja de postular. <span class="text-[#f4b629]">Empieza a conseguir.</span>"
-            </h2>
-            <p class="text-xs sm:text-sm text-indigo-100 max-w-2xl">
-              Hola, <strong class="student-name-display text-[#f4b629]">Javier Alfaro</strong>. Avanza paso a paso por tus 6 módulos, descarga tus guías en PDF, sube tus entregables a Google Drive y apóyate en el <strong>Modo Coach</strong> para potenciar tu empleabilidad.
+
+            <div class="space-y-2">
+              <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-none text-white">
+                Deja de postular.
+              </h1>
+              <h2 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-none text-[#f4b629]">
+                Empieza a conseguir.
+              </h2>
+            </div>
+
+            <p class="text-sm sm:text-lg text-indigo-100 max-w-2xl leading-relaxed">
+              Bienvenido/a, <strong class="student-name-display text-[#f4b629] underline decoration-[#f4b629]/50 underline-offset-4">Javier Alfaro</strong>. Estás en tu sistema completo de <strong>6 módulos</strong> para transformar tu perfil, dominar herramientas de IA, construir evidencia real y pasar de la idea a la oferta laboral.
             </p>
-          </div>
 
-          <!-- KPI Cards (Indigo & Yellow Theme, starting clean for the student) -->
-          <div class="lg:col-span-5 grid grid-cols-3 gap-3">
-            <div class="p-3.5 rounded-xl bg-indigo-950/70 border border-[#f4b629]/30">
-              <span class="text-xs text-indigo-200 block">Tu Avance</span>
-              <span id="global-progress-text" class="text-xl sm:text-2xl font-bold text-[#f4b629]">0%</span>
-              <div class="w-full h-1.5 bg-indigo-900 rounded-full mt-2 overflow-hidden">
-                <div id="global-progress-bar" class="h-full bg-[#f4b629] transition-all duration-300" style="width: 0%"></div>
-              </div>
-            </div>
-            <div class="p-3.5 rounded-xl bg-indigo-950/70 border border-[#f4b629]/30">
-              <span class="text-xs text-indigo-200 block">Mis Entregables</span>
-              <span id="deliverables-count" class="text-xl sm:text-2xl font-bold text-white">0 / 6</span>
-              <button onclick="switchTab('entregables')" class="text-xs text-[#f4b629] hover:underline block mt-1 font-semibold cursor-pointer">
-                Ir a Drive →
-              </button>
-            </div>
-            <div class="p-3.5 rounded-xl bg-indigo-950/70 border border-[#f4b629]">
-              <span class="text-xs text-[#f4b629] font-bold block">Mis Clases</span>
-              <span class="text-sm sm:text-base font-bold text-white block mt-0.5">Dom 4-6pm</span>
-              <button onclick="switchTab('videoconferencia')" class="text-xs text-indigo-200 hover:text-[#f4b629] hover:underline mt-1 block truncate cursor-pointer">
-                2 módulos por domingo →
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ================= TAB 1: RUTA DE 6 MÓDULOS ================= -->
-      <div id="tab-content-ruta" class="space-y-6">
-        <div class="indigo-card rounded-2xl p-5 sm:p-6 shadow-lg">
-          <div class="flex flex-wrap items-center justify-between gap-2 mb-5">
-            <div>
-              <span class="text-xs font-bold uppercase tracking-wider text-[#f4b629]">Mapa del Sistema Completo (Orden 01 → 06)</span>
-              <h3 class="text-lg sm:text-xl font-bold text-white">
-                6 módulos. Un solo camino hacia arriba.
-              </h3>
-            </div>
-            <div class="flex items-center gap-2">
-              <button onclick="openModuleMaterial(selectedModuleId)" class="px-3.5 py-2 rounded-xl gold-badge text-xs font-bold shadow cursor-pointer">
-                📖 Abrir Material de Clase del Módulo →
-              </button>
-            </div>
-          </div>
-
-          <!-- Interactive 6-Step Ascending Staircase -->
-          <div id="staircase-container" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 items-end pt-4"></div>
-        </div>
-
-        <!-- Selected Module Detail View -->
-        <div id="module-detail-card" class="rounded-2xl brand-gradient text-white p-6 sm:p-8 shadow-xl border border-[#f4b629]/40 relative overflow-hidden"></div>
-      </div>
-
-      <!-- ================= TAB 2: VER MATERIALES DE CLASE (01 AL 06 EN ORDEN) & DESCARGAR PDF ================= -->
-      <div id="tab-content-materiales" class="hidden space-y-6">
-        
-        <div class="indigo-card rounded-2xl p-5 shadow-lg space-y-4">
-          <div class="flex flex-wrap items-center justify-between gap-4">
-            <div>
-              <span class="text-xs font-bold uppercase tracking-wider text-[#f4b629]">Biblioteca Interactiva · PolyglotMap</span>
-              <h3 class="text-lg sm:text-xl font-bold text-white">
-                Material de Clase — Módulos 01 al 06 en Orden
-              </h3>
-              <p class="text-xs text-indigo-200">
-                Haz clic en cada módulo en orden para estudiar las lecciones interactivas o descárgalo en formato PDF.
-              </p>
-            </div>
-
-            <!-- PDF Action Buttons -->
-            <div class="flex items-center gap-2.5 flex-wrap">
-              <button
-                onclick="downloadCurrentModulePDF()"
-                class="px-4 py-2.5 rounded-xl gold-badge font-bold text-xs sm:text-sm flex items-center gap-2 shadow-lg hover:opacity-95 transition cursor-pointer"
+            <!-- Hero Action Buttons -->
+            <div class="flex flex-wrap items-center gap-3 pt-2">
+              <a
+                href="#seccion-materiales"
+                class="px-5 py-3.5 rounded-2xl gold-btn font-bold text-xs sm:text-sm flex items-center gap-2 shadow-xl"
               >
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
                 </svg>
-                <span id="btn-download-single-label">Descargar Módulo 01 en PDF</span>
-              </button>
-
-              <button
-                onclick="downloadAllModulesPDF()"
-                class="px-4 py-2.5 rounded-xl bg-indigo-900/80 hover:bg-indigo-800 border border-[#f4b629]/50 text-[#f4b629] font-bold text-xs sm:text-sm flex items-center gap-2 transition cursor-pointer"
-              >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
-                </svg>
-                <span>Descargar los 6 Módulos Completos (PDF)</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Ordered Module Stepper Bar (01 -> 02 -> 03 -> 04 -> 05 -> 06) -->
-          <div id="materials-stepper" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 pt-2"></div>
-        </div>
-
-        <!-- Interactive Class Material Viewer for Selected Module -->
-        <div id="material-interactive-viewer" class="space-y-5"></div>
-
-      </div>
-
-      <!-- ================= TAB 3: SUBIR ENTREGABLES (GOOGLE DRIVE OFICIAL) ================= -->
-      <div id="tab-content-entregables" class="hidden space-y-6">
-        
-        <div class="rounded-2xl brand-gradient text-white p-6 sm:p-8 shadow-xl border-2 border-[#f4b629]">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-            <div class="lg:col-span-7 space-y-3">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f4b629]/20 border border-[#f4b629] text-xs font-bold text-[#f4b629] uppercase tracking-wider">
-                <span>Carpeta Oficial de Entregables</span>
-              </div>
-              <h3 class="text-2xl sm:text-4xl font-serif font-bold">
-                Modo Subir Entregables — <span class="student-name-display text-[#f4b629]">Javier Alfaro</span>
-              </h3>
-              <p class="text-xs sm:text-sm text-indigo-100">
-                A medida que avances en cada módulo (01 al 06), sube aquí tus entregables directamente a la carpeta compartida de Google Drive.
-              </p>
-
-              <div class="p-3.5 rounded-xl bg-indigo-950/90 border border-[#f4b629]/40 flex flex-wrap items-center justify-between gap-2">
-                <div class="min-w-0">
-                  <span class="text-xs text-indigo-200 block">Enlace Oficial de Google Drive:</span>
-                  <code class="text-xs sm:text-sm font-mono text-[#f4b629] font-bold break-all">
-                    https://drive.google.com/drive/folders/1kHAd1GjkPwyR-rDWkkQA8odvXH818v_o?usp=sharing
-                  </code>
-                </div>
-                <button
-                  type="button"
-                  onclick="copyDriveLink()"
-                  id="btn-copy-drive"
-                  class="px-3 py-1.5 rounded-lg gold-badge text-xs font-bold shrink-0 cursor-pointer"
-                >
-                  Copiar enlace Drive
-                </button>
-              </div>
-            </div>
-
-            <!-- Right Drive Launch Card -->
-            <div class="lg:col-span-5 bg-[#0f0c3d]/95 border border-[#f4b629]/40 rounded-2xl p-6 flex flex-col justify-between space-y-4 shadow-xl">
-              <div class="flex items-center gap-3">
-                <div class="w-12 h-12 rounded-xl gold-badge flex items-center justify-center shrink-0 shadow">
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
-                  </svg>
-                </div>
-                <div>
-                  <span class="text-xs uppercase tracking-wider text-[#f4b629] font-bold block">Google Drive · PolyglotMap</span>
-                  <h4 class="text-base font-bold text-white">Subida de Archivos del Alumno</h4>
-                </div>
-              </div>
-
-              <p class="text-xs text-indigo-200">
-                Haz clic abajo para abrir la carpeta de Google Drive en una pestaña nueva y subir tus documentos de los módulos 01 al 06.
-              </p>
+                <span>Ver Materiales y Descargar PDF</span>
+              </a>
 
               <a
-                href="https://drive.google.com/drive/folders/1kHAd1GjkPwyR-rDWkkQA8odvXH818v_o?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="w-full py-3.5 px-4 rounded-xl gold-badge font-bold text-sm flex items-center justify-center gap-2 shadow-lg hover:opacity-95 transition"
+                href="#seccion-entregables"
+                class="px-5 py-3.5 rounded-2xl bg-indigo-950/90 hover:bg-indigo-900 border-2 border-[#f4b629] text-[#f4b629] font-bold text-xs sm:text-sm flex items-center gap-2 transition"
               >
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
                 </svg>
-                <span>Abrir Carpeta Google Drive para Subir</span>
+                <span>Subir Entregables (Google Drive)</span>
+              </a>
+
+              <a
+                href="#seccion-coach"
+                class="px-4 py-3.5 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/20 text-white font-semibold text-xs sm:text-sm flex items-center gap-2 transition"
+              >
+                <span>Ir al Modo Coach IA →</span>
               </a>
             </div>
           </div>
-        </div>
 
-        <!-- Ordered 01 to 06 Deliverables Upload Cards -->
-        <div class="indigo-card rounded-2xl p-5 sm:p-6 shadow-lg">
-          <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-            <div>
-              <h4 class="text-base sm:text-lg font-bold text-white">
-                Tus 6 Entregables del Bootcamp (Orden 01 → 06)
-              </h4>
-              <p class="text-xs text-indigo-200">
-                Adjunta tu archivo para llevar tu control personal y súbelo a la carpeta de Google Drive.
-              </p>
-            </div>
-          </div>
-
-          <div id="deliverables-upload-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
-        </div>
-
-      </div>
-
-      <!-- ================= TAB 4: MIS CLASES (VIDEOCONFERENCIA) ================= -->
-      <div id="tab-content-videoconferencia" class="hidden space-y-6">
-        
-        <!-- APARTADO PRINCIPAL: MIS CLASES (DOMINGOS 4-6PM · GOOGLE MEET) -->
-        <div class="rounded-2xl brand-gradient text-white p-6 sm:p-8 shadow-xl border-2 border-[#f4b629] relative overflow-hidden">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center relative z-10">
-            
-            <!-- Left Info -->
-            <div class="lg:col-span-7 space-y-3">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#f4b629]/20 border border-[#f4b629] text-xs font-bold text-[#f4b629] uppercase tracking-wider">
-                <span class="w-2 h-2 rounded-full bg-[#f4b629] animate-ping"></span>
-                <span>Apartado: Mis Clases en Vivo</span>
-              </div>
-              <h3 class="text-2xl sm:text-4xl font-serif font-bold text-white">
-                Bootcamp de Empleabilidad con IA
-              </h3>
-              <p class="text-sm text-indigo-100">
-                Cada domingo vemos <strong>2 módulos en vivo de 4:00 pm a 6:00 pm</strong>. Ingresa puntualmente con tu enlace oficial de Google Meet.
-              </p>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                <div class="p-3.5 rounded-xl bg-indigo-950/80 border border-[#f4b629]/40 flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-lg gold-badge flex items-center justify-center shrink-0">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
-                    </svg>
+          <!-- Right 5 Cols: Spotlight Hero Card (Próxima Clase Dominical + Progreso del Alumno) -->
+          <div class="lg:col-span-5">
+            <div class="rounded-3xl bg-[#0c0936]/95 border-2 border-[#f4b629] p-6 sm:p-7 shadow-2xl space-y-5">
+              <div class="flex items-center justify-between border-b border-indigo-400/20 pb-4">
+                <div class="flex items-center gap-3">
+                  <div class="w-11 h-11 rounded-2xl gold-btn font-serif font-extrabold text-base flex items-center justify-center shadow">
+                    JA
                   </div>
                   <div>
-                    <span class="text-xs text-indigo-200 block">Horario Oficial</span>
-                    <span class="text-sm sm:text-base font-bold text-[#f4b629]">Domingos · 4:00 pm – 6:00 pm</span>
+                    <span class="text-xs uppercase tracking-wider text-[#f4b629] font-bold block">Tu Panel en Vivo</span>
+                    <h3 class="text-base font-bold text-white student-name-display">Javier Alfaro</h3>
                   </div>
                 </div>
-
-                <div class="p-3.5 rounded-xl bg-indigo-950/80 border border-[#f4b629]/40 flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-lg bg-[#f4b629]/20 border border-[#f4b629] text-[#f4b629] flex items-center justify-center shrink-0">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-                    </svg>
-                  </div>
-                  <div class="min-w-0">
-                    <span class="text-xs text-indigo-200 block">Sala Google Meet</span>
-                    <span class="text-sm font-mono font-bold text-white truncate block">meet.google.com/ttr-rhow-zou</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Right CTA Box -->
-            <div class="lg:col-span-5 bg-[#0f0c3d]/95 border border-[#f4b629]/40 rounded-2xl p-5 flex flex-col justify-between space-y-4 shadow-xl">
-              <div class="flex items-center justify-between border-b border-indigo-400/20 pb-3">
-                <div>
-                  <span class="text-xs uppercase tracking-wider text-[#f4b629] font-bold block">Acceso Directo a Clase</span>
-                  <span class="text-sm font-bold text-white">Alumno: <span class="student-name-display">Javier Alfaro</span></span>
-                </div>
-                <span class="px-2.5 py-1 rounded-full gold-badge text-xs font-extrabold">
-                  2 Módulos / Dom
+                <span class="px-3 py-1 rounded-full bg-[#f4b629]/20 border border-[#f4b629] text-[#f4b629] text-xs font-bold">
+                  Edición 2026
                 </span>
               </div>
 
-              <div class="p-3 rounded-xl bg-indigo-950 border border-indigo-400/30 flex items-center justify-between gap-2">
-                <code class="text-xs sm:text-sm font-mono text-[#f4b629] font-bold truncate">
-                  meet.google.com/ttr-rhow-zou
-                </code>
-                <button
-                  type="button"
-                  onclick="copyMeetLink()"
-                  id="btn-copy-meet"
-                  class="px-2.5 py-1 rounded-lg bg-indigo-800 hover:bg-indigo-700 text-white text-xs font-semibold shrink-0 cursor-pointer transition"
-                >
-                  Copiar link
-                </button>
+              <!-- Live Class Highlight Box -->
+              <div class="p-4 rounded-2xl bg-indigo-950/90 border border-[#f4b629]/40 space-y-2.5">
+                <div class="flex items-center justify-between text-xs">
+                  <span class="font-extrabold uppercase tracking-wider text-[#f4b629]">📅 Mis Clases en Vivo</span>
+                  <span class="text-indigo-200 font-semibold">2 Módulos por Domingo</span>
+                </div>
+                <p class="text-base sm:text-lg font-bold text-white">
+                  Domingos · 4:00 pm a 6:00 pm
+                </p>
+                <div class="flex items-center justify-between gap-2 pt-1">
+                  <code class="text-xs font-mono text-[#f4b629] font-bold truncate">meet.google.com/ttr-rhow-zou</code>
+                  <a
+                    href="https://meet.google.com/ttr-rhow-zou"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="px-3 py-1.5 rounded-lg gold-btn font-bold text-xs shrink-0"
+                  >
+                    Unirse a Meet ↗
+                  </a>
+                </div>
               </div>
 
-              <a
-                href="https://meet.google.com/ttr-rhow-zou"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="w-full py-3.5 px-4 rounded-xl gold-badge font-bold text-sm flex items-center justify-center gap-2 shadow-lg hover:opacity-95 transition"
-              >
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-                </svg>
-                <span>Iniciar Videoconferencia en Google Meet</span>
-              </a>
+              <!-- Clean Progress Indicators -->
+              <div class="grid grid-cols-2 gap-3">
+                <div class="p-3.5 rounded-2xl bg-indigo-950/70 border border-indigo-400/25">
+                  <span class="text-xs text-indigo-200 block">Tu Avance Personal</span>
+                  <span id="global-progress-text" class="text-2xl font-extrabold text-[#f4b629]">0%</span>
+                  <div class="w-full h-1.5 bg-indigo-900 rounded-full mt-2 overflow-hidden">
+                    <div id="global-progress-bar" class="h-full bg-[#f4b629] transition-all duration-300" style="width: 0%"></div>
+                  </div>
+                </div>
+                <div class="p-3.5 rounded-2xl bg-indigo-950/70 border border-indigo-400/25">
+                  <span class="text-xs text-indigo-200 block">Entregables en Drive</span>
+                  <span id="deliverables-count" class="text-2xl font-extrabold text-white">0 / 6</span>
+                  <a href="#seccion-entregables" class="text-xs text-[#f4b629] hover:underline block mt-1 font-semibold">
+                    Subir archivos →
+                  </a>
+                </div>
+              </div>
             </div>
-
-          </div>
-        </div>
-
-        <!-- Cronograma de Mis Clases (3 Domingos · 2 Módulos por Domingo de 4-6pm) -->
-        <div class="indigo-card rounded-2xl p-5 sm:p-6 shadow-lg">
-          <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
-            <div>
-              <h4 class="text-base sm:text-lg font-bold text-white">Calendario de Clases — 2 Módulos cada Domingo (4:00 pm a 6:00 pm)</h4>
-              <p class="text-xs text-indigo-200">Todas las clases se imparten en vivo por <strong class="text-[#f4b629]">meet.google.com/ttr-rhow-zou</strong></p>
-            </div>
-            <span class="px-3 py-1 rounded-full gold-badge text-xs font-extrabold">
-              3 Domingos · 4:00 pm – 6:00 pm
-            </span>
           </div>
 
-          <div id="classes-schedule-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-4"></div>
         </div>
-
       </div>
+    </section>
 
-      <!-- ================= TAB 5: MODO COACH IA DE EMPLEABILIDAD (IDEAS DE SEGUIMIENTO Y MEJORA) ================= -->
-      <div id="tab-content-coach" class="hidden space-y-6">
-        
-        <!-- Coach Hero Header -->
-        <div class="rounded-2xl brand-gradient text-white p-6 sm:p-8 shadow-xl border-2 border-[#f4b629]">
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-            <div class="lg:col-span-8 space-y-2">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full gold-badge text-xs font-extrabold uppercase tracking-wider">
-                <span>Modo Coach de Empleabilidad · Copiloto Activo</span>
-              </div>
-              <h3 class="text-2xl sm:text-4xl font-serif font-bold">
-                Ideas de Seguimiento y Mejora Continua para <span class="student-name-display text-[#f4b629]">Javier Alfaro</span>
-              </h3>
-              <p class="text-xs sm:text-sm text-indigo-100">
-                "Postular a 50 empleos no es estrategia. Esto sí: <strong>Encuentra → Analiza → Adapta → Postula → Seguimiento → Mejora ↺</strong>". Selecciona tu objetivo actual y recibe ideas accionables, guiones de seguimiento y tácticas para multiplicar tus entrevistas.
-              </p>
-            </div>
+    <!-- ================= CONTENIDO PRINCIPAL ORDENADO EN 5 SECCIONES DE LANDING PAGE ================= -->
+    <main class="max-w-7xl w-full mx-auto px-4 sm:px-6 py-12 space-y-16">
 
-            <!-- 6-Step Cycle Mini Pill -->
-            <div class="lg:col-span-4 bg-[#0f0c3d]/90 border border-[#f4b629]/40 rounded-2xl p-4 text-center space-y-2">
-              <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold block">El Ciclo Ganador</span>
-              <div class="flex flex-wrap items-center justify-center gap-1.5 text-xs font-bold">
-                <span class="px-2.5 py-1 rounded-full gold-badge">Encuentra</span>
-                <span class="text-[#f4b629]">→</span>
-                <span class="px-2.5 py-1 rounded-full gold-badge">Analiza</span>
-                <span class="text-[#f4b629]">→</span>
-                <span class="px-2.5 py-1 rounded-full gold-badge">Adapta</span>
-                <span class="text-[#f4b629]">→</span>
-                <span class="px-2.5 py-1 rounded-full gold-badge">Postula</span>
-                <span class="text-[#f4b629]">→</span>
-                <span class="px-2.5 py-1 rounded-full gold-badge">Seguimiento</span>
-                <span class="text-[#f4b629]">→</span>
-                <span class="px-2.5 py-1 rounded-full gold-badge">Mejora ↺</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Interactive Coach Selector: ¿Qué área de tu empleabilidad quieres impulsar hoy? -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          
-          <!-- Left 5 Cols: Escenarios de Coaching -->
-          <div class="lg:col-span-5 indigo-card rounded-2xl p-5 space-y-3">
-            <span class="text-xs font-extrabold uppercase tracking-wider text-[#f4b629] block">
-              1. Elige tu Reto Actual
+      <!-- ================= SECCIÓN 1: RUTA DE 6 MÓDULOS EN ORDEN ================= -->
+      <section id="seccion-ruta" class="scroll-mt-24 space-y-6">
+        <div class="flex flex-wrap items-end justify-between gap-4 border-b border-[#f4b629]/25 pb-4">
+          <div>
+            <span class="text-xs font-extrabold uppercase tracking-widest text-[#f4b629] block">
+              SECCIÓN 01 · EL MAPA DE TU TRANSFORMACIÓN
             </span>
-            <h4 class="text-base sm:text-lg font-bold text-white">
-              ¿En qué etapa necesitas ideas del Coach hoy?
-            </h4>
-            <div id="coach-topics-list" class="space-y-2.5 pt-1">
-              <!-- Populated via JS -->
-            </div>
+            <h2 class="text-2xl sm:text-3xl font-serif font-bold text-white mt-1">
+              6 módulos. Un solo camino hacia arriba.
+            </h2>
           </div>
-
-          <!-- Right 7 Cols: Plan de Acción del Coach + Plantilla Lista para Copiar -->
-          <div id="coach-advice-panel" class="lg:col-span-7 indigo-card rounded-2xl p-6 flex flex-col justify-between space-y-5 border-2 border-[#f4b629]">
-            <!-- Populated dynamically via JS -->
-          </div>
-
+          <p class="text-xs sm:text-sm text-indigo-200">
+            Haz clic en cada módulo en orden (<strong class="text-[#f4b629]">01 al 06</strong>) para ver tus actividades y marcar tu progreso personal.
+          </p>
         </div>
 
-        <!-- Interactive Personal Coach Generator & Funnel -->
+        <!-- Escalera Interactiva 01 -> 06 -->
+        <div class="indigo-surface rounded-3xl p-6 shadow-xl">
+          <div id="staircase-container" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3.5 items-end pt-2"></div>
+        </div>
+
+        <!-- Tarjeta Detalle del Módulo Seleccionado -->
+        <div id="module-detail-card" class="rounded-3xl brand-gradient text-white p-6 sm:p-8 shadow-2xl border-2 border-[#f4b629]/50 relative overflow-hidden"></div>
+      </section>
+
+      <!-- ================= SECCIÓN 2: VER MATERIALES DE CLASE (01 AL 06) Y DESCARGAR PDF ================= -->
+      <section id="seccion-materiales" class="scroll-mt-24 space-y-6">
+        <div class="flex flex-wrap items-end justify-between gap-4 border-b border-[#f4b629]/25 pb-4">
+          <div>
+            <span class="text-xs font-extrabold uppercase tracking-widest text-[#f4b629] block">
+              SECCIÓN 02 · BIBLIOTECA INTERACTIVA Y DESCARGABLE
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-serif font-bold text-white mt-1">
+              Material de Clase — Módulos 01 al 06 en Orden
+            </h2>
+            <p class="text-xs sm:text-sm text-indigo-200 mt-1">
+              Revisa la teoría práctica de cada módulo y descárgala en formato PDF cuando quieras estudiar.
+            </p>
+          </div>
+
+          <!-- Botones de Descarga PDF -->
+          <div class="flex items-center gap-3 flex-wrap">
+            <button
+              onclick="downloadCurrentModulePDF()"
+              class="px-4 py-3 rounded-xl gold-btn font-bold text-xs sm:text-sm flex items-center gap-2 shadow-lg cursor-pointer"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+              </svg>
+              <span id="btn-download-single-label">Descargar Módulo 01 en PDF</span>
+            </button>
+
+            <button
+              onclick="downloadAllModulesPDF()"
+              class="px-4 py-3 rounded-xl bg-indigo-950 hover:bg-indigo-900 border border-[#f4b629] text-[#f4b629] font-bold text-xs sm:text-sm flex items-center gap-2 transition cursor-pointer"
+            >
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+              </svg>
+              <span>Descargar los 6 Módulos Completos (PDF)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Selector en orden 01 -> 06 -->
+        <div id="materials-stepper" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3"></div>
+
+        <!-- Visor Interactivo del Material del Módulo -->
+        <div id="material-interactive-viewer" class="space-y-5"></div>
+      </section>
+
+      <!-- ================= SECCIÓN 3: MIS CLASES EN VIVO (3 DOMINGOS · 4-6PM · 2 MÓDULOS POR DOMINGO) ================= -->
+      <section id="seccion-clases" class="scroll-mt-24 space-y-6">
+        <div class="flex flex-wrap items-end justify-between gap-4 border-b border-[#f4b629]/25 pb-4">
+          <div>
+            <span class="text-xs font-extrabold uppercase tracking-widest text-[#f4b629] block">
+              SECCIÓN 03 · VIDEOCONFERENCIA Y SESIONES EN VIVO
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-serif font-bold text-white mt-1">
+              Mis Clases — Domingos de 4:00 pm a 6:00 pm
+            </h2>
+            <p class="text-xs sm:text-sm text-indigo-200 mt-1">
+              Los 6 módulos se desarrollan en <strong>3 Domingos (2 módulos cada domingo)</strong> a través de Google Meet.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-2.5 flex-wrap">
+            <button
+              type="button"
+              onclick="copyMeetLink()"
+              id="btn-copy-meet"
+              class="px-3.5 py-2.5 rounded-xl bg-indigo-950 border border-[#f4b629]/50 text-[#f4b629] text-xs font-bold cursor-pointer"
+            >
+              Copiar link: meet.google.com/ttr-rhow-zou
+            </button>
+            <a
+              href="https://meet.google.com/ttr-rhow-zou"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-4 py-2.5 rounded-xl gold-btn font-bold text-xs sm:text-sm flex items-center gap-2 shadow-lg"
+            >
+              <span>Iniciar Videoconferencia en Google Meet</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 3 Tarjetas Dominicales (Domingo 1: 01+02, Domingo 2: 03+04, Domingo 3: 05+06) -->
+        <div id="classes-schedule-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-5"></div>
+      </section>
+
+      <!-- ================= SECCIÓN 4: MODO SUBIR ENTREGABLES (GOOGLE DRIVE OFICIAL) ================= -->
+      <section id="seccion-entregables" class="scroll-mt-24 space-y-6">
+        <div class="flex flex-wrap items-end justify-between gap-4 border-b border-[#f4b629]/25 pb-4">
+          <div>
+            <span class="text-xs font-extrabold uppercase tracking-widest text-[#f4b629] block">
+              SECCIÓN 04 · CARPETA COMPARTIDA DE ENTREGAS
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-serif font-bold text-white mt-1">
+              Modo Subir Entregables — Google Drive
+            </h2>
+            <p class="text-xs sm:text-sm text-indigo-200 mt-1">
+              Sube tus 6 entregables en orden a la carpeta oficial de Google Drive para recibir retroalimentación.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-2.5 flex-wrap">
+            <button
+              type="button"
+              onclick="copyDriveLink()"
+              id="btn-copy-drive"
+              class="px-3.5 py-2.5 rounded-xl bg-indigo-950 border border-[#f4b629]/50 text-[#f4b629] text-xs font-bold cursor-pointer"
+            >
+              Copiar enlace de Google Drive
+            </button>
+            <a
+              href="https://drive.google.com/drive/folders/1kHAd1GjkPwyR-rDWkkQA8odvXH818v_o?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-4 py-2.5 rounded-xl gold-btn font-bold text-xs sm:text-sm flex items-center gap-2 shadow-lg"
+            >
+              <span>Abrir Carpeta de Google Drive</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Grid de los 6 Entregables en orden -->
+        <div id="deliverables-upload-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+      </section>
+
+      <!-- ================= SECCIÓN 5: MODO COACH IA DE EMPLEABILIDAD & EMBUDO ================= -->
+      <section id="seccion-coach" class="scroll-mt-24 space-y-6">
+        <div class="flex flex-wrap items-end justify-between gap-4 border-b border-[#f4b629]/25 pb-4">
+          <div>
+            <span class="text-xs font-extrabold uppercase tracking-widest text-[#f4b629] block">
+              SECCIÓN 05 · MODO COACH DE EMPLEABILIDAD
+            </span>
+            <h2 class="text-2xl sm:text-3xl font-serif font-bold text-white mt-1">
+              Ideas de Seguimiento y Estrategia para <span class="student-name-display text-[#f4b629]">Javier Alfaro</span>
+            </h2>
+            <p class="text-xs sm:text-sm text-indigo-200 mt-1">
+              Ciclo estratégico: <strong>Encuentra → Analiza → Adapta → Postula → Seguimiento → Mejora ↺</strong>
+            </p>
+          </div>
+        </div>
+
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          
-          <!-- Interactive Coach Simulator -->
-          <div class="lg:col-span-7 indigo-card rounded-2xl p-6 space-y-4">
+          <!-- Selector de Escenarios Coach -->
+          <div class="lg:col-span-5 indigo-surface rounded-3xl p-6 space-y-3">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-[#f4b629] block">
+              Elige un Escenario de Mejora
+            </span>
+            <h3 class="text-base sm:text-lg font-bold text-white">
+              ¿Qué necesitas destrabar hoy en tu búsqueda?
+            </h3>
+            <div id="coach-topics-list" class="space-y-2.5 pt-1"></div>
+          </div>
+
+          <!-- Panel Dinámico de Consejos y Plantillas del Coach -->
+          <div id="coach-advice-panel" class="lg:col-span-7 indigo-surface rounded-3xl p-6 sm:p-7 flex flex-col justify-between space-y-5 border-2 border-[#f4b629]"></div>
+        </div>
+
+        <!-- Consultor Interactivo 24/7 + Embudo Final -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <div class="lg:col-span-7 indigo-surface rounded-3xl p-6 space-y-4">
             <div class="flex items-center justify-between">
               <div>
                 <span class="text-xs font-extrabold uppercase tracking-wider text-[#f4b629] block">
                   Consultor Interactivo 24/7
                 </span>
                 <h4 class="text-base sm:text-lg font-bold text-white">
-                  Pregúntale a tu Coach de Empleabilidad
+                  Pídele Ideas Personalizadas a tu Coach IA
                 </h4>
               </div>
-              <span class="px-2.5 py-1 rounded-lg gold-badge text-xs font-extrabold">Modo Coach IA</span>
+              <span class="px-3 py-1 rounded-full gold-btn text-xs font-extrabold">Modo Coach</span>
             </div>
 
-            <div id="coach-chat-box" class="space-y-3 max-h-64 overflow-y-auto pr-1 text-xs">
-              <div class="p-4 rounded-xl bg-indigo-950/90 border border-[#f4b629]/40">
+            <div id="coach-chat-box" class="space-y-3 max-h-60 overflow-y-auto pr-1 text-xs">
+              <div class="p-4 rounded-2xl bg-indigo-950/90 border border-[#f4b629]/40">
                 <span class="font-bold text-[#f4b629] block mb-1">Coach PolyglotMap · IA</span>
                 <p class="text-indigo-100 leading-relaxed">
-                  ¡Hola <strong class="student-name-display">Javier Alfaro</strong>! Escribe abajo el cargo al que aspiras o una duda sobre tu CV, LinkedIn, portafolio o seguimiento, y te daré 3 ideas concretas para destacar esta semana.
+                  ¡Hola <strong class="student-name-display">Javier Alfaro</strong>! Cuéntame a qué rol estás postulando o en qué parte del proceso estás, y te daré ideas concretas de seguimiento para destacar.
                 </p>
               </div>
             </div>
@@ -663,17 +584,17 @@
               <input
                 id="coach-user-input"
                 type="text"
-                placeholder="Ej. ¿Cómo doy seguimiento a una empresa después de 7 días sin sonar insistente?"
-                class="flex-1 px-3.5 py-2.5 rounded-xl bg-indigo-950 border border-indigo-400/40 text-xs text-white placeholder-indigo-300/60 focus:outline-none focus:border-[#f4b629]"
+                placeholder="Escribe tu consulta o el puesto al que quieres postular..."
+                class="flex-1 px-4 py-3 rounded-xl bg-indigo-950 border border-indigo-400/40 text-xs text-white placeholder-indigo-300/60 focus:outline-none focus:border-[#f4b629]"
               />
-              <button type="submit" class="px-4 py-2.5 rounded-xl gold-badge font-bold text-xs cursor-pointer shrink-0">
-                Pedir Ideas al Coach →
+              <button type="submit" class="px-4 py-3 rounded-xl gold-btn font-bold text-xs cursor-pointer shrink-0">
+                Recibir Ideas →
               </button>
             </form>
           </div>
 
           <!-- El Embudo que sí te lleva a la oferta -->
-          <div class="lg:col-span-5 rounded-2xl brand-gradient text-white p-6 shadow-xl border border-[#f4b629]/40 flex flex-col justify-between">
+          <div class="lg:col-span-5 rounded-3xl brand-gradient text-white p-6 shadow-xl border border-[#f4b629]/40 flex flex-col justify-between">
             <div>
               <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold">Ú L T I M A   P A R A D A</span>
               <h4 class="text-xl font-serif font-bold mt-1">El embudo que sí te lleva a la oferta</h4>
@@ -692,19 +613,32 @@
                   <span class="text-xs tracking-widest uppercase text-[#f4b629] block">D E S E O</span>
                   <p class="text-xs sm:text-sm font-bold text-white mt-0.5">CV, LinkedIn, portafolio y entrevistas listos.</p>
                 </div>
-                <div class="w-9/12 p-3.5 rounded-xl gold-badge text-center shadow-lg">
+                <div class="w-9/12 p-3.5 rounded-xl gold-btn text-center shadow-lg">
                   <span class="text-xs tracking-widest uppercase font-extrabold block">A C C I Ó N</span>
-                  <p class="text-xs sm:text-sm font-serif font-bold mt-0.5">Construye tu oferta · polyglotmap.com</p>
+                  <p class="text-xs sm:text-sm font-serif font-bold mt-0.5">De la idea a la oferta · polyglotmap.com</p>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
-
-      </div>
+      </section>
 
     </main>
+
+    <!-- Landing Page Footer -->
+    <footer class="border-t border-[#f4b629]/20 bg-[#07051c] py-8 mt-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between gap-4 text-xs text-indigo-200">
+        <div class="flex items-center gap-2.5">
+          <span class="w-7 h-7 rounded-lg gold-btn font-serif font-extrabold flex items-center justify-center text-xs">P</span>
+          <span class="font-bold tracking-widest uppercase text-white">POLYGLOTMAP · BOOTCAMP DE EMPLEABILIDAD CON IA</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="#inicio-hero" class="text-[#f4b629] hover:underline">↑ Volver arriba</a>
+          <span>Clases: Domingos 4:00 pm – 6:00 pm</span>
+        </div>
+      </div>
+    </footer>
+
   </div>
 
   <script>
@@ -1127,17 +1061,16 @@
     const defaultModulesString = JSON.stringify(modulesData);
 
     // ================= MULTI-USER SYSTEM (PRIVADO EN CÓDIGO) =================
-    const defaultUsers = [
+    const registeredUsers = [
       { id: "javier-alfaro", name: "Javier Alfaro", username: "javier.alfaro", password: "JA-84kP9m", initials: "JA" },
       { id: "lucia-mendez", name: "Lucía Méndez", username: "lucia.mendez", password: "LM-53vR2x", initials: "LM" },
       { id: "carlos-rojas", name: "Carlos Rojas", username: "carlos.rojas", password: "CR-91tB6n", initials: "CR" }
     ];
 
-    let registeredUsers = defaultUsers;
     let currentUser = registeredUsers[0];
 
     function loadUserProgress(user) {
-      const saved = localStorage.getItem("polyglot_clean_progress_" + user.id);
+      const saved = localStorage.getItem("polyglot_landing_progress_" + user.id);
       if (saved) {
         const parsed = JSON.parse(saved);
         parsed.forEach((savedMod, idx) => {
@@ -1159,7 +1092,7 @@
 
     function saveUserProgress() {
       if (!currentUser) return;
-      localStorage.setItem("polyglot_clean_progress_" + currentUser.id, JSON.stringify(modulesData));
+      localStorage.setItem("polyglot_landing_progress_" + currentUser.id, JSON.stringify(modulesData));
     }
 
     function updateStudentNameInDOM() {
@@ -1209,33 +1142,14 @@
       document.getElementById("login-screen").classList.remove("hidden");
     }
 
-    // ================= NAVIGATION TABS =================
-    function switchTab(tabName) {
-      const tabs = ["ruta", "materiales", "entregables", "videoconferencia", "coach"];
-      tabs.forEach(t => {
-        const content = document.getElementById("tab-content-" + t);
-        const btn = document.getElementById("tab-btn-" + t);
-        if (!content || !btn) return;
-        if (t === tabName) {
-          content.classList.remove("hidden");
-          btn.classList.add("border-[#f4b629]", "text-[#f4b629]", "font-semibold");
-          btn.classList.remove("border-transparent", "text-indigo-200");
-        } else {
-          content.classList.add("hidden");
-          btn.classList.remove("border-[#f4b629]", "text-[#f4b629]", "font-semibold");
-          btn.classList.add("border-transparent", "text-indigo-200");
-        }
-      });
-    }
-
     function openModuleMaterial(moduleId) {
       activeMaterialModuleId = moduleId;
       renderMaterialsTab();
-      switchTab("materiales");
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      const el = document.getElementById("seccion-materiales");
+      if (el) el.scrollIntoView({ behavior: "smooth" });
     }
 
-    // ================= RENDER DASHBOARD =================
+    // ================= RENDER LANDING DASHBOARD =================
     function renderAll() {
       updateStudentNameInDOM();
       renderStaircase();
@@ -1270,8 +1184,8 @@
       }
       const btn = document.getElementById("btn-copy-meet");
       if (btn) {
-        btn.textContent = "✓ Link copiado";
-        setTimeout(() => (btn.textContent = "Copiar link"), 2200);
+        btn.textContent = "✓ Link de Meet copiado";
+        setTimeout(() => (btn.textContent = "Copiar link: meet.google.com/ttr-rhow-zou"), 2200);
       }
     }
 
@@ -1281,12 +1195,12 @@
       }
       const btn = document.getElementById("btn-copy-drive");
       if (btn) {
-        btn.textContent = "✓ Enlace copiado";
-        setTimeout(() => (btn.textContent = "Copiar enlace Drive"), 2200);
+        btn.textContent = "✓ Enlace de Drive copiado";
+        setTimeout(() => (btn.textContent = "Copiar enlace de Google Drive"), 2200);
       }
     }
 
-    // ================= TAB 1: STAIRCASE & MODULE OVERVIEW =================
+    // ================= SECCIÓN 1: ESCALERA & DETALLE DE MÓDULO =================
     function renderStaircase() {
       const container = document.getElementById("staircase-container");
       const heights = ["min-h-[120px]", "min-h-[145px]", "min-h-[170px]", "min-h-[195px]", "min-h-[220px]", "min-h-[245px]"];
@@ -1299,21 +1213,21 @@
             onclick="selectModule(${m.id})"
             class="${heights[idx]} w-full rounded-2xl p-4 text-left flex flex-col justify-between transition-all cursor-pointer border ${
               isSelected
-                ? "gold-badge border-[#f4b629] shadow-xl scale-[1.03]"
+                ? "gold-btn border-[#f4b629] shadow-xl scale-[1.03]"
                 : "brand-gradient text-white border-[#f4b629]/30 hover:border-[#f4b629]"
             }"
           >
             <div>
               <div class="flex items-center justify-between">
-                <span class="text-2xl font-serif font-extrabold ${isSelected ? "text-[#110e47]" : "text-[#f4b629]"}">${m.num}</span>
+                <span class="text-2xl font-serif font-extrabold ${isSelected ? "text-[#0f0c3d]" : "text-[#f4b629]"}">${m.num}</span>
                 <span class="text-xs font-bold px-2 py-0.5 rounded-full ${
-                  isSelected ? "bg-[#110e47]/15 text-[#110e47]" : "bg-indigo-950/80 text-[#f4b629]"
+                  isSelected ? "bg-[#0f0c3d]/15 text-[#0f0c3d]" : "bg-indigo-950/80 text-[#f4b629]"
                 }">Mód ${m.num}</span>
               </div>
               <p class="text-xs sm:text-sm font-bold mt-2 leading-snug">${m.shortTitle}</p>
             </div>
-            <div class="w-full h-1.5 rounded-full overflow-hidden ${isSelected ? "bg-[#110e47]/20" : "bg-indigo-950"} mt-3">
-              <div class="h-full ${isSelected ? "bg-[#110e47]" : "bg-[#f4b629]"}" style="width: ${pct}%"></div>
+            <div class="w-full h-1.5 rounded-full overflow-hidden ${isSelected ? "bg-[#0f0c3d]/20" : "bg-indigo-950"} mt-3">
+              <div class="h-full ${isSelected ? "bg-[#0f0c3d]" : "bg-[#f4b629]"}" style="width: ${pct}%"></div>
             </div>
           </button>
         `;
@@ -1334,14 +1248,6 @@
       renderAll();
     }
 
-    function toggleDeliverable(moduleId) {
-      const mod = modulesData.find(m => m.id === moduleId);
-      if (!mod) return;
-      mod.deliverableDone = !mod.deliverableDone;
-      saveUserProgress();
-      renderAll();
-    }
-
     function renderModuleDetail() {
       const m = modulesData.find(mod => mod.id === selectedModuleId);
       const container = document.getElementById("module-detail-card");
@@ -1356,7 +1262,7 @@
           <div class="flex flex-wrap items-start justify-between gap-4">
             <div>
               <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold block mb-1">
-                M Ó D U L O   ${m.num}   ·   P A S O   A   P A S O
+                M Ó D U L O   ${m.num}   ·   R U T A   P A S O   A   P A S O
               </span>
               <h3 class="text-2xl sm:text-4xl font-serif font-bold text-white">
                 ${m.title}
@@ -1366,21 +1272,20 @@
               </p>
             </div>
 
-            <div class="flex flex-wrap items-center gap-2">
-              <button onclick="openModuleMaterial(${m.id})" class="px-4 py-2.5 rounded-xl gold-badge font-bold text-xs sm:text-sm shadow-lg cursor-pointer">
-                📖 Ver Material de Clase y Descargar PDF
+            <div class="flex flex-wrap items-center gap-2.5">
+              <button onclick="openModuleMaterial(${m.id})" class="px-4 py-2.5 rounded-xl gold-btn font-bold text-xs sm:text-sm shadow-lg cursor-pointer">
+                📖 Estudiar Material de Clase y PDF ↓
               </button>
-              <button onclick="switchTab('entregables')" class="px-3.5 py-2.5 rounded-xl bg-indigo-950/80 hover:bg-indigo-900 border border-[#f4b629]/50 text-[#f4b629] font-bold text-xs sm:text-sm cursor-pointer">
-                📤 Subir Entregable en Drive
-              </button>
+              <a href="#seccion-entregables" class="px-3.5 py-2.5 rounded-xl bg-indigo-950/80 hover:bg-indigo-900 border border-[#f4b629]/50 text-[#f4b629] font-bold text-xs sm:text-sm">
+                📤 Subir Entregable en Drive ↓
+              </a>
             </div>
           </div>
 
           <p class="text-xs text-indigo-200">
-            Marca cada actividad a medida que la vayas realizando durante el módulo:
+            Haz clic en cada actividad cuando la vayas realizando para actualizar tu barra de avance:
           </p>
 
-          <!-- Module Pill Checklist -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
             ${m.tasks
               .map(
@@ -1397,7 +1302,7 @@
               >
                 <span class="text-xs sm:text-sm font-semibold">${task.text}</span>
                 <span class="w-5 h-5 rounded-full flex items-center justify-center text-xs font-bold ${
-                  task.done ? "gold-badge" : "border border-indigo-300/50 text-transparent"
+                  task.done ? "gold-btn" : "border border-indigo-300/50 text-transparent"
                 }">✓</span>
               </button>
             `
@@ -1405,30 +1310,27 @@
               .join("")}
           </div>
 
-          <!-- Deliverable Gold Bar -->
-          <div class="p-4 sm:p-5 rounded-xl gold-badge flex flex-wrap items-center justify-between gap-4 shadow-lg">
+          <div class="p-4 sm:p-5 rounded-2xl gold-btn flex flex-wrap items-center justify-between gap-4 shadow-lg">
             <div>
               <span class="text-xs uppercase tracking-widest font-extrabold block">
-                M E T A   E N T R E G A B L E   —   ${currentUser.name.toUpperCase()}   (${doneCount}/${m.tasks.length} actividades)
+                E N T R E G A B L E   D E L   M Ó D U L O   ${m.num}   (${doneCount}/${m.tasks.length} actividades)
               </span>
               <p class="text-sm sm:text-lg font-serif font-bold mt-0.5">
                 ${m.deliverable}
               </p>
             </div>
-            <div class="flex items-center gap-2">
-              <button
-                onclick="switchTab('entregables')"
-                class="px-4 py-2 rounded-lg bg-[#110e47] text-[#f4b629] text-xs font-bold cursor-pointer shadow"
-              >
-                Subir en Google Drive →
-              </button>
-            </div>
+            <a
+              href="#seccion-entregables"
+              class="px-4 py-2.5 rounded-xl bg-[#0f0c3d] text-[#f4b629] text-xs font-bold shadow"
+            >
+              Ir a Subir Entregable ↓
+            </a>
           </div>
         </div>
       `;
     }
 
-    // ================= TAB 2: VER MATERIALES INTERACTIVOS (01 AL 06 EN ORDEN) & PDF =================
+    // ================= SECCIÓN 2: VER MATERIALES INTERACTIVOS (01 AL 06 EN ORDEN) & PDF =================
     function selectMaterialModule(id) {
       activeMaterialModuleId = id;
       renderMaterialsTab();
@@ -1448,15 +1350,15 @@
           return `
             <button
               onclick="selectMaterialModule(${mod.id})"
-              class="p-3 rounded-xl border text-left transition cursor-pointer flex flex-col justify-between ${
+              class="p-3.5 rounded-2xl border text-left transition cursor-pointer flex flex-col justify-between ${
                 isCurrent
-                  ? "gold-badge border-[#f4b629] shadow-md font-bold"
-                  : "bg-indigo-950/70 border-indigo-400/30 text-white hover:border-[#f4b629]"
+                  ? "gold-btn border-[#f4b629] shadow-lg font-bold"
+                  : "indigo-surface text-white hover:border-[#f4b629]"
               }"
             >
               <div class="flex items-center justify-between">
-                <span class="text-xs font-extrabold ${isCurrent ? "text-[#110e47]" : "text-[#f4b629]"}">MÓDULO ${mod.num}</span>
-                <span class="text-xs">${isCurrent ? "● Viendo" : "Abrir →"}</span>
+                <span class="text-xs font-extrabold ${isCurrent ? "text-[#0f0c3d]" : "text-[#f4b629]"}">MÓDULO ${mod.num}</span>
+                <span class="text-xs">${isCurrent ? "● Activo" : "Ver →"}</span>
               </div>
               <span class="text-xs sm:text-sm font-bold mt-1 truncate block">${mod.shortTitle}</span>
             </button>
@@ -1468,8 +1370,7 @@
       const nextId = m.id < 6 ? m.id + 1 : null;
 
       viewer.innerHTML = `
-        <!-- Slide 1: Cover & ¿Te suena familiar? + El Cuello de Botella -->
-        <div class="rounded-2xl brand-gradient text-white p-6 sm:p-8 shadow-xl border border-[#f4b629]/40 relative overflow-hidden">
+        <div class="rounded-3xl brand-gradient text-white p-6 sm:p-8 shadow-xl border border-[#f4b629]/40 relative overflow-hidden">
           <div class="pointer-events-none select-none absolute -top-6 right-6 text-7xl sm:text-9xl font-serif font-extrabold text-white/10">
             ${m.num}
           </div>
@@ -1479,12 +1380,12 @@
               <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold block">
                 MÓDULO ${m.num} · MATERIAL DE CLASE · POLYGLOTMAP · BOOTCAMP DE EMPLEABILIDAD CON IA
               </span>
-              <h2 class="text-2xl sm:text-4xl font-serif font-bold mt-1">${m.title}</h2>
+              <h3 class="text-2xl sm:text-4xl font-serif font-bold mt-1">${m.title}</h3>
               <p class="text-sm sm:text-lg text-[#f4b629] italic mt-1">${m.subtitle}</p>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-              <div class="p-5 rounded-xl bg-indigo-950/80 border border-indigo-400/30 flex flex-col justify-between">
+              <div class="p-5 rounded-2xl bg-indigo-950/80 border border-indigo-400/30 flex flex-col justify-between">
                 <div>
                   <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold block mb-2">¿TE SUENA FAMILIAR?</span>
                   <h4 class="text-base font-bold text-white mb-2">${m.familiarTitle}</h4>
@@ -1492,20 +1393,20 @@
                 </div>
               </div>
 
-              <div class="p-5 rounded-xl bg-indigo-950/80 border border-[#f4b629]/60 flex flex-col justify-between">
+              <div class="p-5 rounded-2xl bg-indigo-950/80 border border-[#f4b629]/60 flex flex-col justify-between">
                 <div>
                   <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold block mb-2">EL CUELLO DE BOTELLA · Lo que realmente te frena</span>
                   <h4 class="text-base font-bold text-white mb-1">${m.bottleneckTitle}</h4>
                   <p class="text-xs sm:text-sm text-indigo-100 mb-4">${m.bottleneckDesc}</p>
                 </div>
-                <div class="flex items-center justify-between text-xs font-bold bg-[#0d0b33] rounded-lg p-2.5 border border-[#f4b629]/40">
+                <div class="flex items-center justify-between text-xs font-bold bg-[#0a0826] rounded-xl p-2.5 border border-[#f4b629]/40">
                   <span class="text-indigo-200">Tu talento</span>
-                  <span class="px-2 py-0.5 rounded gold-badge font-extrabold">EL CUELLO</span>
+                  <span class="px-2 py-0.5 rounded gold-btn font-extrabold">EL CUELLO</span>
                   <span class="text-[#f4b629]">Tus resultados</span>
                 </div>
               </div>
 
-              <div class="p-5 rounded-xl bg-indigo-950/90 border border-amber-400/40">
+              <div class="p-5 rounded-2xl bg-indigo-950/90 border border-amber-400/40">
                 <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold block mb-2">EL COSTO DE NO RESOLVERLO · Si no lo cambias…</span>
                 <ul class="space-y-2 text-xs sm:text-sm text-indigo-100">
                   ${m.costs.map(c => `<li class="flex items-start gap-2"><span class="text-[#f4b629] font-bold">✕</span><span>${c}</span></li>`).join("")}
@@ -1513,8 +1414,7 @@
               </div>
             </div>
 
-            <!-- LA TRANSFORMACIÓN: ANTES -> DESPUÉS -->
-            <div class="p-5 rounded-xl bg-[#0d0b33]/90 border border-[#f4b629]/40">
+            <div class="p-5 rounded-2xl bg-[#0a0826]/90 border border-[#f4b629]/40">
               <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold block mb-3">LA TRANSFORMACIÓN · De aquí… hasta aquí</span>
               <div class="grid grid-cols-1 md:grid-cols-11 gap-3 items-center">
                 <div class="md:col-span-5 p-3.5 rounded-xl bg-indigo-950 border border-indigo-400/30">
@@ -1522,7 +1422,7 @@
                   <p class="text-sm font-semibold text-white mt-1">${m.beforeText}</p>
                 </div>
                 <div class="md:col-span-1 text-center text-2xl font-bold text-[#f4b629]">→</div>
-                <div class="md:col-span-5 p-3.5 rounded-xl gold-badge">
+                <div class="md:col-span-5 p-3.5 rounded-xl gold-btn">
                   <span class="text-xs uppercase tracking-wider font-extrabold block">DESPUÉS</span>
                   <p class="text-sm font-bold mt-1">${m.afterText}</p>
                 </div>
@@ -1531,22 +1431,21 @@
           </div>
         </div>
 
-        <!-- Slide 2: LECCIÓN 1 & LECCIÓN 2 -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
-          <div class="lg:col-span-7 indigo-card rounded-2xl p-6 shadow-lg space-y-4">
+          <div class="lg:col-span-7 indigo-surface rounded-3xl p-6 shadow-lg space-y-4">
             <div>
               <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold">LECCIÓN 1</span>
-              <h3 class="text-lg sm:text-xl font-bold text-white mt-0.5">${m.lesson1Title}</h3>
+              <h4 class="text-lg sm:text-xl font-bold text-white mt-0.5">${m.lesson1Title}</h4>
               <p class="text-xs text-indigo-200">${m.lesson1Subtitle}</p>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
               ${m.lesson1Items
                 .map(
                   item => `
-                <div class="p-4 rounded-xl bg-indigo-950/80 border border-indigo-400/30 flex flex-col justify-between">
+                <div class="p-4 rounded-2xl bg-indigo-950/80 border border-indigo-400/30 flex flex-col justify-between">
                   <div>
                     <span class="text-2xl font-serif font-extrabold text-[#f4b629] block">${item.num}</span>
-                    <h4 class="text-sm font-bold text-white mt-1">${item.title}</h4>
+                    <h5 class="text-sm font-bold text-white mt-1">${item.title}</h5>
                     <p class="text-xs text-indigo-200 mt-1.5">${item.desc}</p>
                   </div>
                 </div>
@@ -1556,17 +1455,17 @@
             </div>
           </div>
 
-          <div class="lg:col-span-5 indigo-card rounded-2xl p-6 shadow-lg space-y-4">
+          <div class="lg:col-span-5 indigo-surface rounded-3xl p-6 shadow-lg space-y-4">
             <div>
               <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold">LECCIÓN 2</span>
-              <h3 class="text-lg sm:text-xl font-bold text-white mt-0.5">${m.lesson2Title}</h3>
+              <h4 class="text-lg sm:text-xl font-bold text-white mt-0.5">${m.lesson2Title}</h4>
             </div>
             <div class="space-y-2.5">
               ${m.lesson2Steps
                 .map(
                   (step, i) => `
                 <div class="p-3 rounded-xl bg-indigo-950/80 border border-indigo-400/30 flex items-center gap-3">
-                  <span class="w-7 h-7 rounded-lg gold-badge font-bold text-xs flex items-center justify-center shrink-0">${i + 1}</span>
+                  <span class="w-7 h-7 rounded-lg gold-btn font-bold text-xs flex items-center justify-center shrink-0">${i + 1}</span>
                   <span class="text-xs sm:text-sm font-medium text-white">${step}</span>
                 </div>
               `
@@ -1576,12 +1475,11 @@
           </div>
         </div>
 
-        <!-- Slide 3: ERROR COMÚN VS. CAMBIO & MANOS A LA OBRA -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
-          <div class="lg:col-span-6 indigo-card rounded-2xl p-6 shadow-lg space-y-4">
+          <div class="lg:col-span-6 indigo-surface rounded-3xl p-6 shadow-lg space-y-4">
             <div>
               <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold">ERROR COMÚN VS. CAMBIO</span>
-              <h3 class="text-lg font-bold text-white mt-0.5">Deja esto. Haz esto.</h3>
+              <h4 class="text-lg font-bold text-white mt-0.5">Deja esto. Haz esto.</h4>
             </div>
             <div class="space-y-3">
               ${m.mistakes
@@ -1604,12 +1502,12 @@
             </div>
           </div>
 
-          <div class="lg:col-span-6 indigo-card rounded-2xl p-6 shadow-lg flex flex-col justify-between space-y-4">
+          <div class="lg:col-span-6 indigo-surface rounded-3xl p-6 shadow-lg flex flex-col justify-between space-y-4">
             <div class="space-y-3">
               <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold">MANOS A LA OBRA</span>
-              <h3 class="text-lg font-bold text-white">${m.handsOnTitle}</h3>
+              <h4 class="text-lg font-bold text-white">${m.handsOnTitle}</h4>
               <p class="text-xs text-indigo-200">${m.handsOnDesc}</p>
-              <pre class="p-4 rounded-xl bg-[#0d0b33] border border-[#f4b629]/50 text-xs text-[#f4b629] font-mono whitespace-pre-wrap leading-relaxed">${m.handsOnBox}</pre>
+              <pre class="p-4 rounded-xl bg-[#0a0826] border border-[#f4b629]/50 text-xs text-[#f4b629] font-mono whitespace-pre-wrap leading-relaxed">${m.handsOnBox}</pre>
             </div>
 
             <div class="pt-3 border-t border-indigo-400/20">
@@ -1630,8 +1528,7 @@
           </div>
         </div>
 
-        <!-- Bottom Deliverable Banner + Ordered Navigation -->
-        <div class="rounded-2xl gold-badge p-5 sm:p-6 shadow-lg flex flex-wrap items-center justify-between gap-4">
+        <div class="rounded-3xl gold-btn p-5 sm:p-6 shadow-xl flex flex-wrap items-center justify-between gap-4">
           <div>
             <span class="text-xs uppercase tracking-widest font-extrabold block">ENTREGABLE DEL MÓDULO ${m.num}</span>
             <h4 class="text-base sm:text-xl font-serif font-bold mt-0.5">${m.deliverable}</h4>
@@ -1640,17 +1537,17 @@
           <div class="flex flex-wrap items-center gap-2">
             ${
               prevId
-                ? `<button onclick="selectMaterialModule(${prevId})" class="px-3.5 py-2 rounded-xl bg-white/40 hover:bg-white/60 text-[#110e47] font-bold text-xs cursor-pointer">
+                ? `<button onclick="selectMaterialModule(${prevId})" class="px-3.5 py-2 rounded-xl bg-white/40 hover:bg-white/60 text-[#0f0c3d] font-bold text-xs cursor-pointer">
                      ← Módulo 0${prevId}
                    </button>`
                 : ""
             }
-            <button onclick="switchTab('entregables')" class="px-4 py-2 rounded-xl bg-[#110e47] text-[#f4b629] font-bold text-xs cursor-pointer">
-              📤 Subir Entregable en Drive
+            <button onclick="downloadCurrentModulePDF()" class="px-4 py-2 rounded-xl bg-[#0f0c3d] text-[#f4b629] font-bold text-xs cursor-pointer">
+              📥 Descargar PDF Mód ${m.num}
             </button>
             ${
               nextId
-                ? `<button onclick="selectMaterialModule(${nextId})" class="px-3.5 py-2 rounded-xl bg-white/40 hover:bg-white/60 text-[#110e47] font-bold text-xs cursor-pointer">
+                ? `<button onclick="selectMaterialModule(${nextId})" class="px-3.5 py-2 rounded-xl bg-white/40 hover:bg-white/60 text-[#0f0c3d] font-bold text-xs cursor-pointer">
                      Siguiente: Módulo 0${nextId} →
                    </button>`
                 : ""
@@ -1774,71 +1671,7 @@
       }
     }
 
-    // ================= TAB 3: SUBIR ENTREGABLES (GOOGLE DRIVE) =================
-    function handleFileSelection(moduleId, inputEl) {
-      const file = inputEl.files && inputEl.files[0];
-      if (!file) return;
-      const mod = modulesData.find(m => m.id === moduleId);
-      if (!mod) return;
-      mod.uploadedFileName = file.name;
-      mod.deliverableDone = true;
-      saveUserProgress();
-      renderAll();
-    }
-
-    function renderDeliverablesUploadGrid() {
-      const container = document.getElementById("deliverables-upload-grid");
-      if (!container) return;
-      container.innerHTML = modulesData
-        .map(
-          m => `
-        <div class="p-4 rounded-xl bg-indigo-950/80 border ${
-          m.deliverableDone ? "border-[#f4b629]" : "border-indigo-400/30"
-        } flex flex-col justify-between gap-4">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-1.5">
-              <span class="text-xs font-extrabold uppercase tracking-wider text-[#f4b629]">
-                Módulo ${m.num} · ${m.shortTitle}
-              </span>
-              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold ${
-                m.deliverableDone
-                  ? "gold-badge"
-                  : "bg-indigo-900 text-indigo-200 border border-indigo-400/30"
-              }">
-                ${m.deliverableDone ? "✓ Subido por el alumno" : "Por entregar"}
-              </span>
-            </div>
-            <h5 class="text-sm font-bold text-white">${m.deliverable}</h5>
-            ${
-              m.uploadedFileName
-                ? `<p class="text-xs text-[#f4b629] mt-1">📎 Archivo seleccionado: <strong>${m.uploadedFileName}</strong></p>`
-                : `<p class="text-xs text-indigo-200 mt-1">Adjunta tu documento y súbelo al enlace de Google Drive.</p>`
-            }
-          </div>
-
-          <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-indigo-400/20">
-            <label class="px-3 py-1.5 rounded-lg bg-indigo-900/80 hover:bg-indigo-800 border border-indigo-400/30 text-xs font-medium text-white cursor-pointer transition">
-              <span>📎 Adjuntar mi archivo</span>
-              <input type="file" class="hidden" onchange="handleFileSelection(${m.id}, this)" />
-            </label>
-
-            <a
-              href="${DRIVE_FOLDER_URL}"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="px-3.5 py-1.5 rounded-lg gold-badge font-bold text-xs flex items-center gap-1.5 shadow"
-            >
-              <span>Subir a Google Drive</span>
-              <span>↗</span>
-            </a>
-          </div>
-        </div>
-      `
-        )
-        .join("");
-    }
-
-    // ================= TAB 4: MIS CLASES SCHEDULE (3 DOMINGOS · 2 MÓDULOS POR DOMINGO 4-6PM) =================
+    // ================= SECCIÓN 3: MIS CLASES (3 DOMINGOS · 2 MÓDULOS POR DOMINGO 4-6PM) =================
     function renderClassesSchedule() {
       const grid = document.getElementById("classes-schedule-grid");
       if (!grid) return;
@@ -1867,26 +1700,25 @@
       grid.innerHTML = sundaySessions
         .map(session => {
           return `
-            <div class="p-5 rounded-2xl bg-indigo-950/80 border border-[#f4b629]/40 hover:border-[#f4b629] transition flex flex-col justify-between gap-4 shadow-lg">
-              <div class="space-y-3">
-                <div class="flex items-center justify-between gap-2 border-b border-indigo-400/20 pb-2.5">
+            <div class="p-6 rounded-3xl indigo-surface flex flex-col justify-between gap-5 shadow-xl">
+              <div class="space-y-3.5">
+                <div class="flex items-center justify-between gap-2 border-b border-indigo-400/20 pb-3">
                   <div>
                     <span class="text-xs font-extrabold uppercase tracking-wider text-[#f4b629] block">
                       Sesión Dominical ${session.sundayNum} · Módulos ${session.mods[0].num} y ${session.mods[1].num}
                     </span>
-                    <h5 class="text-sm sm:text-base font-bold text-white mt-0.5">${session.label}</h5>
+                    <h4 class="text-base font-bold text-white mt-0.5">${session.label}</h4>
                   </div>
-                  <span class="px-2.5 py-0.5 rounded-full gold-badge text-xs font-extrabold">
-                    En Vivo
+                  <span class="px-2.5 py-1 rounded-full gold-btn text-xs font-extrabold">
+                    2 Módulos
                   </span>
                 </div>
 
-                <!-- 2 Modules inside this Sunday (4-5pm and 5-6pm) -->
                 <div class="space-y-2.5">
                   ${session.mods
                     .map(
                       (m, mIdx) => `
-                    <div class="p-3 rounded-xl bg-[#0d0b33]/90 border border-indigo-400/25 flex flex-col gap-1.5">
+                    <div class="p-3.5 rounded-2xl bg-[#0a0826]/90 border border-indigo-400/25 flex flex-col gap-1">
                       <div class="flex items-center justify-between text-xs">
                         <span class="font-bold text-[#f4b629]">Módulo ${m.num} · ${session.timeSlots[mIdx]}</span>
                         <button onclick="openModuleMaterial(${m.id})" class="text-indigo-200 hover:text-[#f4b629] hover:underline font-semibold cursor-pointer">
@@ -1906,9 +1738,9 @@
                 href="${MEET_URL}"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="w-full py-2.5 px-3 rounded-xl gold-badge font-bold text-xs flex items-center justify-center gap-1.5 shadow hover:opacity-95 transition"
+                class="w-full py-3 px-4 rounded-xl gold-btn font-bold text-xs flex items-center justify-center gap-1.5 shadow"
               >
-                <span>Unirse a Clase (meet.google.com/ttr-rhow-zou)</span>
+                <span>Entrar a Google Meet (ttr-rhow-zou)</span>
                 <span>↗</span>
               </a>
             </div>
@@ -1917,7 +1749,69 @@
         .join("");
     }
 
-    // ================= TAB 5: MODO COACH DE EMPLEABILIDAD =================
+    // ================= SECCIÓN 4: SUBIR ENTREGABLES (GOOGLE DRIVE) =================
+    function handleFileSelection(moduleId, inputEl) {
+      const file = inputEl.files && inputEl.files[0];
+      if (!file) return;
+      const mod = modulesData.find(m => m.id === moduleId);
+      if (!mod) return;
+      mod.uploadedFileName = file.name;
+      mod.deliverableDone = true;
+      saveUserProgress();
+      renderAll();
+    }
+
+    function renderDeliverablesUploadGrid() {
+      const container = document.getElementById("deliverables-upload-grid");
+      if (!container) return;
+      container.innerHTML = modulesData
+        .map(
+          m => `
+        <div class="p-5 rounded-3xl indigo-surface flex flex-col justify-between gap-4">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <span class="text-xs font-extrabold uppercase tracking-wider text-[#f4b629]">
+                Módulo ${m.num} · ${m.shortTitle}
+              </span>
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold ${
+                m.deliverableDone
+                  ? "gold-btn"
+                  : "bg-indigo-950 text-indigo-200 border border-indigo-400/30"
+              }">
+                ${m.deliverableDone ? "✓ Registrado" : "Por entregar"}
+              </span>
+            </div>
+            <h4 class="text-sm font-bold text-white leading-snug">${m.deliverable}</h4>
+            ${
+              m.uploadedFileName
+                ? `<p class="text-xs text-[#f4b629] mt-2">📎 Archivo: <strong>${m.uploadedFileName}</strong></p>`
+                : `<p class="text-xs text-indigo-200 mt-2">Adjunta tu documento y súbelo a la carpeta compartida de Drive.</p>`
+            }
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-indigo-400/20">
+            <label class="px-3 py-2 rounded-xl bg-indigo-950 hover:bg-indigo-900 border border-indigo-400/30 text-xs font-semibold text-white cursor-pointer transition">
+              <span>📎 Adjuntar archivo</span>
+              <input type="file" class="hidden" onchange="handleFileSelection(${m.id}, this)" />
+            </label>
+
+            <a
+              href="${DRIVE_FOLDER_URL}"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-3.5 py-2 rounded-xl gold-btn font-bold text-xs flex items-center gap-1 shadow"
+            >
+              <span>Subir a Drive</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+      `
+        )
+        .join("");
+    }
+
+    // ================= SECCIÓN 5: MODO COACH DE EMPLEABILIDAD =================
     function selectCoachScenario(id) {
       activeCoachScenarioId = id;
       renderCoachSection();
@@ -1936,15 +1830,15 @@
           return `
             <button
               onclick="selectCoachScenario('${s.id}')"
-              class="w-full p-3.5 rounded-xl border text-left transition cursor-pointer flex items-center justify-between gap-3 ${
+              class="w-full p-3.5 rounded-2xl border text-left transition cursor-pointer flex items-center justify-between gap-3 ${
                 isSelected
-                  ? "gold-badge border-[#f4b629] font-bold shadow-md"
+                  ? "gold-btn border-[#f4b629] font-bold shadow-md"
                   : "bg-indigo-950/80 border-indigo-400/30 text-white hover:border-[#f4b629]"
               }"
             >
               <div>
                 <span class="text-xs font-extrabold uppercase tracking-wider block ${
-                  isSelected ? "text-[#110e47]" : "text-[#f4b629]"
+                  isSelected ? "text-[#0f0c3d]" : "text-[#f4b629]"
                 }">${s.badge}</span>
                 <span class="text-xs sm:text-sm font-bold mt-0.5 block">${s.title}</span>
               </div>
@@ -1957,10 +1851,10 @@
       panelEl.innerHTML = `
         <div class="space-y-4">
           <div class="flex flex-wrap items-center justify-between gap-2 border-b border-indigo-400/25 pb-3">
-            <span class="px-3 py-1 rounded-full gold-badge text-xs font-extrabold uppercase tracking-wider">
+            <span class="px-3 py-1 rounded-full gold-btn text-xs font-extrabold uppercase tracking-wider">
               ${currentScenario.badge}
             </span>
-            <span class="text-xs text-[#f4b629] font-semibold">Recomendación del Coach para ${currentUser.name}</span>
+            <span class="text-xs text-[#f4b629] font-semibold">Guía Coach para ${currentUser.name}</span>
           </div>
 
           <h4 class="text-xl sm:text-2xl font-serif font-bold text-white">
@@ -1972,13 +1866,13 @@
 
           <div class="space-y-2.5 pt-1">
             <span class="text-xs font-extrabold uppercase tracking-wider text-[#f4b629] block">
-              3 Ideas Clave de Acción e Impacto:
+              3 Ideas Clave de Seguimiento y Mejora:
             </span>
             ${currentScenario.tips
               .map(
                 (tip, i) => `
               <div class="p-3 rounded-xl bg-indigo-950/90 border border-indigo-400/30 flex items-start gap-3">
-                <span class="w-6 h-6 rounded-full gold-badge font-extrabold text-xs flex items-center justify-center shrink-0 mt-0.5">${
+                <span class="w-6 h-6 rounded-full gold-btn font-extrabold text-xs flex items-center justify-center shrink-0 mt-0.5">${
                   i + 1
                 }</span>
                 <span class="text-xs sm:text-sm text-indigo-100">${tip}</span>
@@ -1989,7 +1883,7 @@
           </div>
         </div>
 
-        <div class="p-4 rounded-xl bg-[#0d0b33] border border-[#f4b629]/50 space-y-2 mt-4">
+        <div class="p-4 rounded-2xl bg-[#0a0826] border border-[#f4b629]/50 space-y-2 mt-4">
           <div class="flex items-center justify-between gap-2">
             <span class="text-xs font-extrabold uppercase tracking-wider text-[#f4b629]">
               ${currentScenario.templateTitle}
@@ -1997,7 +1891,7 @@
             <button
               onclick="copyCoachTemplate()"
               id="btn-copy-coach"
-              class="px-3 py-1 rounded-lg gold-badge text-xs font-bold cursor-pointer"
+              class="px-3 py-1 rounded-lg gold-btn text-xs font-bold cursor-pointer"
             >
               Copiar Plantilla
             </button>
@@ -2027,7 +1921,7 @@
 
       const box = document.getElementById("coach-chat-box");
       const userDiv = document.createElement("div");
-      userDiv.className = "p-3.5 rounded-xl bg-[#f4b629]/20 border border-[#f4b629] ml-6";
+      userDiv.className = "p-3.5 rounded-2xl bg-[#f4b629]/20 border border-[#f4b629] ml-6";
       userDiv.innerHTML = `
         <span class="font-bold text-[#f4b629] block mb-1">${currentUser.name}</span>
         <p class="text-white">${question}</p>
@@ -2037,14 +1931,14 @@
 
       setTimeout(() => {
         const coachDiv = document.createElement("div");
-        coachDiv.className = "p-4 rounded-xl bg-indigo-950/90 border border-indigo-400/40 mr-6";
+        coachDiv.className = "p-4 rounded-2xl bg-indigo-950/90 border border-indigo-400/40 mr-6";
         coachDiv.innerHTML = `
           <span class="font-bold text-[#f4b629] block mb-1">Coach PolyglotMap · Plan de Acción</span>
           <p class="text-indigo-100 leading-relaxed">
-            Excelente iniciativa, <strong>${currentUser.name}</strong>. Para impulsar ese objetivo esta semana aplica estas 3 acciones:<br/>
-            <strong>1. Ajusta tu evidencia:</strong> Conecta tu propuesta de valor (Módulo 01) con un caso real de tu portafolio (Módulo 04).<br/>
-            <strong>2. Contacto humano:</strong> No solo postules por el portal; envía un mensaje breve a quien lidera el equipo en LinkedIn.<br/>
-            <strong>3. Agenda seguimiento a 7 días:</strong> Si no recibes respuesta en una semana, comparte un avance o recurso breve demostrando interés real.
+            Excelente enfoque, <strong>${currentUser.name}</strong>. Para avanzar con éxito esta semana aplica estas 3 ideas:<br/>
+            <strong>1. Evidencia directa:</strong> Conecta tu propuesta de valor (Módulo 01) con un caso demostrable de tu portafolio (Módulo 04).<br/>
+            <strong>2. Mensaje personalizado:</strong> Al postular, escribe un mensaje breve de 4 líneas a quien lidera el equipo en LinkedIn.<br/>
+            <strong>3. Seguimiento a los 7 días:</strong> Agenda un recordatorio para compartir un recurso o caso práctico una semana después de postular.
           </p>
         `;
         box.appendChild(coachDiv);
