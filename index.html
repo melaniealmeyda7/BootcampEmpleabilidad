@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bootcamp de Empleabilidad con IA — Modo Alumno: Javier Alfaro</title>
+  <title>Bootcamp de Empleabilidad con IA — PolyglotMap</title>
   <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
   <style>
     :root {
@@ -34,13 +34,26 @@
     .animate-pulse-slow {
       animation: pulse-ring 2.4s infinite ease-in-out;
     }
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #printable-area, #printable-area * {
+        visibility: visible;
+      }
+      #printable-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
+    }
   </style>
 </head>
 <body class="bg-[var(--background)] text-[var(--foreground)] antialiased min-h-screen selection:bg-amber-400 selection:text-slate-950">
 
-  <!-- ================= LOGIN OVERLAY (MODO ALUMNO: JAVIER ALFARO) ================= -->
+  <!-- ================= LOGIN OVERLAY (MULTI-USUARIO) ================= -->
   <div id="login-screen" class="fixed inset-0 z-50 flex items-center justify-center p-4 brand-gradient text-white overflow-y-auto">
-    <!-- Decorative circles from PDF cover -->
     <div class="pointer-events-none fixed -top-24 -right-24 w-96 h-96 rounded-full border-2 border-[#f4b629]/70"></div>
     <div class="pointer-events-none fixed -bottom-28 -right-16 w-80 h-80 rounded-full bg-[#1e1b6e]/70"></div>
 
@@ -59,10 +72,10 @@
             Empieza a conseguir.
           </h2>
           <p class="text-sm md:text-base text-indigo-100/90 mb-8">
-            6 módulos · 1 sistema completo · de la idea a la oferta
+            6 módulos en orden · 1 sistema completo · de la idea a la oferta
           </p>
 
-          <!-- Mini preview of the 6 modules -->
+          <!-- Mini preview of the 6 modules in strict order -->
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 text-xs">
             <div class="p-2.5 rounded-lg bg-white/5 border border-white/10">
               <span class="font-bold text-[#f4b629] block">01</span>
@@ -124,7 +137,7 @@
             <input
               id="username-input"
               type="text"
-               list="registered-students-list"
+              list="registered-students-list"
               placeholder="Ej. Javier Alfaro"
               class="w-full px-3.5 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder-indigo-300/50 text-sm focus:outline-none focus:border-[#f4b629]"
               required
@@ -242,23 +255,42 @@
         </div>
 
         <!-- Quick Actions & Student Badge -->
-        <div class="flex items-center gap-3 flex-wrap">
+        <div class="flex items-center gap-2.5 flex-wrap">
+          <!-- Ver Materiales & PDF Quick Button -->
+          <button
+            onclick="switchTab('materiales')"
+            class="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/20 border border-[#f4b629]/50 text-[#f4b629] font-bold text-xs flex items-center gap-1.5 transition cursor-pointer"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            </svg>
+            <span>Ver Materiales (PDF)</span>
+          </button>
+
+          <!-- Subir Entregables Quick Button -->
+          <button
+            onclick="switchTab('entregables')"
+            class="px-3 py-2 rounded-xl bg-emerald-500/20 hover:bg-emerald-500/30 border border-emerald-400/40 text-emerald-300 font-bold text-xs flex items-center gap-1.5 transition cursor-pointer"
+          >
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
+            </svg>
+            <span>Subir Entregables</span>
+          </button>
+
           <!-- Primary CTA: Mis Clases / Iniciar Videoconferencia -->
           <button
             onclick="switchTab('videoconferencia')"
-            class="px-3.5 py-2 rounded-xl gold-badge font-bold text-xs sm:text-sm flex items-center gap-2 shadow hover:opacity-95 transition cursor-pointer"
+            class="px-3.5 py-2 rounded-xl gold-badge font-bold text-xs flex items-center gap-2 shadow hover:opacity-95 transition cursor-pointer"
           >
-            <span class="w-2.5 h-2.5 rounded-full bg-rose-600 animate-ping"></span>
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
-            </svg>
-            <span>Mis Clases · Iniciar Videoconferencia</span>
+            <span class="w-2 h-2 rounded-full bg-rose-600 animate-ping"></span>
+            <span>Mis Clases (Dom 4-6pm)</span>
           </button>
 
           <!-- Manage Users Button -->
           <button
             onclick="openUsersModal()"
-            class="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-xs font-semibold text-[#f4b629] cursor-pointer transition"
+            class="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-xs font-semibold text-indigo-100 cursor-pointer transition"
           >
             Usuarios
           </button>
@@ -270,7 +302,7 @@
             </div>
             <div class="text-left">
               <span id="header-user-name" class="student-name-display block text-xs font-bold text-white leading-tight">Javier Alfaro</span>
-              <span class="block text-xs text-emerald-300 leading-tight">Modo Alumno · Cohorte IA</span>
+              <span class="block text-xs text-emerald-300 leading-tight">Modo Alumno</span>
             </div>
             <button
               onclick="lockSession()"
@@ -285,20 +317,24 @@
         </div>
       </div>
 
-      <!-- Navigation Sub-bar -->
+      <!-- Navigation Sub-bar (5 Tabs in logical order) -->
       <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center gap-1 overflow-x-auto border-t border-white/10 pt-1">
-        <button onclick="switchTab('ruta')" id="tab-btn-ruta" class="tab-btn px-4 py-2.5 text-xs sm:text-sm font-semibold border-b-2 border-[#f4b629] text-[#f4b629] whitespace-nowrap cursor-pointer">
+        <button onclick="switchTab('ruta')" id="tab-btn-ruta" class="tab-btn px-3.5 py-2.5 text-xs sm:text-sm font-semibold border-b-2 border-[#f4b629] text-[#f4b629] whitespace-nowrap cursor-pointer">
           1. Ruta de 6 Módulos
         </button>
-        <button onclick="switchTab('videoconferencia')" id="tab-btn-videoconferencia" class="tab-btn px-4 py-2.5 text-xs sm:text-sm font-medium border-b-2 border-transparent text-indigo-200 hover:text-white whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
-          <span>2. Mis Clases (Videoconferencia)</span>
-          <span class="px-1.5 py-0.5 text-xs rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">Domingos 4-6pm</span>
+        <button onclick="switchTab('materiales')" id="tab-btn-materiales" class="tab-btn px-3.5 py-2.5 text-xs sm:text-sm font-medium border-b-2 border-transparent text-indigo-200 hover:text-white whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+          <span>2. Ver Materiales (01 → 06) & PDF</span>
+          <span class="px-1.5 py-0.5 text-xs rounded bg-amber-500/20 text-[#f4b629] border border-[#f4b629]/30">Descargable</span>
         </button>
-        <button onclick="switchTab('postulacion')" id="tab-btn-postulacion" class="tab-btn px-4 py-2.5 text-xs sm:text-sm font-medium border-b-2 border-transparent text-indigo-200 hover:text-white whitespace-nowrap cursor-pointer">
-          3. Postulación Estratégica (30 Días) & Embudo
+        <button onclick="switchTab('entregables')" id="tab-btn-entregables" class="tab-btn px-3.5 py-2.5 text-xs sm:text-sm font-medium border-b-2 border-transparent text-indigo-200 hover:text-white whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+          <span>3. Subir Entregables (Drive)</span>
+          <span class="px-1.5 py-0.5 text-xs rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">Carpeta Oficial</span>
         </button>
-        <button onclick="switchTab('entregables')" id="tab-btn-entregables" class="tab-btn px-4 py-2.5 text-xs sm:text-sm font-medium border-b-2 border-transparent text-indigo-200 hover:text-white whitespace-nowrap cursor-pointer">
-          4. Mis Entregables & Kit IA
+        <button onclick="switchTab('videoconferencia')" id="tab-btn-videoconferencia" class="tab-btn px-3.5 py-2.5 text-xs sm:text-sm font-medium border-b-2 border-transparent text-indigo-200 hover:text-white whitespace-nowrap flex items-center gap-1.5 cursor-pointer">
+          <span>4. Mis Clases (Domingos 4-6pm)</span>
+        </button>
+        <button onclick="switchTab('postulacion')" id="tab-btn-postulacion" class="tab-btn px-3.5 py-2.5 text-xs sm:text-sm font-medium border-b-2 border-transparent text-indigo-200 hover:text-white whitespace-nowrap cursor-pointer">
+          5. Tablero 30 Días & Embudo
         </button>
       </div>
     </header>
@@ -319,7 +355,7 @@
               "Deja de postular. <span class="text-[#f4b629]">Empieza a conseguir.</span>"
             </h2>
             <p class="text-xs sm:text-sm text-indigo-100/90 max-w-2xl">
-              Bienvenido/a, <strong class="student-name-display">Javier Alfaro</strong>. Aquí tienes los 6 módulos de tu sistema completo de empleabilidad con IA y acceso directo a tus clases en vivo de los domingos.
+              Bienvenido/a, <strong class="student-name-display">Javier Alfaro</strong>. Revisa el material interactivo en orden del Módulo 01 al 06, descárgalo en PDF y sube tus entregables a la carpeta oficial de Google Drive.
             </p>
           </div>
 
@@ -335,7 +371,9 @@
             <div class="p-3.5 rounded-xl bg-white/10 border border-white/15">
               <span class="text-xs text-indigo-200 block">Entregables</span>
               <span id="deliverables-count" class="text-xl sm:text-2xl font-bold text-white">3 / 6</span>
-              <span class="text-xs text-emerald-300 block mt-1">En progreso</span>
+              <button onclick="switchTab('entregables')" class="text-xs text-emerald-300 hover:underline block mt-1 cursor-pointer">
+                Subir en Drive →
+              </button>
             </div>
             <div class="p-3.5 rounded-xl bg-white/10 border border-[#f4b629]/50">
               <span class="text-xs text-[#f4b629] font-semibold block">Mis Clases</span>
@@ -350,35 +388,171 @@
 
       <!-- ================= TAB 1: RUTA DE 6 MÓDULOS ================= -->
       <div id="tab-content-ruta" class="space-y-6">
-        
-        <!-- Visual Staircase: "6 módulos. Un solo camino hacia arriba." -->
         <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 sm:p-6 shadow-sm">
           <div class="flex flex-wrap items-center justify-between gap-2 mb-5">
             <div>
-              <span class="text-xs font-bold uppercase tracking-wider text-amber-500">Mapa del Sistema Completo</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-amber-500">Mapa del Sistema Completo (En Orden 01 → 06)</span>
               <h3 class="text-lg sm:text-xl font-bold text-[var(--foreground)]">
                 6 módulos. Un solo camino hacia arriba.
               </h3>
             </div>
-            <span class="text-xs text-[var(--muted-foreground)]">
-              Haz clic en cualquier módulo para gestionar tus actividades y entregables
-            </span>
+            <div class="flex items-center gap-2">
+              <button onclick="openModuleMaterial(selectedModuleId)" class="px-3 py-1.5 rounded-lg gold-badge text-xs font-bold cursor-pointer">
+                Ver Material de Clase del Módulo →
+              </button>
+            </div>
           </div>
 
           <!-- Interactive 6-Step Ascending Staircase -->
-          <div id="staircase-container" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 items-end pt-4">
-            <!-- Populated via JS -->
-          </div>
+          <div id="staircase-container" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 items-end pt-4"></div>
         </div>
 
         <!-- Selected Module Detail View -->
-        <div id="module-detail-card" class="rounded-2xl brand-gradient text-white p-6 sm:p-8 shadow-xl border border-white/15 relative overflow-hidden">
+        <div id="module-detail-card" class="rounded-2xl brand-gradient text-white p-6 sm:p-8 shadow-xl border border-white/15 relative overflow-hidden"></div>
+      </div>
+
+      <!-- ================= TAB 2: VER MATERIALES DE CLASE (01 AL 06 EN ORDEN) & DESCARGAR PDF ================= -->
+      <div id="tab-content-materiales" class="hidden space-y-6">
+        
+        <!-- Top Control Bar: Ordered Selector 01 -> 06 + PDF Download Buttons -->
+        <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-amber-400">Biblioteca Interactiva Oficial · PolyglotMap</span>
+              <h3 class="text-lg sm:text-xl font-bold text-[var(--foreground)]">
+                Material de Clase — Módulos 01 al 06 en Orden
+              </h3>
+              <p class="text-xs text-[var(--muted-foreground)]">
+                Explora cada módulo paso a paso (Diagnóstico, Cuello de Botella, Transformación, Lecciones 1 y 2, Manos a la Obra y Cierre) o descárgalo en PDF.
+              </p>
+            </div>
+
+            <!-- PDF Action Buttons -->
+            <div class="flex items-center gap-2.5 flex-wrap">
+              <button
+                onclick="downloadCurrentModulePDF()"
+                class="px-4 py-2.5 rounded-xl gold-badge font-bold text-xs sm:text-sm flex items-center gap-2 shadow-lg hover:opacity-95 transition cursor-pointer"
+              >
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                <span id="btn-download-single-label">Descargar Módulo 01 en PDF</span>
+              </button>
+
+              <button
+                onclick="downloadAllModulesPDF()"
+                class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-xs sm:text-sm flex items-center gap-2 transition cursor-pointer"
+              >
+                <svg class="w-4 h-4 text-[#f4b629]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                </svg>
+                <span>Descargar los 6 Módulos Completos (PDF)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Ordered Module Stepper Bar (01 -> 02 -> 03 -> 04 -> 05 -> 06) -->
+          <div id="materials-stepper" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 pt-2">
+            <!-- Populated via JS in strict 01..06 order -->
+          </div>
+        </div>
+
+        <!-- Interactive Class Material Viewer for Selected Module -->
+        <div id="material-interactive-viewer" class="space-y-5">
           <!-- Populated via JS -->
         </div>
 
       </div>
 
-      <!-- ================= TAB 2: MIS CLASES (VIDEOCONFERENCIA) ================= -->
+      <!-- ================= TAB 3: SUBIR ENTREGABLES (GOOGLE DRIVE OFICIAL) ================= -->
+      <div id="tab-content-entregables" class="hidden space-y-6">
+        
+        <!-- Hero Banner for Google Drive Folder Upload -->
+        <div class="rounded-2xl brand-gradient text-white p-6 sm:p-8 shadow-xl border-2 border-[#f4b629]">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div class="lg:col-span-7 space-y-3">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-xs font-bold text-emerald-300 uppercase tracking-wider">
+                <span>Repositorio Oficial de Entregables</span>
+              </div>
+              <h3 class="text-2xl sm:text-4xl font-serif font-bold">
+                Modo Subir Entregables — <span class="student-name-display text-[#f4b629]">Javier Alfaro</span>
+              </h3>
+              <p class="text-xs sm:text-sm text-indigo-100/90">
+                Sube los 6 entregables en orden (del Módulo 01 al Módulo 06) directamente a la carpeta compartida de Google Drive del Bootcamp y marca tu registro aquí.
+              </p>
+
+              <div class="p-3.5 rounded-xl bg-black/30 border border-white/15 flex flex-wrap items-center justify-between gap-2">
+                <div class="min-w-0">
+                  <span class="text-xs text-indigo-200 block">Enlace Oficial de Carpeta Google Drive:</span>
+                  <code class="text-xs sm:text-sm font-mono text-[#f4b629] font-bold break-all">
+                    https://drive.google.com/drive/folders/1kHAd1GjkPwyR-rDWkkQA8odvXH818v_o?usp=sharing
+                  </code>
+                </div>
+                <button
+                  type="button"
+                  onclick="copyDriveLink()"
+                  id="btn-copy-drive"
+                  class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-semibold shrink-0 cursor-pointer"
+                >
+                  Copiar enlace Drive
+                </button>
+              </div>
+            </div>
+
+            <!-- Right Drive Launch Card -->
+            <div class="lg:col-span-5 bg-[#0f0c3d]/90 border border-white/15 rounded-2xl p-6 flex flex-col justify-between space-y-4 shadow-xl">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-xl gold-badge flex items-center justify-center shrink-0 shadow">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                  </svg>
+                </div>
+                <div>
+                  <span class="text-xs uppercase tracking-wider text-[#f4b629] font-bold block">Google Drive · PolyglotMap</span>
+                  <h4 class="text-base font-bold text-white">Carpeta de Entregas Activa</h4>
+                </div>
+              </div>
+
+              <p class="text-xs text-indigo-200">
+                Haz clic en el botón inferior para abrir la carpeta de Google Drive y arrastrar tus archivos PDF, enlaces de portafolio o documentos ATS.
+              </p>
+
+              <a
+                href="https://drive.google.com/drive/folders/1kHAd1GjkPwyR-rDWkkQA8odvXH818v_o?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full py-3.5 px-4 rounded-xl gold-badge font-bold text-sm flex items-center justify-center gap-2 shadow-lg hover:opacity-95 transition"
+              >
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"/>
+                </svg>
+                <span>Abrir Carpeta Google Drive para Subir Archivos</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ordered 01 to 06 Deliverables Upload Cards -->
+        <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 sm:p-6 shadow-sm">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+            <div>
+              <h4 class="text-base sm:text-lg font-bold text-[var(--foreground)]">
+                Control de Entregables por Módulo (Orden 01 → 06)
+              </h4>
+              <p class="text-xs text-[var(--muted-foreground)]">
+                Selecciona tu archivo local o registra tu entrega y súbelo directamente a Google Drive.
+              </p>
+            </div>
+          </div>
+
+          <div id="deliverables-upload-grid" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- Populated via JS in 01..06 order -->
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= TAB 4: MIS CLASES (VIDEOCONFERENCIA) ================= -->
       <div id="tab-content-videoconferencia" class="hidden space-y-6">
         
         <!-- APARTADO PRINCIPAL: MIS CLASES (DOMINGOS 4-6PM · GOOGLE MEET) -->
@@ -395,7 +569,7 @@
                 Bootcamp de Empleabilidad con IA
               </h3>
               <p class="text-sm text-indigo-100/90">
-                Sesiones en vivo de seguimiento, revisión de entregables (CV ATS, LinkedIn, Portafolio) y práctica de entrevistas para el alumno <strong>Javier Alfaro</strong>.
+                Sesiones en vivo de seguimiento, revisión de entregables y práctica de entrevistas para <strong class="student-name-display">Javier Alfaro</strong>.
               </p>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
@@ -430,7 +604,7 @@
               <div class="flex items-center justify-between border-b border-white/10 pb-3">
                 <div>
                   <span class="text-xs uppercase tracking-wider text-[#f4b629] font-bold block">Sala Oficial de Google Meet</span>
-                  <span class="text-sm font-bold text-white">Alumno: Javier Alfaro</span>
+                  <span class="text-sm font-bold text-white">Alumno: <span class="student-name-display">Javier Alfaro</span></span>
                 </div>
                 <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs font-semibold">
                   Lista para conectar
@@ -467,280 +641,25 @@
           </div>
         </div>
 
-        <!-- Cronograma de Mis Clases (6 Módulos · Domingos 4-6pm) -->
+        <!-- Cronograma de Mis Clases (6 Módulos en Orden · Domingos 4-6pm) -->
         <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 sm:p-6 shadow-sm">
           <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
             <div>
-              <h4 class="text-base sm:text-lg font-bold text-[var(--foreground)]">Programación de Mis Clases — Domingos 4:00 pm a 6:00 pm</h4>
-              <p class="text-xs text-[var(--muted-foreground)]">Todas las sesiones en vivo se realizan a través de <strong class="text-amber-400">meet.google.com/ttr-rhow-zou</strong></p>
+              <h4 class="text-base sm:text-lg font-bold text-[var(--foreground)]">Programación de Mis Clases (Orden 01 → 06) — Domingos 4:00 pm a 6:00 pm</h4>
+              <p class="text-xs text-[var(--muted-foreground)]">Todas las sesiones en vivo se realizan en <strong class="text-amber-400">meet.google.com/ttr-rhow-zou</strong></p>
             </div>
-            <span class="px-3 py-1 rounded-full bg-amber-500/15 text-amber-400 text-xs font-bold">
-              6 Sesiones en Vivo · 2h por Domingo
-            </span>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-            <div class="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)] flex flex-col justify-between gap-3">
-              <div>
-                <div class="flex items-center justify-between text-xs mb-1">
-                  <span class="font-bold text-amber-400">Clase 01 · Domingo 4-6pm</span>
-                  <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">Completada</span>
-                </div>
-                <h5 class="text-sm font-bold text-[var(--foreground)]">Módulo 01: Descubre tu valor</h5>
-                <p class="text-xs text-[var(--muted-foreground)] mt-1">Diagnóstico, fortalezas y mapa de 10 oportunidades.</p>
-              </div>
-              <a href="https://meet.google.com/ttr-rhow-zou" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-amber-400 hover:underline flex items-center gap-1">
-                <span>meet.google.com/ttr-rhow-zou</span>
-                <span>→</span>
-              </a>
-            </div>
-
-            <div class="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)] flex flex-col justify-between gap-3">
-              <div>
-                <div class="flex items-center justify-between text-xs mb-1">
-                  <span class="font-bold text-amber-400">Clase 02 · Domingo 4-6pm</span>
-                  <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">Completada</span>
-                </div>
-                <h5 class="text-sm font-bold text-[var(--foreground)]">Módulo 02: CV + LinkedIn</h5>
-                <p class="text-xs text-[var(--muted-foreground)] mt-1">CV compatible con ATS y perfil optimizado.</p>
-              </div>
-              <a href="https://meet.google.com/ttr-rhow-zou" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-amber-400 hover:underline flex items-center gap-1">
-                <span>meet.google.com/ttr-rhow-zou</span>
-                <span>→</span>
-              </a>
-            </div>
-
-            <div class="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)] flex flex-col justify-between gap-3">
-              <div>
-                <div class="flex items-center justify-between text-xs mb-1">
-                  <span class="font-bold text-amber-400">Clase 03 · Domingo 4-6pm</span>
-                  <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">Completada</span>
-                </div>
-                <h5 class="text-sm font-bold text-[var(--foreground)]">Módulo 03: IA como copiloto</h5>
-                <p class="text-xs text-[var(--muted-foreground)] mt-1">Prompts y plantillas para adaptar tu CV en minutos.</p>
-              </div>
-              <a href="https://meet.google.com/ttr-rhow-zou" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-amber-400 hover:underline flex items-center gap-1">
-                <span>meet.google.com/ttr-rhow-zou</span>
-                <span>→</span>
-              </a>
-            </div>
-
-            <div class="p-4 rounded-xl bg-[var(--background)] border-2 border-[#f4b629] flex flex-col justify-between gap-3">
-              <div>
-                <div class="flex items-center justify-between text-xs mb-1">
-                  <span class="font-bold text-amber-400">Clase 04 · Domingo 4-6pm</span>
-                  <span class="px-2 py-0.5 rounded gold-badge font-bold">Próxima Clase</span>
-                </div>
-                <h5 class="text-sm font-bold text-[var(--foreground)]">Módulo 04: Portafolio</h5>
-                <p class="text-xs text-[var(--muted-foreground)] mt-1">Portafolio digital con 2 o 3 proyectos de evidencia.</p>
-              </div>
-              <a href="https://meet.google.com/ttr-rhow-zou" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-lg gold-badge text-xs font-bold text-center">
-                Entrar a Meet (Dom 4-6pm)
-              </a>
-            </div>
-
-            <div class="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)] flex flex-col justify-between gap-3">
-              <div>
-                <div class="flex items-center justify-between text-xs mb-1">
-                  <span class="font-bold text-amber-400">Clase 05 · Domingo 4-6pm</span>
-                  <span class="px-2 py-0.5 rounded bg-white/10 text-indigo-200">Programada</span>
-                </div>
-                <h5 class="text-sm font-bold text-[var(--foreground)]">Módulo 05: Entrevistas</h5>
-                <p class="text-xs text-[var(--muted-foreground)] mt-1">3 simulaciones con Mia Interviewer + feedback.</p>
-              </div>
-              <a href="https://meet.google.com/ttr-rhow-zou" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-amber-400 hover:underline flex items-center gap-1">
-                <span>meet.google.com/ttr-rhow-zou</span>
-                <span>→</span>
-              </a>
-            </div>
-
-            <div class="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)] flex flex-col justify-between gap-3">
-              <div>
-                <div class="flex items-center justify-between text-xs mb-1">
-                  <span class="font-bold text-amber-400">Clase 06 · Domingo 4-6pm</span>
-                  <span class="px-2 py-0.5 rounded bg-white/10 text-indigo-200">Programada</span>
-                </div>
-                <h5 class="text-sm font-bold text-[var(--foreground)]">Módulo 06: Postulación estratégica</h5>
-                <p class="text-xs text-[var(--muted-foreground)] mt-1">Sistema de seguimiento y plan de 30 días.</p>
-              </div>
-              <a href="https://meet.google.com/ttr-rhow-zou" target="_blank" rel="noopener noreferrer" class="text-xs font-semibold text-amber-400 hover:underline flex items-center gap-1">
-                <span>meet.google.com/ttr-rhow-zou</span>
-                <span>→</span>
-              </a>
-            </div>
+          <div id="classes-schedule-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+            <!-- Populated in order 01..06 via JS -->
           </div>
         </div>
 
-        <!-- Simulador de Práctica Pre-Clase & Mia Interviewer -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          
-          <!-- Left 8 Cols: Video Stage & Call Controls -->
-          <div class="lg:col-span-8 bg-[var(--card)] border border-[var(--border)] rounded-2xl overflow-hidden shadow-sm flex flex-col">
-            
-            <!-- Room Header -->
-            <div class="p-4 border-b border-[var(--border)] flex flex-wrap items-center justify-between gap-3">
-              <div class="flex items-center gap-3">
-                <span id="call-status-dot" class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
-                <div>
-                  <h3 id="room-title" class="text-sm sm:text-base font-bold text-[var(--foreground)]">
-                    Cámara de Prueba & Simulación con Mia Interviewer
-                  </h3>
-                  <p class="text-xs text-[var(--muted-foreground)]">
-                    Alumno: <strong>Javier Alfaro</strong> · Clase oficial: <strong>Domingos 4-6pm</strong> (<code class="font-mono">meet.google.com/ttr-rhow-zou</code>)
-                  </p>
-                </div>
-              </div>
-
-              <!-- Room Mode Selector -->
-              <div class="flex items-center gap-2">
-                <select id="room-mode-select" onchange="changeRoomMode(this.value)" class="px-3 py-1.5 rounded-lg bg-[var(--background)] border border-[var(--border)] text-xs font-medium text-[var(--foreground)]">
-                  <option value="mia">Módulo 05: Práctica con Mia Interviewer (IA)</option>
-                  <option value="mentoria">Mentoría 1-a-1 de Empleabilidad</option>
-                  <option value="grupal">Clase Dominical (Domingos 4-6pm)</option>
-                </select>
-                <span id="call-timer" class="px-2.5 py-1 rounded-md bg-amber-500/15 text-amber-500 font-mono text-xs font-bold">
-                  00:00
-                </span>
-              </div>
-            </div>
-
-            <!-- Video Grid Stage -->
-            <div class="relative bg-slate-950 p-4 grid grid-cols-1 sm:grid-cols-2 gap-4 min-h-[320px] items-stretch">
-              
-              <!-- Remote Participant: Mia Interviewer / Mentor -->
-              <div class="relative rounded-xl overflow-hidden brand-gradient border border-white/15 flex flex-col items-center justify-center p-6 text-center">
-                <div id="ai-speaking-ring" class="w-20 h-20 rounded-full gold-badge flex items-center justify-center font-serif font-bold text-2xl shadow-xl mb-3 animate-pulse-slow">
-                  M
-                </div>
-                <h4 id="remote-participant-name" class="text-white font-bold text-base">Mia Interviewer (Copiloto IA)</h4>
-                <p id="remote-participant-role" class="text-xs text-[#f4b629] mt-0.5">Entrevistadora de Competencias · Módulo 05</p>
-                <div id="current-question-banner" class="mt-3 p-3 rounded-lg bg-black/30 border border-white/10 text-xs text-indigo-100 max-w-sm">
-                  "Hola Javier, prueba aquí tu cámara/micrófono antes de tu clase del domingo (4-6pm) o practica tus respuestas del Módulo 05."
-                </div>
-                <span class="absolute bottom-3 left-3 px-2.5 py-1 rounded bg-black/60 text-white text-xs flex items-center gap-1.5">
-                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                  Audio HD Activo
-                </span>
-              </div>
-
-              <!-- Local Participant: Alumno Javier Alfaro (Real Webcam or Avatar Fallback) -->
-              <div class="relative rounded-xl overflow-hidden bg-slate-900 border border-white/15 flex flex-col items-center justify-center min-h-[240px]">
-                <video id="local-video" autoplay playsinline muted class="hidden w-full h-full object-cover"></video>
-                
-                <div id="local-avatar-fallback" class="flex flex-col items-center justify-center p-6 text-center">
-                  <div class="w-20 h-20 rounded-full bg-indigo-600/30 border-2 border-[#f4b629] text-white flex items-center justify-center font-bold text-2xl mb-3">
-                    JA
-                  </div>
-                  <h4 class="text-white font-bold text-base">Javier Alfaro (Tú)</h4>
-                  <p id="camera-status-label" class="text-xs text-slate-400 mt-1">
-                    Cámara en modo privacidad · Haz clic en "Activar Cámara" abajo para probar tu video
-                  </p>
-                </div>
-
-                <div class="absolute bottom-3 left-3 flex items-center gap-2">
-                  <span class="px-2.5 py-1 rounded bg-black/60 text-white text-xs font-medium">
-                    Alumno: Javier Alfaro
-                  </span>
-                  <span id="mic-badge" class="px-2 py-1 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs">
-                    Mic Activo
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Videoconference Control Bar -->
-            <div class="p-4 bg-[var(--card)] border-t border-[var(--border)] flex flex-wrap items-center justify-between gap-3">
-              <div class="flex items-center gap-2 flex-wrap">
-                <button id="btn-call-toggle" onclick="toggleCallSession()" class="px-3.5 py-2 rounded-xl bg-white/10 border border-white/20 text-white font-semibold text-xs flex items-center gap-2 cursor-pointer">
-                  <span id="btn-call-text">Iniciar Simulación Local</span>
-                </button>
-
-                <button id="btn-mic-toggle" onclick="toggleMic()" class="px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-xs font-medium hover:opacity-80 transition cursor-pointer">
-                  Silenciar Mic
-                </button>
-
-                <button id="btn-cam-toggle" onclick="toggleCamera()" class="px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-xs font-medium hover:opacity-80 transition cursor-pointer">
-                  Activar Cámara
-                </button>
-
-                <button onclick="nextInterviewQuestion()" class="px-3 py-2 rounded-xl bg-indigo-500/15 border border-indigo-500/30 text-indigo-400 text-xs font-semibold hover:bg-indigo-500/25 transition cursor-pointer">
-                  Siguiente Pregunta →
-                </button>
-              </div>
-
-              <!-- External Meeting Link: Official Google Meet -->
-              <div class="flex items-center gap-2">
-                <a
-                  href="https://meet.google.com/ttr-rhow-zou"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="px-4 py-2 rounded-xl gold-badge font-bold text-xs flex items-center gap-1.5 shadow"
-                >
-                  <span>Abrir Google Meet (meet.google.com/ttr-rhow-zou)</span>
-                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Right 4 Cols: Live Chat & Feedback with Mia Interviewer -->
-          <div class="lg:col-span-4 bg-[var(--card)] border border-[var(--border)] rounded-2xl flex flex-col h-[480px] shadow-sm">
-            <div class="p-4 border-b border-[var(--border)] flex items-center justify-between">
-              <div>
-                <h4 class="text-sm font-bold text-[var(--foreground)]">Chat & Práctica Pre-Clase</h4>
-                <p class="text-xs text-[var(--muted-foreground)]">Simulador Módulo 05 · Mia Interviewer</p>
-              </div>
-              <button onclick="markSimulationComplete()" class="px-2.5 py-1 rounded-lg gold-badge text-xs font-bold cursor-pointer">
-                + Registrar Simulación
-              </button>
-            </div>
-
-            <!-- Messages List -->
-            <div id="video-chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 text-xs">
-              <div class="p-3 rounded-xl bg-indigo-500/10 border border-indigo-500/20">
-                <span class="font-bold text-indigo-400 block mb-1">Mia Interviewer · IA</span>
-                <p class="text-[var(--foreground)]">
-                  ¡Hola Javier! Recuerda que tus clases en vivo son los <strong>Domingos de 4:00 pm a 6:00 pm</strong> en <strong>meet.google.com/ttr-rhow-zou</strong>. Mientras tanto, practica aquí tus respuestas.
-                </p>
-              </div>
-            </div>
-
-            <!-- Quick Practice Prompts -->
-            <div class="px-4 py-2 border-t border-[var(--border)] flex gap-1.5 overflow-x-auto">
-              <button onclick="sendQuickChat('Háblame de ti')" class="px-2.5 py-1 rounded-md bg-[var(--background)] border border-[var(--border)] text-xs whitespace-nowrap hover:border-amber-400 cursor-pointer">
-                "Háblame de ti"
-              </button>
-              <button onclick="sendQuickChat('Pregunta difícil')" class="px-2.5 py-1 rounded-md bg-[var(--background)] border border-[var(--border)] text-xs whitespace-nowrap hover:border-amber-400 cursor-pointer">
-                Pregunta difícil
-              </button>
-              <button onclick="sendQuickChat('Entrevista en inglés')" class="px-2.5 py-1 rounded-md bg-[var(--background)] border border-[var(--border)] text-xs whitespace-nowrap hover:border-amber-400 cursor-pointer">
-                En otro idioma
-              </button>
-            </div>
-
-            <!-- Chat Input -->
-            <form onsubmit="handleChatSubmit(event)" class="p-3 border-t border-[var(--border)] flex gap-2">
-              <input
-                id="chat-input"
-                type="text"
-                placeholder="Escribe tu respuesta como Javier Alfaro..."
-                class="flex-1 px-3 py-2 rounded-xl bg-[var(--background)] border border-[var(--border)] text-xs text-[var(--foreground)] focus:outline-none focus:border-amber-400"
-              />
-              <button type="submit" class="px-3.5 py-2 rounded-xl gold-badge font-bold text-xs cursor-pointer">
-                Enviar
-              </button>
-            </form>
-          </div>
-
-        </div>
       </div>
 
-      <!-- ================= TAB 3: POSTULACIÓN ESTRATÉGICA & EMBUDO ================= -->
+      <!-- ================= TAB 5: POSTULACIÓN ESTRATÉGICA & EMBUDO ================= -->
       <div id="tab-content-postulacion" class="hidden space-y-6">
         
-        <!-- Module 06 Cycle: Encuentra -> Analiza -> Adapta -> Postula -> Seguimiento -> Mejora -->
         <div class="rounded-2xl brand-gradient text-white p-6 shadow-lg border border-white/10">
           <div class="flex flex-wrap items-center justify-between gap-2 mb-6">
             <div>
@@ -752,85 +671,54 @@
             <span class="text-xs text-indigo-200 italic">↺ y vuelve a empezar, cada vez mejor</span>
           </div>
 
-          <!-- 6 Yellow Circles Flow from Page 8 of PDF -->
           <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 items-center">
             <div class="flex flex-col items-center text-center">
-              <div class="w-24 h-24 rounded-full gold-badge flex items-center justify-center font-bold text-sm shadow-lg">
-                1. Encuentra
-              </div>
-              <span class="text-xs text-indigo-200 mt-2">Roles y países clave</span>
+              <div class="w-24 h-24 rounded-full gold-badge flex items-center justify-center font-bold text-sm shadow-lg">1. Encuentra</div>
+              <span class="text-xs text-indigo-200 mt-2">5 ofertas con ajuste real</span>
             </div>
             <div class="flex flex-col items-center text-center">
-              <div class="w-24 h-24 rounded-full gold-badge flex items-center justify-center font-bold text-sm shadow-lg">
-                2. Analiza
-              </div>
-              <span class="text-xs text-indigo-200 mt-2">Ofertas en minutos con IA</span>
+              <div class="w-24 h-24 rounded-full gold-badge flex items-center justify-center font-bold text-sm shadow-lg">2. Analiza</div>
+              <span class="text-xs text-indigo-200 mt-2">Requisitos clave con IA</span>
             </div>
             <div class="flex flex-col items-center text-center">
-              <div class="w-24 h-24 rounded-full gold-badge flex items-center justify-center font-bold text-sm shadow-lg">
-                3. Adapta
-              </div>
-              <span class="text-xs text-indigo-200 mt-2">CV ATS + Palabras clave</span>
+              <div class="w-24 h-24 rounded-full gold-badge flex items-center justify-center font-bold text-sm shadow-lg">3. Adapta</div>
+              <span class="text-xs text-indigo-200 mt-2">CV ATS + Mensaje a medida</span>
             </div>
             <div class="flex flex-col items-center text-center">
-              <div class="w-24 h-24 rounded-full gold-badge flex items-center justify-center font-bold text-sm shadow-lg">
-                4. Postula
-              </div>
-              <span class="text-xs text-indigo-200 mt-2">Carta + Evidencia</span>
+              <div class="w-24 h-24 rounded-full gold-badge flex items-center justify-center font-bold text-sm shadow-lg">4. Postula</div>
+              <span class="text-xs text-indigo-200 mt-2">Escribe a alguien dentro</span>
             </div>
             <div class="flex flex-col items-center text-center">
-              <div class="w-24 h-24 rounded-full gold-badge flex items-center justify-center font-bold text-sm shadow-lg">
-                5. Seguimiento
-              </div>
-              <span class="text-xs text-indigo-200 mt-2">Contactar reclutadores</span>
+              <div class="w-24 h-24 rounded-full gold-badge flex items-center justify-center font-bold text-sm shadow-lg">5. Seguimiento</div>
+              <span class="text-xs text-indigo-200 mt-2">Revisa a los 7 días</span>
             </div>
             <div class="flex flex-col items-center text-center">
-              <div class="w-24 h-24 rounded-full gold-badge flex items-center justify-center font-bold text-sm shadow-lg">
-                6. Mejora
-              </div>
-              <span class="text-xs text-indigo-200 mt-2">Iteración continua</span>
-            </div>
-          </div>
-
-          <!-- Antes vs Entregable Comparison -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-            <div class="p-4 rounded-xl bg-white/5 border border-white/10">
-              <span class="text-xs uppercase tracking-widest text-indigo-300 font-bold block mb-1">A N T E S</span>
-              <p class="text-sm sm:text-base text-white font-serif">Postular al azar y esperar respuesta.</p>
-            </div>
-            <div class="p-4 rounded-xl gold-badge">
-              <span class="text-xs uppercase tracking-widest font-bold block mb-1">E N T R E G A B L E</span>
-              <p class="text-sm sm:text-base font-serif font-bold">Sistema de seguimiento y plan de postulación de 30 días.</p>
+              <div class="w-24 h-24 rounded-full gold-badge flex items-center justify-center font-bold text-sm shadow-lg">6. Mejora</div>
+              <span class="text-xs text-indigo-200 mt-2">Tablero semanal</span>
             </div>
           </div>
         </div>
 
-        <!-- Interactive 10 Target Opportunities Tracker (Javier Alfaro) -->
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
           <div class="lg:col-span-7 bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 shadow-sm">
             <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
               <div>
-                <h4 class="text-base font-bold text-[var(--foreground)]">Mapa de Oportunidades Objetivo — Javier Alfaro</h4>
-                <p class="text-xs text-[var(--muted-foreground)]">Seguimiento en vivo de postulaciones estratégicas</p>
+                <h4 class="text-base font-bold text-[var(--foreground)]">Tu Tablero de Seguimiento Semanal</h4>
+                <p class="text-xs text-[var(--muted-foreground)]">Empresa · Rol · Fecha · Estado · Siguiente paso</p>
               </div>
               <button onclick="addNewOpportunity()" class="px-3 py-1.5 rounded-xl gold-badge font-bold text-xs cursor-pointer">
-                + Nueva Oportunidad
+                + Registrar Postulación
               </button>
             </div>
-
-            <div id="opportunities-list" class="space-y-2.5">
-              <!-- Populated via JS -->
-            </div>
+            <div id="opportunities-list" class="space-y-2.5"></div>
           </div>
 
-          <!-- Page 9 of PDF: El embudo que sí te lleva a la oferta -->
           <div class="lg:col-span-5 rounded-2xl brand-gradient text-white p-6 shadow-lg border border-white/10 flex flex-col justify-between">
             <div>
               <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold">Ú L T I M A   P A R A D A</span>
               <h4 class="text-xl font-serif font-bold mt-1">El embudo que sí te lleva a la oferta</h4>
               <p class="text-xs text-[#f4b629] italic mb-6">Tú decides en qué parte te quedas.</p>
 
-              <!-- Funnel Steps -->
               <div class="space-y-3 flex flex-col items-center">
                 <div class="w-full p-3.5 rounded-xl bg-white/10 border border-white/15 text-center">
                   <span class="text-xs tracking-widest uppercase text-indigo-200 block">A T E N C I Ó N</span>
@@ -850,89 +738,19 @@
                 </div>
               </div>
             </div>
-
-            <div class="mt-6 pt-4 border-t border-white/10 text-center text-xs text-indigo-200">
-              Estado actual de <strong>Javier Alfaro</strong>: Fase de <strong class="text-[#f4b629]">Deseo → Acción</strong>
-            </div>
           </div>
         </div>
 
-      </div>
-
-      <!-- ================= TAB 4: ENTREGABLES & KIT DE IA ================= -->
-      <div id="tab-content-entregables" class="hidden space-y-6">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          
-          <!-- 6 Official Deliverables from PDF -->
-          <div class="lg:col-span-7 bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 sm:p-6 shadow-sm">
-            <h3 class="text-base sm:text-lg font-bold text-[var(--foreground)] mb-1">
-              Portafolio de Entregables — Javier Alfaro
-            </h3>
-            <p class="text-xs text-[var(--muted-foreground)] mb-4">
-              Marca cada entregable oficial a medida que lo completas en el Bootcamp.
-            </p>
-            <div id="deliverables-list" class="space-y-3">
-              <!-- Populated via JS -->
-            </div>
-          </div>
-
-          <!-- Module 03 Kit de Postulación: Prompts & Plantillas Reutilizables -->
-          <div class="lg:col-span-5 bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 sm:p-6 shadow-sm flex flex-col justify-between">
-            <div>
-              <span class="text-xs font-bold uppercase tracking-wider text-amber-500">Módulo 03 · Copiloto IA</span>
-              <h3 class="text-base sm:text-lg font-bold text-[var(--foreground)] mt-0.5 mb-2">
-                Kit de Postulación: Prompts Reutilizables
-              </h3>
-              <p class="text-xs text-[var(--muted-foreground)] mb-4">
-                "La IA hace lo repetitivo. Tú pones lo humano." Haz clic para copiar cualquier prompt personalizado para Javier Alfaro.
-              </p>
-
-              <div class="space-y-3">
-                <div class="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)]">
-                  <div class="flex items-center justify-between mb-1">
-                    <span class="text-xs font-bold text-[var(--foreground)]">1. Adaptar CV a filtro ATS (Módulos 02 y 03)</span>
-                    <button onclick="copyPrompt(0)" class="text-xs font-semibold text-amber-500 hover:underline cursor-pointer">Copiar Prompt</button>
-                  </div>
-                  <p id="prompt-0" class="text-xs text-[var(--muted-foreground)]">
-                    Actúa como experto en reclutamiento ATS. Analiza esta oferta laboral y adapta los logros de Javier Alfaro usando el formato [Acción + Resultado cuantificable] manteniendo su voz auténtica.
-                  </p>
-                </div>
-
-                <div class="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)]">
-                  <div class="flex items-center justify-between mb-1">
-                    <span class="text-xs font-bold text-[var(--foreground)]">2. Declaración de Valor en 1 Frase (Módulo 01)</span>
-                    <button onclick="copyPrompt(1)" class="text-xs font-semibold text-amber-500 hover:underline cursor-pointer">Copiar Prompt</button>
-                  </div>
-                  <p id="prompt-1" class="text-xs text-[var(--muted-foreground)]">
-                    Con base en mis fortalezas y mi objetivo profesional, redacta 3 opciones de propuesta de valor en una sola frase para el titular de LinkedIn de Javier Alfaro.
-                  </p>
-                </div>
-
-                <div class="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)]">
-                  <div class="flex items-center justify-between mb-1">
-                    <span class="text-xs font-bold text-[var(--foreground)]">3. Simulación con Mia Interviewer (Módulo 05)</span>
-                    <button onclick="copyPrompt(2)" class="text-xs font-semibold text-amber-500 hover:underline cursor-pointer">Copiar Prompt</button>
-                  </div>
-                  <p id="prompt-2" class="text-xs text-[var(--muted-foreground)]">
-                    Eres Mia Interviewer. Hazme 3 preguntas difíciles de entrevista por competencias para mi rol objetivo y evalúa cada respuesta bajo la metodología STAR.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div id="copy-toast" class="hidden mt-4 p-2.5 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 text-xs font-medium text-center">
-              ¡Prompt copiado al portapapeles de Javier Alfaro!
-            </div>
-          </div>
-
-        </div>
       </div>
 
     </main>
   </div>
 
   <script>
-    // ================= DATA FROM THE 9-PAGE PDF =================
+    const DRIVE_FOLDER_URL = "https://drive.google.com/drive/folders/1kHAd1GjkPwyR-rDWkkQA8odvXH818v_o?usp=sharing";
+    const MEET_URL = "https://meet.google.com/ttr-rhow-zou";
+
+    // ================= LOS 6 MÓDULOS EN ORDEN ESTRICTO (01 AL 06) CON TODO EL MATERIAL DE CLASE =================
     const modulesData = [
       {
         id: 1,
@@ -940,9 +758,48 @@
         shortTitle: "Descubre tu valor",
         title: "Descubre tu valor profesional",
         subtitle: 'De "no sé qué quiero" a "sé a dónde voy".',
+        familiarTitle: "Postulas a todo porque no sabes dónde encajas mejor.",
+        familiarDesc: "Cuando no tienes claro tu objetivo ni tu propuesta de valor, cualquier oferta parece buena y ninguna te elige.",
+        bottleneckTitle: "No es falta de talento.",
+        bottleneckDesc: "Te falta claridad sobre qué problema resuelves y hacia qué roles apuntar.",
+        costs: [
+          "Postulas a roles donde no destacas",
+          "No sabes cómo presentarte en una frase",
+          "Desperdicias energía en sectores sin ajuste real"
+        ],
+        beforeText: '"No sé qué quiero, postulo a lo que salga."',
+        afterText: "Objetivo profesional claro y mapa de 10 oportunidades.",
+        lesson1Title: "Claridad profesional",
+        lesson1Subtitle: "Tu dirección define tu velocidad.",
+        lesson1Items: [
+          { num: "01", title: "Diagnóstico de empleabilidad", desc: "Evalúa tu punto de partida, experiencia y brechas actuales." },
+          { num: "02", title: "Tus fortalezas identificadas", desc: "Reconoce tus habilidades transferibles y logros clave." },
+          { num: "03", title: "Propuesta de valor en 1 frase", desc: "A quién ayudas, qué resuelves y qué resultado generas." }
+        ],
+        lesson2Title: "Tu mapa de oportunidades en 4 pasos",
+        lesson2Steps: [
+          "Define tu objetivo profesional claro para los próximos 6 meses",
+          "Identifica tus 3 fortalezas principales con ejemplos reales",
+          "Redacta tu propuesta de valor en una sola frase",
+          "Mapea 10 oportunidades objetivo (roles, sectores y países)"
+        ],
+        mistakes: [
+          { bad: "Postular a cualquier vacante disponible", good: "Enfocarte en roles, sectores y países objetivo" },
+          { bad: "Describirte solo por tu título universitario", good: "Presentarte con una propuesta de valor en una frase" },
+          { bad: "Buscar sin rumbo cada semana", good: "Tener un mapa con 10 oportunidades claras" }
+        ],
+        handsOnTitle: "Tu declaración de valor",
+        handsOnDesc: "Completa esta estructura en una sola frase y úsala como base para todo el bootcamp:",
+        handsOnBox: 'Ayudo a [tipo de empresa/equipo] a resolver [problema clave] mediante [tus fortalezas/IA], logrando [resultado medible].',
+        closingChecks: [
+          "Diagnóstico de empleabilidad completado",
+          "Objetivo profesional claro definido",
+          "Propuesta de valor en una frase lista",
+          "Mapa con 10 oportunidades objetivo (roles, sectores y países)"
+        ],
         deliverable: "Declaración de valor + mapa con 10 oportunidades objetivo",
+        nextStepText: "Siguiente: lleva tu propuesta de valor a tu CV y LinkedIn.",
         deliverableDone: true,
-        heightClass: "h-36",
         tasks: [
           { text: "Diagnóstico de empleabilidad", done: true },
           { text: "Objetivo profesional claro", done: true },
@@ -956,16 +813,55 @@
         num: "02",
         shortTitle: "CV + LinkedIn",
         title: "CV + LinkedIn",
-        subtitle: "Que te encuentren a ti, no al revés.",
+        subtitle: "Tu perfil trabaja por ti, incluso cuando no estás.",
+        familiarTitle: "Tu CV es bueno. Pero nadie lo está leyendo.",
+        familiarDesc: "Un software lo filtra antes de que una persona lo vea.",
+        bottleneckTitle: "No es mala suerte.",
+        bottleneckDesc: "Tu CV no habla el idioma del filtro.",
+        costs: [
+          "Tu CV se descarta sin que lo lean",
+          "Tu LinkedIn pasa desapercibido",
+          "Reclutadores contactan a otras personas"
+        ],
+        beforeText: "CV de tareas, sin palabras clave.",
+        afterText: "CV de logros que pasa el ATS y atrae reclutadores.",
+        lesson1Title: "CV compatible con ATS",
+        lesson1Subtitle: "Primero te lee un software. Después, una persona.",
+        lesson1Items: [
+          { num: "01", title: "Formato simple", desc: "Una columna, fuentes estándar, sin tablas ni imágenes." },
+          { num: "02", title: "Palabras clave", desc: "Usa los términos exactos de la oferta." },
+          { num: "03", title: "Logros, no tareas", desc: "Acción + resultado + impacto medible." }
+        ],
+        lesson2Title: "LinkedIn que atrae",
+        lesson2Steps: [
+          "Titular: rol + valor + palabras clave",
+          "Acerca de mí: gancho, historia, logros y llamado",
+          "Experiencia con logros y palabras clave",
+          "Foto, banner y URL personalizada"
+        ],
+        mistakes: [
+          { bad: "Diseño con columnas e iconos", good: "Formato simple que el ATS lee" },
+          { bad: '"Responsable de…"', good: "Logros con resultados medibles" },
+          { bad: 'Titular: "Buscando oportunidades"', good: "Titular: rol + valor + palabras clave" }
+        ],
+        handsOnTitle: "Reescribe un logro",
+        handsOnDesc: "Convierte una tarea de tu CV en un logro medible.",
+        handsOnBox: 'Antes: "Responsable de redes sociales"\nDespués: "Aumenté 40% el alcance en 3 meses con contenido semanal y análisis de datos"',
+        closingChecks: [
+          "CV de una página en formato ATS",
+          "3 logros medibles por experiencia",
+          "Titular y Acerca de mí listos",
+          "Palabras clave en todo el perfil"
+        ],
         deliverable: "CV en formato ATS + perfil de LinkedIn optimizado",
+        nextStepText: "Siguiente: usa la IA para multiplicar tus postulaciones.",
         deliverableDone: true,
-        heightClass: "h-44",
         tasks: [
-          { text: "CV compatible con ATS", done: true },
-          { text: "CV de logros: acción + resultado", done: true },
-          { text: "Titular profesional que vende", done: true },
-          { text: "Acerca de mí con historia", done: true },
-          { text: "Palabras clave por sector", done: false }
+          { text: "CV compatible con ATS (1 columna, sin tablas)", done: true },
+          { text: "CV de logros: acción + resultado + impacto medible", done: true },
+          { text: "Titular profesional: rol + valor + palabras clave", done: true },
+          { text: "Acerca de mí con gancho, historia, logros y llamado", done: true },
+          { text: "Palabras clave por sector en todo el perfil", done: false }
         ]
       },
       {
@@ -974,15 +870,53 @@
         shortTitle: "IA como copiloto",
         title: "IA para conseguir oportunidades",
         subtitle: "La IA hace lo repetitivo. Tú pones lo humano.",
+        familiarTitle: "Pasas horas postulando y el tiempo no te alcanza.",
+        familiarDesc: "Buscar, adaptar y escribir a mano agota. Y la IA genérica suena igual que todas.",
+        bottleneckTitle: "No es falta de ganas.",
+        bottleneckDesc: "Haces a mano lo que la IA resuelve en minutos.",
+        costs: [
+          "Postulas menos de lo que podrías",
+          "Tus mensajes suenan genéricos",
+          "Te agotas antes de recibir respuesta"
+        ],
+        beforeText: "Horas por postulación y mensajes copiados.",
+        afterText: "Postulaciones rápidas, con tu voz.",
+        lesson1Title: "Tu copiloto de búsqueda",
+        lesson1Subtitle: "Usa la IA para ir más rápido, no para sonar genérico.",
+        lesson1Items: [
+          { num: "01", title: "Buscar", desc: "Pídele roles, empresas y palabras clave para tu perfil." },
+          { num: "02", title: "Analizar", desc: "Resume una oferta: requisitos, señales y funciones." },
+          { num: "03", title: "Adaptar", desc: "Ajusta tu CV y tu mensaje a cada oferta." }
+        ],
+        lesson2Title: "Flujo con IA en 4 pasos",
+        lesson2Steps: [
+          "Pega la oferta y pide un análisis de requisitos",
+          "Compara con tu CV y detecta brechas",
+          "Reescribe CV y carta con tu propia voz",
+          "Revisa, edita y añade un detalle personal"
+        ],
+        mistakes: [
+          { bad: "Copiar y pegar lo que escribe la IA", good: "Usarla como borrador y editarlo" },
+          { bad: "Un solo CV para todas las ofertas", good: "Un CV adaptado a cada oferta" },
+          { bad: "Automatizar sin revisar", good: "Automatizar lo repetitivo, personalizar lo clave" }
+        ],
+        handsOnTitle: "Prompt para analizar ofertas",
+        handsOnDesc: "Cópialo, pega tu CV y una oferta real, y compara el resultado.",
+        handsOnBox: "Actúa como reclutador. Analiza esta oferta y dime:\n1) 5 requisitos clave  2) palabras clave para mi CV\n3) qué logros míos destacar.\nMi CV: [pégalo]   Oferta: [pégala]",
+        closingChecks: [
+          "Tengo un prompt de análisis de ofertas",
+          "Tengo una carta adaptable",
+          "Reviso todo lo que genera la IA",
+          "Mi voz sigue en cada mensaje"
+        ],
         deliverable: "Kit de postulación: prompts y plantillas reutilizables",
+        nextStepText: "Siguiente: demuestra lo que sabes con un portafolio.",
         deliverableDone: true,
-        heightClass: "h-52",
         tasks: [
           { text: "Buscar empleos con IA", done: true },
           { text: "Analizar ofertas en minutos", done: true },
           { text: "Adaptar tu CV a cada oferta", done: true },
           { text: "Cartas y mensajes de postulación", done: false },
-          { text: "Preparar tus respuestas", done: false },
           { text: "Automatizar sin perder tu voz", done: false }
         ]
       },
@@ -992,15 +926,54 @@
         shortTitle: "Portafolio",
         title: "Portafolio",
         subtitle: "No tienes experiencia. Tienes evidencia.",
-        deliverable: "Portafolio digital con 2 o 3 proyectos listos para mostrar",
+        familiarTitle: '“Piden experiencia, pero necesito el trabajo para tenerla.”',
+        familiarDesc: "El círculo que frena a quienes están empezando.",
+        bottleneckTitle: "No te falta experiencia.",
+        bottleneckDesc: "Te falta evidencia visible.",
+        costs: [
+          "Tu perfil parece vacío",
+          "No puedes demostrar lo que sabes",
+          "Compites solo con un título"
+        ],
+        beforeText: "Un CV con huecos y cero pruebas.",
+        afterText: "Un portafolio con habilidades demostradas.",
+        lesson1Title: "Qué mostrar con poca experiencia",
+        lesson1Subtitle: "Un proyecto bien contado vale más que un cargo vacío.",
+        lesson1Items: [
+          { num: "01", title: "Proyectos", desc: "Académicos, personales, voluntarios o simulados." },
+          { num: "02", title: "Evidencias", desc: "Capturas, resultados, testimonios y certificados." },
+          { num: "03", title: "Habilidades", desc: "Cada proyecto demuestra una habilidad concreta." }
+        ],
+        lesson2Title: "Cada proyecto, en 4 partes",
+        lesson2Steps: [
+          "Problema: qué querías resolver",
+          "Proceso: qué hiciste y con qué herramientas",
+          "Resultado: qué lograste, con datos si puedes",
+          "Aprendizaje: qué harías distinto"
+        ],
+        mistakes: [
+          { bad: "Esperar a tener un cargo", good: "Crear proyectos demostrables ya" },
+          { bad: "Mostrar solo el resultado final", good: "Contar problema, proceso y aprendizaje" },
+          { bad: "Ocultar que usaste IA", good: "Explicar qué decidiste y verificaste" }
+        ],
+        handsOnTitle: "Crea tu primer caso",
+        handsOnDesc: "Elige un proyecto y cuéntalo en una página con la estructura anterior.",
+        handsOnBox: "Problema  →  Proceso  →  Resultado  →  Aprendizaje\nSi usaste IA: explica qué herramienta usaste, qué decidiste tú y qué verificaste.",
+        closingChecks: [
+          "2 o 3 proyectos documentados",
+          "Evidencia visible en cada uno",
+          "Portafolio digital publicado",
+          "Uso de IA explicado con transparencia"
+        ],
+        deliverable: "Portafolio digital con 2 o 3 proyectos listos",
+        nextStepText: "Siguiente: practica hasta que contar tu historia sea natural.",
         deliverableDone: false,
-        heightClass: "h-60",
         tasks: [
           { text: "Qué mostrar con poca experiencia", done: true },
-          { text: "Proyectos demostrables", done: true },
+          { text: "Proyectos demostrables (Problema → Proceso → Resultado → Aprendizaje)", done: true },
           { text: "Evidencias de tus habilidades", done: false },
-          { text: "Portafolio digital", done: false },
-          { text: "Cómo presentar proyectos hechos con IA", done: false }
+          { text: "Portafolio digital publicado", done: false },
+          { text: "Cómo presentar proyectos hechos con IA con transparencia", done: false }
         ]
       },
       {
@@ -1009,16 +982,54 @@
         shortTitle: "Entrevistas",
         title: "Entrevistas",
         subtitle: "Falla aquí. Brilla en la real.",
-        deliverable: "3 simulaciones completas con Mia Interviewer + plan de mejora",
+        familiarTitle: "Llegas a la entrevista y te quedas en blanco.",
+        familiarDesc: "Sabes hacer el trabajo, pero no sabes contarlo bajo presión.",
+        bottleneckTitle: "No es falta de capacidad.",
+        bottleneckDesc: "Es falta de práctica en voz alta.",
+        costs: [
+          "Respuestas vagas que no convencen",
+          "Nervios que opacan tu talento",
+          "Ofertas perdidas por contar mal tu historia"
+        ],
+        beforeText: "Improvisar y esperar lo mejor.",
+        afterText: "Responder con historias claras y confianza.",
+        lesson1Title: "Las preguntas que sí o sí llegan",
+        lesson1Subtitle: "Prepara historias, no respuestas memorizadas.",
+        lesson1Items: [
+          { num: "01", title: "Háblame de ti", desc: "Presente, pasado y futuro en 60 segundos." },
+          { num: "02", title: "Fortalezas", desc: "Una fortaleza + un ejemplo real." },
+          { num: "03", title: "Preguntas difíciles", desc: "Brechas, conflictos y errores: honestidad + aprendizaje." }
+        ],
+        lesson2Title: "Método STAR para competencias",
+        lesson2Steps: [
+          "Situación: el contexto",
+          "Tarea: tu responsabilidad",
+          "Acción: lo que hiciste tú",
+          "Resultado: el impacto logrado"
+        ],
+        mistakes: [
+          { bad: "Memorizar respuestas", good: "Preparar historias STAR flexibles" },
+          { bad: "Evitar las preguntas difíciles", good: "Practicarlas con feedback" },
+          { bad: "Practicar solo en tu cabeza", good: "Simular en voz alta con Mia Interviewer" }
+        ],
+        handsOnTitle: "Simula con Mia Interviewer",
+        handsOnDesc: "Haz una entrevista completa, con una ronda en otro idioma, y pide feedback.",
+        handsOnBox: "Ronda 1: Háblame de ti  ·  Ronda 2: Competencias (STAR)\nRonda 3: Entrevista en otro idioma  ·  Cierre: feedback y plan de mejora",
+        closingChecks: [
+          "Presentación de 60 segundos lista",
+          "3 historias STAR preparadas",
+          "Practiqué en otro idioma",
+          "Tengo plan de mejora con feedback"
+        ],
+        deliverable: "3 simulaciones completas + plan de mejora",
+        nextStepText: "Siguiente: convierte todo en un sistema de postulación.",
         deliverableDone: false,
-        heightClass: "h-68",
         tasks: [
-          { text: '"Háblame de ti"', done: true },
-          { text: "Fortalezas y experiencia", done: true },
-          { text: "Preguntas difíciles", done: false },
-          { text: "Entrevista por competencias", done: false },
-          { text: "Entrevista en otro idioma", done: false },
-          { text: "Feedback con Mia Interviewer", done: false }
+          { text: '"Háblame de ti" en 60 segundos', done: true },
+          { text: "Fortalezas + ejemplo real", done: true },
+          { text: "Preguntas difíciles con honestidad + aprendizaje", done: false },
+          { text: "3 historias con Método STAR (Situación, Tarea, Acción, Resultado)", done: false },
+          { text: "Entrevista en otro idioma y feedback con Mia Interviewer", done: false }
         ]
       },
       {
@@ -1026,22 +1037,61 @@
         num: "06",
         shortTitle: "Postulación estratégica",
         title: "Postulación estratégica",
-        subtitle: "Postular a 50 empleos no es estrategia. Esto sí: Encuentra → Analiza → Adapta → Postula → Seguimiento → Mejora",
-        deliverable: "Sistema de seguimiento y plan de postulación de 30 días.",
+        subtitle: "Postular a 50 empleos no es estrategia.",
+        familiarTitle: "Postulas, postulas… y nada se mueve.",
+        familiarDesc: "Sin sistema, cada postulación empieza de cero.",
+        bottleneckTitle: "No es mala suerte.",
+        bottleneckDesc: "No tienes un sistema que aprenda de cada intento.",
+        costs: [
+          "Repites los mismos errores",
+          "Pierdes ofertas por no dar seguimiento",
+          "No sabes qué está funcionando"
+        ],
+        beforeText: "50 postulaciones al azar.",
+        afterText: "5 postulaciones estratégicas con seguimiento.",
+        lesson1Title: "El ciclo de postulación",
+        lesson1Subtitle: "Menos postulaciones. Más resultados.",
+        lesson1Items: [
+          { num: "01", title: "Encuentra y analiza", desc: "Elige ofertas donde tu perfil encaja de verdad." },
+          { num: "02", title: "Adapta y postula", desc: "CV y mensaje a medida para cada oferta." },
+          { num: "03", title: "Seguimiento y mejora", desc: "Registra, da seguimiento y aprende de cada resultado." }
+        ],
+        lesson2Title: "Tu semana de postulación",
+        lesson2Steps: [
+          "Encuentra: elige 5 ofertas con ajuste real",
+          "Analiza y adapta CV y mensaje a cada una",
+          "Postula y escribe a una persona de la empresa",
+          "Seguimiento: registra y revisa a los 7 días"
+        ],
+        mistakes: [
+          { bad: "Postular a todo", good: "Elegir ofertas con ajuste real" },
+          { bad: "Enviar y olvidar", good: "Dar seguimiento a los 7 días" },
+          { bad: "No registrar resultados", good: "Mejorar con un tablero semanal" }
+        ],
+        handsOnTitle: "Tu tablero de seguimiento",
+        handsOnDesc: "Crea un tablero y registra cada postulación desde hoy.",
+        handsOnBox: "Empresa  ·  Rol  ·  Fecha  ·  Estado  ·  Siguiente paso  ·  Aprendizaje\nRevísalo cada semana y ajusta tu estrategia.",
+        closingChecks: [
+          "Tablero de seguimiento activo",
+          "5 postulaciones personalizadas",
+          "Seguimiento programado",
+          "Plan de 30 días definido"
+        ],
+        deliverable: "Sistema de seguimiento y plan de postulación de 30 días",
+        nextStepText: "Ya tienes el sistema. Ahora ejecútalo.",
         deliverableDone: false,
-        heightClass: "h-76",
         tasks: [
-          { text: "Encuentra ofertas alineadas a tu mapa", done: true },
-          { text: "Analiza requisitos clave en minutos", done: false },
-          { text: "Adapta CV y mensaje de postulación", done: false },
-          { text: "Postula con evidencia de portafolio", done: false },
-          { text: "Seguimiento activo y mejora continua ↺", done: false }
+          { text: "Tablero de seguimiento activo", done: true },
+          { text: "5 postulaciones personalizadas con ajuste real", done: false },
+          { text: "Escribir a una persona de la empresa", done: false },
+          { text: "Seguimiento programado a los 7 días", done: false },
+          { text: "Plan de postulación de 30 días definido", done: false }
         ]
       }
     ];
 
     let selectedModuleId = 1;
-    let simulationsCompleted = 2;
+    let activeMaterialModuleId = 1;
 
     const defaultModulesString = JSON.stringify(modulesData);
 
@@ -1167,12 +1217,16 @@
           if (modulesData[idx]) {
             modulesData[idx].deliverableDone = savedMod.deliverableDone;
             modulesData[idx].tasks = savedMod.tasks;
+            if (savedMod.uploadedFileName) {
+              modulesData[idx].uploadedFileName = savedMod.uploadedFileName;
+            }
           }
         });
       } else {
         const fresh = JSON.parse(defaultModulesString);
         fresh.forEach((m, idx) => {
           modulesData[idx].deliverableDone = user.id === "javier-alfaro" ? m.deliverableDone : false;
+          modulesData[idx].uploadedFileName = "";
           modulesData[idx].tasks = m.tasks.map(t => ({
             text: t.text,
             done: user.id === "javier-alfaro" ? t.done : false
@@ -1195,10 +1249,10 @@
     }
 
     let opportunities = [
-      { company: "PolyglotTech Global", role: "Product & AI Specialist", country: "Remoto / EE. UU.", stage: "Entrevista Mia IA", match: "94%" },
+      { company: "PolyglotTech Global", role: "Product & AI Specialist", country: "Remoto / EE. UU.", stage: "Seguimiento a 7 días", match: "94%" },
       { company: "NovaData Latam", role: "Project Coordinator IA", country: "México / Remoto", stage: "CV ATS Adaptado", match: "89%" },
-      { company: "CloudScale Europe", role: "Operations Analyst", country: "España (Híbrido)", stage: "Seguimiento Enviado", match: "86%" },
-      { company: "Fintech Andina", role: "Growth & Strategy Associate", country: "Chile / Perú", stage: "Analizando Oferta", match: "82%" }
+      { company: "CloudScale Europe", role: "Operations Analyst", country: "España (Híbrido)", stage: "Contacto en empresa", match: "86%" },
+      { company: "Fintech Andina", role: "Growth & Strategy Associate", country: "Chile / Perú", stage: "1. Encuentra y analiza", match: "82%" }
     ];
 
     // ================= AUTH / LOGIN LOGIC =================
@@ -1242,10 +1296,11 @@
 
     // ================= NAVIGATION TABS =================
     function switchTab(tabName) {
-      const tabs = ["ruta", "videoconferencia", "postulacion", "entregables"];
+      const tabs = ["ruta", "materiales", "entregables", "videoconferencia", "postulacion"];
       tabs.forEach(t => {
         const content = document.getElementById("tab-content-" + t);
         const btn = document.getElementById("tab-btn-" + t);
+        if (!content || !btn) return;
         if (t === tabName) {
           content.classList.remove("hidden");
           btn.classList.add("border-[#f4b629]", "text-[#f4b629]", "font-semibold");
@@ -1258,14 +1313,23 @@
       });
     }
 
+    function openModuleMaterial(moduleId) {
+      activeMaterialModuleId = moduleId;
+      renderMaterialsTab();
+      switchTab("materiales");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
     // ================= RENDER DASHBOARD =================
     function renderAll() {
       populateStudentsDatalist();
       updateStudentNameInDOM();
       renderStaircase();
       renderModuleDetail();
+      renderMaterialsTab();
+      renderDeliverablesUploadGrid();
+      renderClassesSchedule();
       renderOpportunities();
-      renderDeliverables();
       updateGlobalKPIs();
     }
 
@@ -1284,24 +1348,31 @@
       document.getElementById("global-progress-text").textContent = pct + "%";
       document.getElementById("global-progress-bar").style.width = pct + "%";
       document.getElementById("deliverables-count").textContent = doneDeliverables + " / 6";
-      const simEl = document.getElementById("simulations-count");
-      if (simEl) simEl.textContent = simulationsCompleted + " / 3";
     }
 
     function copyMeetLink() {
-      const link = "https://meet.google.com/ttr-rhow-zou";
       if (navigator.clipboard) {
-        navigator.clipboard.writeText(link).catch(() => {});
+        navigator.clipboard.writeText(MEET_URL).catch(() => {});
       }
       const btn = document.getElementById("btn-copy-meet");
       if (btn) {
         btn.textContent = "✓ Link copiado";
-        setTimeout(() => {
-          btn.textContent = "Copiar link";
-        }, 2200);
+        setTimeout(() => (btn.textContent = "Copiar link"), 2200);
       }
     }
 
+    function copyDriveLink() {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(DRIVE_FOLDER_URL).catch(() => {});
+      }
+      const btn = document.getElementById("btn-copy-drive");
+      if (btn) {
+        btn.textContent = "✓ Enlace copiado";
+        setTimeout(() => (btn.textContent = "Copiar enlace Drive"), 2200);
+      }
+    }
+
+    // ================= TAB 1: STAIRCASE & MODULE OVERVIEW =================
     function renderStaircase() {
       const container = document.getElementById("staircase-container");
       const heights = ["min-h-[120px]", "min-h-[145px]", "min-h-[170px]", "min-h-[195px]", "min-h-[220px]", "min-h-[245px]"];
@@ -1372,7 +1443,7 @@
           <div class="flex flex-wrap items-start justify-between gap-4">
             <div>
               <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold block mb-1">
-                M Ó D U L O   ${m.num}
+                M Ó D U L O   ${m.num}   ·   E N   O R D E N   (01 → 06)
               </span>
               <h3 class="text-2xl sm:text-4xl font-serif font-bold text-white">
                 ${m.title}
@@ -1382,23 +1453,24 @@
               </p>
             </div>
 
-            ${
-              m.id === 5
-                ? `<button onclick="switchTab('videoconferencia')" class="px-4 py-2.5 rounded-xl gold-badge font-bold text-xs sm:text-sm shadow-lg cursor-pointer">
-                     Ir a Mis Clases y Simulador →
-                   </button>`
-                : ""
-            }
+            <div class="flex flex-wrap items-center gap-2">
+              <button onclick="openModuleMaterial(${m.id})" class="px-4 py-2.5 rounded-xl gold-badge font-bold text-xs sm:text-sm shadow-lg cursor-pointer">
+                📖 Ver Material de Clase y Descargar PDF
+              </button>
+              <button onclick="switchTab('entregables')" class="px-3.5 py-2.5 rounded-xl bg-white/10 hover:bg-white/20 border border-white/20 text-white font-semibold text-xs sm:text-sm cursor-pointer">
+                📤 Subir Entregable en Drive
+              </button>
+            </div>
           </div>
 
-          <!-- Module Pill Checklist matching PDF layout -->
+          <!-- Module Pill Checklist -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
             ${m.tasks
               .map(
                 (task, idx) => `
               <button
                 onclick="toggleTask(${m.id}, ${idx})"
-                class=" ${
+                class="${
                   idx === m.tasks.length - 1 && m.tasks.length % 2 !== 0 ? "md:col-span-2" : ""
                 } flex items-center justify-between px-4 py-3.5 rounded-xl border text-left transition cursor-pointer ${
                   task.done
@@ -1416,7 +1488,7 @@
               .join("")}
           </div>
 
-          <!-- Deliverable Gold Bar at Bottom of Slide -->
+          <!-- Deliverable Gold Bar -->
           <div class="p-4 sm:p-5 rounded-xl gold-badge flex flex-wrap items-center justify-between gap-4 shadow-lg">
             <div>
               <span class="text-xs uppercase tracking-widest font-extrabold block">
@@ -1426,26 +1498,500 @@
                 ${m.deliverable}
               </p>
             </div>
-            <button
-              onclick="toggleDeliverable(${m.id})"
-              class="px-4 py-2 rounded-lg text-xs font-bold border transition cursor-pointer ${
-                m.deliverableDone
-                  ? "bg-[#120f4d] text-[#f4b629] border-[#120f4d]"
-                  : "bg-white/40 text-[#120f4d] border-[#120f4d]/30 hover:bg-white/60"
-              }"
-            >
-              ${m.deliverableDone ? "✓ Entregable Completado" : "Marcar como Entregado"}
-            </button>
+            <div class="flex items-center gap-2">
+              <button
+                onclick="switchTab('entregables')"
+                class="px-3.5 py-2 rounded-lg bg-[#120f4d] text-[#f4b629] text-xs font-bold cursor-pointer"
+              >
+                Subir a Drive →
+              </button>
+              <button
+                onclick="toggleDeliverable(${m.id})"
+                class="px-3.5 py-2 rounded-lg text-xs font-bold border transition cursor-pointer ${
+                  m.deliverableDone
+                    ? "bg-emerald-900 text-emerald-200 border-emerald-900"
+                    : "bg-white/40 text-[#120f4d] border-[#120f4d]/30 hover:bg-white/60"
+                }"
+              >
+                ${m.deliverableDone ? "✓ Entregado" : "Marcar Listo"}
+              </button>
+            </div>
           </div>
         </div>
       `;
     }
 
+    // ================= TAB 2: VER MATERIALES INTERACTIVOS (01 AL 06 EN ORDEN) & PDF =================
+    function selectMaterialModule(id) {
+      activeMaterialModuleId = id;
+      renderMaterialsTab();
+    }
+
+    function renderMaterialsTab() {
+      const stepper = document.getElementById("materials-stepper");
+      const viewer = document.getElementById("material-interactive-viewer");
+      const m = modulesData.find(mod => mod.id === activeMaterialModuleId) || modulesData[0];
+
+      const btnLabel = document.getElementById("btn-download-single-label");
+      if (btnLabel) btnLabel.textContent = `Descargar Módulo ${m.num} en PDF`;
+
+      // Render Ordered Stepper 01 -> 06
+      stepper.innerHTML = modulesData
+        .map(mod => {
+          const isCurrent = mod.id === m.id;
+          return `
+            <button
+              onclick="selectMaterialModule(${mod.id})"
+              class="p-3 rounded-xl border text-left transition cursor-pointer flex flex-col justify-between ${
+                isCurrent
+                  ? "gold-badge border-[#f4b629] shadow-md font-bold"
+                  : "bg-[var(--background)] border-[var(--border)] text-[var(--foreground)] hover:border-amber-400"
+              }"
+            >
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-extrabold ${isCurrent ? "text-[#120f4d]" : "text-amber-400"}">MÓDULO ${mod.num}</span>
+                <span class="text-xs">${isCurrent ? "● Activo" : "Ver →"}</span>
+              </div>
+              <span class="text-xs sm:text-sm font-bold mt-1 truncate block">${mod.shortTitle}</span>
+            </button>
+          `;
+        })
+        .join("");
+
+      const prevId = m.id > 1 ? m.id - 1 : null;
+      const nextId = m.id < 6 ? m.id + 1 : null;
+
+      // Render Full Interactive Class Material for Module m
+      viewer.innerHTML = `
+        <!-- Slide 1: Cover & ¿Te suena familiar? + El Cuello de Botella -->
+        <div class="rounded-2xl brand-gradient text-white p-6 sm:p-8 shadow-xl border border-white/15 relative overflow-hidden">
+          <div class="pointer-events-none select-none absolute -top-6 right-6 text-7xl sm:text-9xl font-serif font-extrabold text-white/10">
+            ${m.num}
+          </div>
+
+          <div class="relative z-10 space-y-6">
+            <div>
+              <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold block">
+                MÓDULO ${m.num} · MATERIAL DE CLASE · POLYGLOTMAP · BOOTCAMP DE EMPLEABILIDAD CON IA
+              </span>
+              <h2 class="text-2xl sm:text-4xl font-serif font-bold mt-1">${m.title}</h2>
+              <p class="text-sm sm:text-lg text-[#f4b629] italic mt-1">${m.subtitle}</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+              <!-- ¿TE SUENA FAMILIAR? -->
+              <div class="p-5 rounded-xl bg-white/10 border border-white/15 flex flex-col justify-between">
+                <div>
+                  <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold block mb-2">¿TE SUENA FAMILIAR?</span>
+                  <h4 class="text-base font-bold text-white mb-2">${m.familiarTitle}</h4>
+                  <p class="text-xs sm:text-sm text-indigo-100/90">${m.familiarDesc}</p>
+                </div>
+              </div>
+
+              <!-- EL CUELLO DE BOTELLA -->
+              <div class="p-5 rounded-xl bg-white/10 border border-[#f4b629]/40 flex flex-col justify-between">
+                <div>
+                  <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold block mb-2">EL CUELLO DE BOTELLA · Lo que realmente te frena</span>
+                  <h4 class="text-base font-bold text-white mb-1">${m.bottleneckTitle}</h4>
+                  <p class="text-xs sm:text-sm text-indigo-100/90 mb-4">${m.bottleneckDesc}</p>
+                </div>
+                <div class="flex items-center justify-between text-xs font-bold bg-black/30 rounded-lg p-2.5 border border-white/10">
+                  <span class="text-emerald-300">Tu talento</span>
+                  <span class="px-2 py-0.5 rounded bg-rose-500/30 text-rose-200 border border-rose-400/40">EL CUELLO</span>
+                  <span class="text-[#f4b629]">Tus resultados</span>
+                </div>
+              </div>
+
+              <!-- EL COSTO DE NO RESOLVERLO -->
+              <div class="p-5 rounded-xl bg-rose-950/40 border border-rose-400/30">
+                <span class="text-xs uppercase tracking-widest text-rose-300 font-bold block mb-2">EL COSTO DE NO RESOLVERLO · Si no lo cambias…</span>
+                <ul class="space-y-2 text-xs sm:text-sm text-rose-100">
+                  ${m.costs.map(c => `<li class="flex items-start gap-2"><span class="text-rose-400 font-bold">✕</span><span>${c}</span></li>`).join("")}
+                </ul>
+              </div>
+            </div>
+
+            <!-- LA TRANSFORMACIÓN: ANTES -> DESPUÉS -->
+            <div class="p-5 rounded-xl bg-black/30 border border-white/15">
+              <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold block mb-3">LA TRANSFORMACIÓN · De aquí… hasta aquí</span>
+              <div class="grid grid-cols-1 md:grid-cols-11 gap-3 items-center">
+                <div class="md:col-span-5 p-3.5 rounded-xl bg-white/5 border border-white/10">
+                  <span class="text-xs uppercase tracking-wider text-indigo-300 font-bold block">ANTES</span>
+                  <p class="text-sm font-semibold text-white mt-1">${m.beforeText}</p>
+                </div>
+                <div class="md:col-span-1 text-center text-2xl font-bold text-[#f4b629]">→</div>
+                <div class="md:col-span-5 p-3.5 rounded-xl gold-badge">
+                  <span class="text-xs uppercase tracking-wider font-extrabold block">DESPUÉS</span>
+                  <p class="text-sm font-bold mt-1">${m.afterText}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2: LECCIÓN 1 & LECCIÓN 2 -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+          <!-- LECCIÓN 1 -->
+          <div class="lg:col-span-7 bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm space-y-4">
+            <div>
+              <span class="text-xs uppercase tracking-widest text-amber-400 font-bold">LECCIÓN 1</span>
+              <h3 class="text-lg sm:text-xl font-bold text-[var(--foreground)] mt-0.5">${m.lesson1Title}</h3>
+              <p class="text-xs text-[var(--muted-foreground)]">${m.lesson1Subtitle}</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              ${m.lesson1Items
+                .map(
+                  item => `
+                <div class="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)] flex flex-col justify-between">
+                  <div>
+                    <span class="text-2xl font-serif font-extrabold text-amber-400 block">${item.num}</span>
+                    <h4 class="text-sm font-bold text-[var(--foreground)] mt-1">${item.title}</h4>
+                    <p class="text-xs text-[var(--muted-foreground)] mt-1.5">${item.desc}</p>
+                  </div>
+                </div>
+              `
+                )
+                .join("")}
+            </div>
+          </div>
+
+          <!-- LECCIÓN 2 -->
+          <div class="lg:col-span-5 bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm space-y-4">
+            <div>
+              <span class="text-xs uppercase tracking-widest text-amber-400 font-bold">LECCIÓN 2</span>
+              <h3 class="text-lg sm:text-xl font-bold text-[var(--foreground)] mt-0.5">${m.lesson2Title}</h3>
+            </div>
+            <div class="space-y-2.5">
+              ${m.lesson2Steps
+                .map(
+                  (step, i) => `
+                <div class="p-3 rounded-xl bg-[var(--background)] border border-[var(--border)] flex items-center gap-3">
+                  <span class="w-7 h-7 rounded-lg gold-badge font-bold text-xs flex items-center justify-center shrink-0">${i + 1}</span>
+                  <span class="text-xs sm:text-sm font-medium text-[var(--foreground)]">${step}</span>
+                </div>
+              `
+                )
+                .join("")}
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3: ERROR COMÚN VS. CAMBIO & MANOS A LA OBRA -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+          <!-- ERROR COMÚN VS. CAMBIO -->
+          <div class="lg:col-span-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm space-y-4">
+            <div>
+              <span class="text-xs uppercase tracking-widest text-amber-400 font-bold">ERROR COMÚN VS. CAMBIO</span>
+              <h3 class="text-lg font-bold text-[var(--foreground)] mt-0.5">Deja esto. Haz esto.</h3>
+            </div>
+            <div class="space-y-3">
+              ${m.mistakes
+                .map(
+                  pair => `
+                <div class="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)] grid grid-cols-1 sm:grid-cols-11 gap-2 items-center text-xs">
+                  <div class="sm:col-span-5 text-rose-300 flex items-center gap-1.5">
+                    <span class="font-bold text-rose-400">✕</span>
+                    <span>${pair.bad}</span>
+                  </div>
+                  <div class="sm:col-span-1 text-center font-bold text-amber-400">→</div>
+                  <div class="sm:col-span-5 text-emerald-300 font-semibold flex items-center gap-1.5">
+                    <span class="font-bold text-emerald-400">✓</span>
+                    <span>${pair.good}</span>
+                  </div>
+                </div>
+              `
+                )
+                .join("")}
+            </div>
+          </div>
+
+          <!-- MANOS A LA OBRA + CIERRE DEL MÓDULO -->
+          <div class="lg:col-span-6 bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm flex flex-col justify-between space-y-4">
+            <div class="space-y-3">
+              <span class="text-xs uppercase tracking-widest text-amber-400 font-bold">MANOS A LA OBRA</span>
+              <h3 class="text-lg font-bold text-[var(--foreground)]">${m.handsOnTitle}</h3>
+              <p class="text-xs text-[var(--muted-foreground)]">${m.handsOnDesc}</p>
+              <pre class="p-4 rounded-xl bg-black/40 border border-amber-400/40 text-xs text-amber-300 font-mono whitespace-pre-wrap leading-relaxed">${m.handsOnBox}</pre>
+            </div>
+
+            <div class="pt-3 border-t border-[var(--border)]">
+              <span class="text-xs uppercase tracking-widest text-emerald-400 font-bold block mb-2">CIERRE DEL MÓDULO · Listo cuando…</span>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                ${m.closingChecks
+                  .map(
+                    chk => `
+                  <div class="p-2.5 rounded-lg bg-emerald-500/10 border border-emerald-500/25 text-xs text-emerald-200 flex items-center gap-2">
+                    <span class="font-bold text-emerald-400">✓</span>
+                    <span>${chk}</span>
+                  </div>
+                `
+                  )
+                  .join("")}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Deliverable Banner + Ordered Navigation (Anterior / Siguiente Módulo) -->
+        <div class="rounded-2xl gold-badge p-5 sm:p-6 shadow-lg flex flex-wrap items-center justify-between gap-4">
+          <div>
+            <span class="text-xs uppercase tracking-widest font-extrabold block">ENTREGABLE DEL MÓDULO ${m.num}</span>
+            <h4 class="text-base sm:text-xl font-serif font-bold mt-0.5">${m.deliverable}</h4>
+            <p class="text-xs font-medium mt-1 opacity-90">${m.nextStepText}</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            ${
+              prevId
+                ? `<button onclick="selectMaterialModule(${prevId})" class="px-3.5 py-2 rounded-xl bg-white/40 hover:bg-white/60 text-[#120f4d] font-bold text-xs cursor-pointer">
+                     ← Módulo 0${prevId}
+                   </button>`
+                : ""
+            }
+            <button onclick="switchTab('entregables')" class="px-4 py-2 rounded-xl bg-[#120f4d] text-[#f4b629] font-bold text-xs cursor-pointer">
+              📤 Subir Entregable en Drive
+            </button>
+            ${
+              nextId
+                ? `<button onclick="selectMaterialModule(${nextId})" class="px-3.5 py-2 rounded-xl bg-white/40 hover:bg-white/60 text-[#120f4d] font-bold text-xs cursor-pointer">
+                     Siguiente: Módulo 0${nextId} →
+                   </button>`
+                : ""
+            }
+          </div>
+        </div>
+      `;
+    }
+
+    // ================= GENERADOR Y DESCARGA DE PDF (1 MÓDULO O LOS 6 EN ORDEN) =================
+    function buildPrintableHTML(modulesToPrint) {
+      const slidesHTML = modulesToPrint
+        .map(
+          m => `
+        <div style="page-break-after: always; padding: 28px; border: 2px solid #120f4d; border-radius: 16px; margin-bottom: 24px; font-family: Georgia, serif; color: #120f4d;">
+          <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 3px solid #f4b629; padding-bottom: 12px; margin-bottom: 16px;">
+            <div>
+              <div style="font-size: 11px; font-family: sans-serif; font-weight: bold; letter-spacing: 2px; text-transform: uppercase; color: #b45309;">
+                MÓDULO ${m.num} · MATERIAL DE CLASE · POLYGLOTMAP
+              </div>
+              <h1 style="font-size: 26px; margin: 4px 0;">${m.title}</h1>
+              <div style="font-size: 14px; font-style: italic; color: #3730a3;">${m.subtitle}</div>
+            </div>
+            <div style="font-size: 44px; font-weight: 800; color: #f4b629;">${m.num}</div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-family: sans-serif; margin-bottom: 14px;">
+            <div style="padding: 12px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px;">
+              <strong style="font-size: 11px; color: #b45309; text-transform: uppercase;">¿TE SUENA FAMILIAR?</strong>
+              <p style="font-size: 13px; font-weight: bold; margin: 4px 0;">${m.familiarTitle}</p>
+              <p style="font-size: 12px; margin: 0; color: #334155;">${m.familiarDesc}</p>
+            </div>
+            <div style="padding: 12px; background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 10px;">
+              <strong style="font-size: 11px; color: #b45309; text-transform: uppercase;">EL CUELLO DE BOTELLA</strong>
+              <p style="font-size: 13px; font-weight: bold; margin: 4px 0;">${m.bottleneckTitle}</p>
+              <p style="font-size: 12px; margin: 0; color: #334155;">${m.bottleneckDesc}</p>
+            </div>
+          </div>
+
+          <div style="padding: 12px; background: #fffbeb; border: 1px solid #f4b629; border-radius: 10px; font-family: sans-serif; margin-bottom: 14px;">
+            <strong style="font-size: 11px; text-transform: uppercase;">LA TRANSFORMACIÓN:</strong>
+            <div style="font-size: 13px; margin-top: 4px;">
+              <strong>ANTES:</strong> ${m.beforeText} &nbsp; ➔ &nbsp; <strong>DESPUÉS:</strong> ${m.afterText}
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-family: sans-serif; margin-bottom: 14px;">
+            <div style="padding: 12px; border: 1px solid #cbd5e1; border-radius: 10px;">
+              <strong style="font-size: 11px; color: #120f4d; text-transform: uppercase;">LECCIÓN 1 · ${m.lesson1Title}</strong>
+              <ul style="font-size: 12px; padding-left: 16px; margin: 6px 0 0 0;">
+                ${m.lesson1Items.map(i => `<li><strong>${i.num} ${i.title}:</strong> ${i.desc}</li>`).join("")}
+              </ul>
+            </div>
+            <div style="padding: 12px; border: 1px solid #cbd5e1; border-radius: 10px;">
+              <strong style="font-size: 11px; color: #120f4d; text-transform: uppercase;">LECCIÓN 2 · ${m.lesson2Title}</strong>
+              <ol style="font-size: 12px; padding-left: 16px; margin: 6px 0 0 0;">
+                ${m.lesson2Steps.map(s => `<li>${s}</li>`).join("")}
+              </ol>
+            </div>
+          </div>
+
+          <div style="padding: 12px; border: 1px solid #cbd5e1; border-radius: 10px; font-family: sans-serif; margin-bottom: 14px;">
+            <strong style="font-size: 11px; text-transform: uppercase;">ERROR COMÚN VS. CAMBIO (Deja esto ➔ Haz esto)</strong>
+            <ul style="font-size: 12px; padding-left: 16px; margin: 6px 0 0 0;">
+              ${m.mistakes.map(pair => `<li>✕ ${pair.bad} &nbsp; ➔ &nbsp; <strong>✓ ${pair.good}</strong></li>`).join("")}
+            </ul>
+          </div>
+
+          <div style="padding: 12px; background: #f1f5f9; border-radius: 10px; font-family: sans-serif; margin-bottom: 14px;">
+            <strong style="font-size: 11px; text-transform: uppercase;">MANOS A LA OBRA · ${m.handsOnTitle}</strong>
+            <p style="font-size: 12px; margin: 4px 0;">${m.handsOnDesc}</p>
+            <pre style="font-size: 11px; background: #fff; padding: 8px; border-radius: 6px; border: 1px solid #cbd5e1; white-space: pre-wrap; margin: 0;">${m.handsOnBox}</pre>
+          </div>
+
+          <div style="padding: 14px; background: #f4b629; color: #120f4d; border-radius: 10px; font-family: sans-serif;">
+            <strong style="font-size: 11px; text-transform: uppercase;">ENTREGABLE OFICIAL DEL MÓDULO ${m.num} (${currentUser.name}):</strong>
+            <div style="font-size: 15px; font-weight: bold; margin-top: 2px;">${m.deliverable}</div>
+          </div>
+        </div>
+      `
+        )
+        .join("");
+
+      return `
+        <!DOCTYPE html>
+        <html lang="es">
+        <head>
+          <meta charset="UTF-8" />
+          <title>Material de Clase PDF — Bootcamp de Empleabilidad con IA</title>
+        </head>
+        <body style="margin: 20px; background: #ffffff;">
+          ${slidesHTML}
+          <script>
+            window.onload = function() {
+              setTimeout(function() { window.print(); }, 250);
+            };
+          <\/script>
+        </body>
+        </html>
+      `;
+    }
+
+    function downloadCurrentModulePDF() {
+      const m = modulesData.find(mod => mod.id === activeMaterialModuleId) || modulesData[0];
+      const win = window.open("", "_blank");
+      if (win) {
+        win.document.write(buildPrintableHTML([m]));
+        win.document.close();
+      } else {
+        window.print();
+      }
+    }
+
+    function downloadAllModulesPDF() {
+      const win = window.open("", "_blank");
+      if (win) {
+        win.document.write(buildPrintableHTML(modulesData));
+        win.document.close();
+      } else {
+        window.print();
+      }
+    }
+
+    // ================= TAB 3: SUBIR ENTREGABLES (GOOGLE DRIVE) =================
+    function handleFileSelection(moduleId, inputEl) {
+      const file = inputEl.files && inputEl.files[0];
+      if (!file) return;
+      const mod = modulesData.find(m => m.id === moduleId);
+      if (!mod) return;
+      mod.uploadedFileName = file.name;
+      mod.deliverableDone = true;
+      saveUserProgress();
+      renderAll();
+    }
+
+    function renderDeliverablesUploadGrid() {
+      const container = document.getElementById("deliverables-upload-grid");
+      if (!container) return;
+      container.innerHTML = modulesData
+        .map(
+          m => `
+        <div class="p-4 rounded-xl bg-[var(--background)] border ${
+          m.deliverableDone ? "border-emerald-500/40" : "border-[var(--border)]"
+        } flex flex-col justify-between gap-4">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-1.5">
+              <span class="text-xs font-extrabold uppercase tracking-wider text-amber-400">
+                Módulo ${m.num} · ${m.shortTitle}
+              </span>
+              <span class="px-2 py-0.5 rounded-full text-xs font-bold ${
+                m.deliverableDone
+                  ? "bg-emerald-500/20 text-emerald-300 border border-emerald-400/30"
+                  : "bg-amber-500/15 text-amber-300"
+              }">
+                ${m.deliverableDone ? "✓ Entregable Listo" : "Pendiente de subir"}
+              </span>
+            </div>
+            <h5 class="text-sm font-bold text-[var(--foreground)]">${m.deliverable}</h5>
+            ${
+              m.uploadedFileName
+                ? `<p class="text-xs text-emerald-400 mt-1">📎 Archivo registrado: <strong>${m.uploadedFileName}</strong></p>`
+                : `<p class="text-xs text-[var(--muted-foreground)] mt-1">Selecciona tu archivo PDF/Doc y súbelo a la carpeta Drive del Bootcamp.</p>`
+            }
+          </div>
+
+          <div class="flex flex-wrap items-center justify-between gap-2 pt-3 border-t border-[var(--border)]">
+            <label class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/15 border border-white/15 text-xs font-medium text-[var(--foreground)] cursor-pointer transition">
+              <span>📎 Seleccionar archivo</span>
+              <input type="file" class="hidden" onchange="handleFileSelection(${m.id}, this)" />
+            </label>
+
+            <div class="flex items-center gap-2">
+              <a
+                href="${DRIVE_FOLDER_URL}"
+                target="_blank"
+                rel="noopener noreferrer"
+                onclick="markModuleUploaded(${m.id})"
+                class="px-3.5 py-1.5 rounded-lg gold-badge font-bold text-xs flex items-center gap-1.5 shadow"
+              >
+                <span>Subir a Google Drive</span>
+                <span>↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      `
+        )
+        .join("");
+    }
+
+    function markModuleUploaded(moduleId) {
+      const mod = modulesData.find(m => m.id === moduleId);
+      if (!mod) return;
+      mod.deliverableDone = true;
+      saveUserProgress();
+      renderAll();
+    }
+
+    // ================= TAB 4: MIS CLASES SCHEDULE =================
+    function renderClassesSchedule() {
+      const grid = document.getElementById("classes-schedule-grid");
+      if (!grid) return;
+      grid.innerHTML = modulesData
+        .map(
+          m => `
+        <div class="p-4 rounded-xl bg-[var(--background)] border ${
+          m.id === 4 ? "border-2 border-[#f4b629]" : "border-[var(--border)]"
+        } flex flex-col justify-between gap-3">
+          <div>
+            <div class="flex items-center justify-between text-xs mb-1">
+              <span class="font-bold text-amber-400">Clase ${m.num} · Domingo 4-6pm</span>
+              <span class="px-2 py-0.5 rounded ${
+                m.deliverableDone ? "bg-emerald-500/20 text-emerald-300" : "bg-white/10 text-indigo-200"
+              }">${m.deliverableDone ? "Completada" : "En Vivo"}</span>
+            </div>
+            <h5 class="text-sm font-bold text-[var(--foreground)]">Módulo ${m.num}: ${m.title}</h5>
+            <p class="text-xs text-[var(--muted-foreground)] mt-1">${m.subtitle}</p>
+          </div>
+          <div class="flex items-center justify-between gap-2 pt-2 border-t border-[var(--border)]">
+            <button onclick="openModuleMaterial(${m.id})" class="text-xs font-semibold text-indigo-300 hover:underline cursor-pointer">
+              Ver Material PDF
+            </button>
+            <a href="${MEET_URL}" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-amber-400 hover:underline">
+              meet.google.com/ttr-rhow-zou →
+            </a>
+          </div>
+        </div>
+      `
+        )
+        .join("");
+    }
+
+    // ================= TAB 5: OPPORTUNITIES TRACKER =================
     function renderOpportunities() {
       const container = document.getElementById("opportunities-list");
+      if (!container) return;
       container.innerHTML = opportunities
         .map(
-          (opp, i) => `
+          opp => `
         <div class="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)] flex flex-wrap items-center justify-between gap-3">
           <div>
             <div class="flex items-center gap-2">
@@ -1454,9 +2000,7 @@
             </div>
             <p class="text-xs text-[var(--muted-foreground)] mt-0.5">${opp.company} · ${opp.country}</p>
           </div>
-          <div class="flex items-center gap-2">
-            <span class="text-xs px-2.5 py-1 rounded-lg bg-indigo-500/15 text-indigo-400 font-medium">${opp.stage}</span>
-          </div>
+          <span class="text-xs px-2.5 py-1 rounded-lg bg-indigo-500/15 text-indigo-400 font-medium">${opp.stage}</span>
         </div>
       `
         )
@@ -1465,200 +2009,12 @@
 
     function addNewOpportunity() {
       const roles = [
-        { company: "GlobalAI Partners", role: "AI Operations Specialist", country: "Remoto", stage: "1. Encuentra → 2. Analiza", match: "91%" },
-        { company: "TechBridge Solutions", role: "Digital Product Analyst", country: "España / Remoto", stage: "3. Adapta CV ATS", match: "88%" }
+        { company: "GlobalAI Partners", role: "AI Operations Specialist", country: "Remoto", stage: "1. Encuentra y analiza", match: "91%" },
+        { company: "TechBridge Solutions", role: "Digital Product Analyst", country: "España / Remoto", stage: "2. Adapta y postula", match: "88%" }
       ];
       const pick = roles[opportunities.length % roles.length];
       opportunities.unshift(pick);
       renderOpportunities();
-    }
-
-    function renderDeliverables() {
-      const container = document.getElementById("deliverables-list");
-      container.innerHTML = modulesData
-        .map(
-          m => `
-        <div class="p-3.5 rounded-xl bg-[var(--background)] border border-[var(--border)] flex items-center justify-between gap-3">
-          <div>
-            <span class="text-xs font-bold text-amber-500">Módulo ${m.num} · ${m.shortTitle}</span>
-            <p class="text-xs sm:text-sm font-semibold text-[var(--foreground)] mt-0.5">${m.deliverable}</p>
-          </div>
-          <button
-            onclick="toggleDeliverable(${m.id})"
-            class="px-3 py-1.5 rounded-lg text-xs font-bold shrink-0 cursor-pointer ${
-              m.deliverableDone
-                ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30"
-                : "gold-badge"
-            }"
-          >
-            ${m.deliverableDone ? "✓ Listo" : "Completar"}
-          </button>
-        </div>
-      `
-        )
-        .join("");
-    }
-
-    function copyPrompt(idx) {
-      const text = document.getElementById("prompt-" + idx).textContent.trim();
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(text).catch(() => {});
-      }
-      const toast = document.getElementById("copy-toast");
-      toast.classList.remove("hidden");
-      setTimeout(() => toast.classList.add("hidden"), 2500);
-    }
-
-    // ================= VIDEOCONFERENCE & MIA INTERVIEWER LOGIC =================
-    let callActive = false;
-    let micMuted = false;
-    let camActive = false;
-    let localStream = null;
-    let callSeconds = 0;
-    let timerInterval = null;
-
-    const interviewQuestions = [
-      '¿Cómo responderías a "Háblame de ti" en 60 segundos conectando tu historia con tu objetivo profesional?',
-      'Pregunta por competencias (STAR): Cuéntame de una ocasión en la que resolviste un problema complejo con pocos recursos.',
-      'Pregunta difícil: ¿Por qué deberíamos contratarte a ti si otros candidatos tienen más años en el sector?',
-      'Switch to English (Entrevista en otro idioma): "What is the main value proposition you bring to our team in the first 90 days?"'
-    ];
-    let currentQIndex = 0;
-
-    function toggleCallSession() {
-      callActive = !callActive;
-      const btnText = document.getElementById("btn-call-text");
-      if (callActive) {
-        btnText.textContent = "Finalizar Videoconferencia";
-        timerInterval = setInterval(() => {
-          callSeconds++;
-          const mins = String(Math.floor(callSeconds / 60)).padStart(2, "0");
-          const secs = String(callSeconds % 60).padStart(2, "0");
-          document.getElementById("call-timer").textContent = `${mins}:${secs}`;
-        }, 1000);
-        appendChatMessage("Sistema", "Videoconferencia iniciada para el alumno Javier Alfaro. Audio bidireccional conectado.");
-      } else {
-        btnText.textContent = "Iniciar Videoconferencia Ahora";
-        clearInterval(timerInterval);
-        appendChatMessage("Sistema", "Sesión en pausa. Puedes reanudarla cuando quieras.");
-      }
-    }
-
-    function toggleMic() {
-      micMuted = !micMuted;
-      const btn = document.getElementById("btn-mic-toggle");
-      const badge = document.getElementById("mic-badge");
-      if (micMuted) {
-        btn.textContent = "Activar Mic";
-        badge.textContent = "Mic Silenciado";
-        badge.className = "px-2 py-1 rounded bg-rose-500/20 text-rose-300 border border-rose-400/30 text-xs";
-      } else {
-        btn.textContent = "Silenciar Mic";
-        badge.textContent = "Mic Activo";
-        badge.className = "px-2 py-1 rounded bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-xs";
-      }
-    }
-
-    async function toggleCamera() {
-      const videoEl = document.getElementById("local-video");
-      const fallbackEl = document.getElementById("local-avatar-fallback");
-      const btn = document.getElementById("btn-cam-toggle");
-      const statusLabel = document.getElementById("camera-status-label");
-
-      if (!camActive) {
-        try {
-          localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
-          videoEl.srcObject = localStream;
-          videoEl.classList.remove("hidden");
-          fallbackEl.classList.add("hidden");
-          camActive = true;
-          btn.textContent = "Apagar Cámara";
-        } catch (err) {
-          camActive = true;
-          btn.textContent = "Apagar Cámara (Simulada)";
-          statusLabel.textContent = "Modo Cámara Simulada HD Activo para Javier Alfaro";
-        }
-      } else {
-        if (localStream) {
-          localStream.getTracks().forEach(track => track.stop());
-          localStream = null;
-        }
-        videoEl.classList.add("hidden");
-        fallbackEl.classList.remove("hidden");
-        camActive = false;
-        btn.textContent = "Activar Cámara";
-        statusLabel.textContent = "Cámara en modo privacidad · Haz clic en 'Activar Cámara' abajo";
-      }
-    }
-
-    function nextInterviewQuestion() {
-      currentQIndex = (currentQIndex + 1) % interviewQuestions.length;
-      const q = interviewQuestions[currentQIndex];
-      document.getElementById("current-question-banner").innerHTML = `"${q}"`;
-      appendChatMessage("Mia Interviewer · IA", `Nueva pregunta de práctica: ${q}`);
-    }
-
-    function changeRoomMode(mode) {
-      const nameEl = document.getElementById("remote-participant-name");
-      const roleEl = document.getElementById("remote-participant-role");
-      if (mode === "mia") {
-        nameEl.textContent = "Mia Interviewer (Copiloto IA)";
-        roleEl.textContent = "Entrevistadora de Competencias · Módulo 05";
-      } else if (mode === "mentoria") {
-        nameEl.textContent = "Mentor Senior PolyglotMap";
-        roleEl.textContent = "Revisión de CV ATS, Portafolio y Estrategia";
-      } else {
-        nameEl.textContent = "Sala Grupal Cohorte Empleabilidad";
-        roleEl.textContent = "Networking & Práctica entre Alumnos";
-      }
-    }
-
-    function sendQuickChat(topic) {
-      const input = document.getElementById("chat-input");
-      if (topic === "Háblame de ti") {
-        input.value = "Soy Javier Alfaro, especialista enfocado en optimizar procesos con IA y generar resultados medibles...";
-      } else if (topic === "Pregunta difícil") {
-        input.value = "Aunque mi experiencia previa fue en otro sector, tengo evidencia en mi portafolio de 3 proyectos reales...";
-      } else {
-        input.value = "In my first 90 days, I will combine AI automation with strategic execution to accelerate team deliverables.";
-      }
-      handleChatSubmit(new Event("submit"));
-    }
-
-    function handleChatSubmit(e) {
-      if (e.preventDefault) e.preventDefault();
-      const input = document.getElementById("chat-input");
-      const msg = input.value.trim();
-      if (!msg) return;
-      appendChatMessage("Javier Alfaro", msg, true);
-      input.value = "";
-
-      setTimeout(() => {
-        appendChatMessage(
-          "Mia Interviewer · IA",
-          "¡Excelente estructura, Javier! Conectaste tu acción con un resultado concreto. Sugerencia STAR: añade un porcentaje o métrica de impacto al final para reforzar tu evidencia del Módulo 04."
-        );
-      }, 600);
-    }
-
-    function appendChatMessage(sender, text, isUser = false) {
-      const box = document.getElementById("video-chat-messages");
-      const div = document.createElement("div");
-      div.className = isUser
-        ? "p-3 rounded-xl bg-amber-500/15 border border-amber-500/30 ml-4"
-        : "p-3 rounded-xl bg-indigo-500/10 border border-indigo-500/20 mr-4";
-      div.innerHTML = `
-        <span class="font-bold ${isUser ? "text-amber-500" : "text-indigo-400"} block mb-1">${sender}</span>
-        <p class="text-[var(--foreground)]">${text}</p>
-      `;
-      box.appendChild(div);
-      box.scrollTop = box.scrollHeight;
-    }
-
-    function markSimulationComplete() {
-      if (simulationsCompleted < 3) simulationsCompleted++;
-      updateGlobalKPIs();
-      appendChatMessage("Mia Interviewer · IA", `¡Simulación #${simulationsCompleted} registrada con éxito en el progreso de Javier Alfaro!`);
     }
 
     // Initialize state
