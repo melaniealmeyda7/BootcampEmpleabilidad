@@ -110,39 +110,29 @@
         </div>
       </div>
 
-      <!-- Right Column: Multi-User Student Login Form -->
+      <!-- Right Column: Student Login Form -->
       <div class="lg:col-span-5 p-8 md:p-10 flex flex-col justify-center bg-[#0f0c3d]/80">
-        <div class="flex items-center justify-between gap-3 mb-6">
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-full gold-badge flex items-center justify-center font-bold text-lg shadow-md">
-              P
-            </div>
-            <div>
-              <span class="text-xs uppercase tracking-wider text-[#f4b629] font-semibold block">Portal Multi-Alumno</span>
-              <h3 class="text-lg font-bold text-white">Ingreso de Estudiantes</h3>
-            </div>
+        <div class="flex items-center gap-3 mb-6">
+          <div class="w-12 h-12 rounded-full gold-badge flex items-center justify-center font-bold text-lg shadow-md">
+            P
           </div>
-          <button
-            type="button"
-            onclick="openUsersModal()"
-            class="px-2.5 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 border border-white/15 text-xs text-[#f4b629] font-semibold cursor-pointer transition"
-          >
-            + Usuarios
-          </button>
+          <div>
+            <span class="text-xs uppercase tracking-wider text-[#f4b629] font-semibold block">Portal Exclusivo</span>
+            <h3 class="text-lg font-bold text-white">Ingreso de Estudiantes</h3>
+          </div>
         </div>
 
         <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4">
           <div>
-            <label for="username-input" class="block text-xs font-medium text-indigo-200 mb-1">Usuario / Nombre del Alumno</label>
+            <label for="username-input" class="block text-xs font-medium text-indigo-200 mb-1">Usuario / Alumno</label>
             <input
               id="username-input"
               type="text"
-              list="registered-students-list"
-              placeholder="Ej. Javier Alfaro"
+              autocomplete="off"
+              placeholder="Ingresa tu usuario o nombre..."
               class="w-full px-3.5 py-2.5 rounded-lg bg-white/10 border border-white/20 text-white placeholder-indigo-300/50 text-sm focus:outline-none focus:border-[#f4b629]"
               required
             />
-            <datalist id="registered-students-list"></datalist>
           </div>
 
           <div>
@@ -162,7 +152,7 @@
           </div>
 
           <div id="login-error" class="hidden p-2.5 rounded-lg bg-rose-500/20 border border-rose-400/40 text-rose-200 text-xs">
-            Usuario o contraseña incorrectos. Verifica tus credenciales o abre el gestor de <strong>+ Usuarios</strong>.
+            Usuario o contraseña incorrectos. Por favor verifica tus credenciales de estudiante.
           </div>
 
           <button
@@ -175,58 +165,6 @@
             </svg>
           </button>
         </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- ================= MODAL DE GESTIÓN DE USUARIOS (MULTI-ALUMNO) ================= -->
-  <div id="users-modal" class="hidden fixed inset-0 z-50 bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="w-full max-w-lg rounded-2xl brand-gradient border border-white/20 text-white p-6 shadow-2xl space-y-5">
-      <div class="flex items-center justify-between border-b border-white/10 pb-3">
-        <div>
-          <span class="text-xs uppercase tracking-widest text-[#f4b629] font-bold block">Administración del Bootcamp</span>
-          <h3 class="text-lg font-bold">Gestión de Usuarios y Contraseñas Aleatorias</h3>
-        </div>
-        <button onclick="closeUsersModal()" class="p-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs cursor-pointer">✕</button>
-      </div>
-
-      <!-- Create new student form -->
-      <form onsubmit="createNewStudent(event)" class="p-4 rounded-xl bg-white/5 border border-white/10 space-y-3">
-        <span class="text-xs font-bold text-[#f4b629] block">Agregar Nuevo Alumno al Bootcamp</span>
-        <div class="grid grid-cols-1 sm:grid-cols-12 gap-2">
-          <input
-            id="new-student-name"
-            type="text"
-            placeholder="Nombre y Apellido (ej. María Gómez)"
-            class="sm:col-span-6 px-3 py-2 rounded-lg bg-white/10 border border-white/20 text-xs text-white placeholder-indigo-200/50 focus:outline-none focus:border-[#f4b629]"
-            required
-          />
-          <div class="sm:col-span-4 flex gap-1">
-            <input
-              id="new-student-pass"
-              type="text"
-              readonly
-              class="w-full px-2.5 py-2 rounded-lg bg-black/30 border border-white/20 text-xs font-mono text-[#f4b629]"
-            />
-            <button
-              type="button"
-              onclick="generateRandomPasswordField()"
-              title="Generar otra contraseña aleatoria"
-              class="px-2.5 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-xs cursor-pointer"
-            >
-              🎲
-            </button>
-          </div>
-          <button type="submit" class="sm:col-span-2 py-2 px-3 rounded-lg gold-badge font-bold text-xs cursor-pointer">
-            Crear
-          </button>
-        </div>
-      </form>
-
-      <!-- Registered students list -->
-      <div>
-        <span class="text-xs font-semibold text-indigo-200 block mb-2">Alumnos Registrados (Progreso Individual):</span>
-        <div id="modal-users-list" class="space-y-2 max-h-60 overflow-y-auto pr-1"></div>
       </div>
     </div>
   </div>
@@ -285,14 +223,6 @@
           >
             <span class="w-2 h-2 rounded-full bg-rose-600 animate-ping"></span>
             <span>Mis Clases (Dom 4-6pm)</span>
-          </button>
-
-          <!-- Manage Users Button -->
-          <button
-            onclick="openUsersModal()"
-            class="px-3 py-2 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-xs font-semibold text-indigo-100 cursor-pointer transition"
-          >
-            Usuarios
           </button>
 
           <!-- Student Profile Pill -->
