@@ -571,17 +571,20 @@
           </div>
         </div>
 
-        <!-- Cronograma de Mis Clases (6 Módulos en Orden · Domingos 4-6pm) -->
+        <!-- Cronograma de Mis Clases (3 Domingos · 2 Módulos por Domingo de 4-6pm) -->
         <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-5 sm:p-6 shadow-sm">
           <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
             <div>
-              <h4 class="text-base sm:text-lg font-bold text-[var(--foreground)]">Programación de Mis Clases (Orden 01 → 06) — Domingos 4:00 pm a 6:00 pm</h4>
-              <p class="text-xs text-[var(--muted-foreground)]">Todas las sesiones en vivo se realizan en <strong class="text-amber-400">meet.google.com/ttr-rhow-zou</strong></p>
+              <h4 class="text-base sm:text-lg font-bold text-[var(--foreground)]">Programación de Mis Clases — 2 Módulos cada Domingo (4:00 pm a 6:00 pm)</h4>
+              <p class="text-xs text-[var(--muted-foreground)]">6 módulos en 3 domingos (2 módulos por sesión) en <strong class="text-amber-400">meet.google.com/ttr-rhow-zou</strong></p>
             </div>
+            <span class="px-3 py-1 rounded-full bg-amber-500/15 text-amber-400 text-xs font-bold">
+              3 Domingos · 2 Módulos por Domingo (4-6pm)
+            </span>
           </div>
 
-          <div id="classes-schedule-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-            <!-- Populated in order 01..06 via JS -->
+          <div id="classes-schedule-grid" class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            <!-- Populated in 3 Sunday pairs (01+02, 03+04, 05+06) via JS -->
           </div>
         </div>
 
@@ -1881,37 +1884,94 @@
       renderAll();
     }
 
-    // ================= TAB 4: MIS CLASES SCHEDULE =================
+    // ================= TAB 4: MIS CLASES SCHEDULE (3 DOMINGOS · 2 MÓDULOS POR DOMINGO 4-6PM) =================
     function renderClassesSchedule() {
       const grid = document.getElementById("classes-schedule-grid");
       if (!grid) return;
-      grid.innerHTML = modulesData
-        .map(
-          m => `
-        <div class="p-4 rounded-xl bg-[var(--background)] border ${
-          m.id === 4 ? "border-2 border-[#f4b629]" : "border-[var(--border)]"
-        } flex flex-col justify-between gap-3">
-          <div>
-            <div class="flex items-center justify-between text-xs mb-1">
-              <span class="font-bold text-amber-400">Clase ${m.num} · Domingo 4-6pm</span>
-              <span class="px-2 py-0.5 rounded ${
-                m.deliverableDone ? "bg-emerald-500/20 text-emerald-300" : "bg-white/10 text-indigo-200"
-              }">${m.deliverableDone ? "Completada" : "En Vivo"}</span>
+
+      const sundaySessions = [
+        {
+          sundayNum: 1,
+          label: "Domingo 1 · 4:00 pm – 6:00 pm",
+          mods: [modulesData[0], modulesData[1]],
+          timeSlots: ["4:00 pm – 5:00 pm", "5:00 pm – 6:00 pm"]
+        },
+        {
+          sundayNum: 2,
+          label: "Domingo 2 · 4:00 pm – 6:00 pm",
+          mods: [modulesData[2], modulesData[3]],
+          timeSlots: ["4:00 pm – 5:00 pm", "5:00 pm – 6:00 pm"]
+        },
+        {
+          sundayNum: 3,
+          label: "Domingo 3 · 4:00 pm – 6:00 pm",
+          mods: [modulesData[4], modulesData[5]],
+          timeSlots: ["4:00 pm – 5:00 pm", "5:00 pm – 6:00 pm"]
+        }
+      ];
+
+      grid.innerHTML = sundaySessions
+        .map((session, idx) => {
+          const allDone = session.mods.every(m => m.deliverableDone);
+          const isCurrentSunday = idx === 1;
+          return `
+            <div class="p-5 rounded-2xl bg-[var(--background)] border ${
+              isCurrentSunday ? "border-2 border-[#f4b629] shadow-lg" : "border-[var(--border)]"
+            } flex flex-col justify-between gap-4">
+              <div class="space-y-3">
+                <div class="flex items-center justify-between gap-2 border-b border-[var(--border)] pb-2.5">
+                  <div>
+                    <span class="text-xs font-extrabold uppercase tracking-wider text-amber-400 block">
+                      Sesión ${session.sundayNum} · Módulos ${session.mods[0].num} y ${session.mods[1].num}
+                    </span>
+                    <h5 class="text-sm sm:text-base font-bold text-[var(--foreground)] mt-0.5">${session.label}</h5>
+                  </div>
+                  <span class="px-2.5 py-0.5 rounded-full text-xs font-bold ${
+                    allDone
+                      ? "bg-emerald-500/20 text-emerald-300 border border-emerald-400/30"
+                      : isCurrentSunday
+                      ? "gold-badge"
+                      : "bg-white/10 text-indigo-200"
+                  }">
+                    ${allDone ? "Completado" : isCurrentSunday ? "En Curso" : "Programado"}
+                  </span>
+                </div>
+
+                <!-- 2 Modules inside this Sunday (4-5pm and 5-6pm) -->
+                <div class="space-y-2.5">
+                  ${session.mods
+                    .map(
+                      (m, mIdx) => `
+                    <div class="p-3 rounded-xl bg-white/5 border border-white/10 flex flex-col gap-1.5">
+                      <div class="flex items-center justify-between text-xs">
+                        <span class="font-bold text-amber-400">Módulo ${m.num} · ${session.timeSlots[mIdx]}</span>
+                        <button onclick="openModuleMaterial(${m.id})" class="text-indigo-300 hover:text-white hover:underline font-semibold cursor-pointer">
+                          Material PDF →
+                        </button>
+                      </div>
+                      <p class="text-xs sm:text-sm font-bold text-[var(--foreground)]">${m.title}</p>
+                      <p class="text-xs text-[var(--muted-foreground)]">${m.subtitle}</p>
+                    </div>
+                  `
+                    )
+                    .join("")}
+                </div>
+              </div>
+
+              <a
+                href="${MEET_URL}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full py-2.5 px-3 rounded-xl ${
+                  isCurrentSunday ? "gold-badge" : "bg-white/10 hover:bg-white/15 text-white border border-white/15"
+                } font-bold text-xs flex items-center justify-center gap-1.5 transition"
+              >
+                <span>Entrar a Meet (Dom 4-6pm · ttr-rhow-zou)</span>
+                <span>↗</span>
+              </a>
             </div>
-            <h5 class="text-sm font-bold text-[var(--foreground)]">Módulo ${m.num}: ${m.title}</h5>
-            <p class="text-xs text-[var(--muted-foreground)] mt-1">${m.subtitle}</p>
-          </div>
-          <div class="flex items-center justify-between gap-2 pt-2 border-t border-[var(--border)]">
-            <button onclick="openModuleMaterial(${m.id})" class="text-xs font-semibold text-indigo-300 hover:underline cursor-pointer">
-              Ver Material PDF
-            </button>
-            <a href="${MEET_URL}" target="_blank" rel="noopener noreferrer" class="text-xs font-bold text-amber-400 hover:underline">
-              meet.google.com/ttr-rhow-zou →
-            </a>
-          </div>
-        </div>
-      `
-        )
+          `;
+        })
         .join("");
     }
 
